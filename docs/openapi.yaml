@@ -1,0 +1,739 @@
+# region OPENAPI
+openapi: 3.0.3
+info:
+  title: api-design-node-v5
+  description: course on Frontend Masters
+  version: 1.0.0
+  contact:
+    name: API Support
+    email: vertex4004@protonmail.com
+servers:
+  - url: 'http://localhost:3000/api'
+    description: Express.js Dev & Prod
+security:
+  - bearerAuth: [ ]
+tags:
+  - name: Auth
+    description: Authentication endpoints (register, login)
+  - name: Habits
+    description: CRUD and action endpoints for habits
+  - name: Health
+    description: Health check
+  - name: Users
+    description: User profile and password management
+# endregion
+
+
+# region SECURITY COMPONENTS
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+# endregion
+
+
+# region SCHEMA COMPONENTS
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          example: uuid-here
+        email:
+          type: string
+          format: email
+          example: user@example.com
+        username:
+          type: string
+          example: johndoe
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: Doe
+        createdAt:
+          type: string
+          format: date-time
+          example: '1970-01-01T00:00:00Z'
+
+    UserPublic:
+      type: object
+      properties:
+        id:
+          type: string
+          example: uuid-here
+        email:
+          type: string
+          format: email
+          example: user@example.com
+        username:
+          type: string
+          example: johndoe
+
+    Habit:
+      type: object
+      properties:
+        id:
+          type: string
+          example: uuid-here
+        userId:
+          type: string
+          example: user-uuid
+        name:
+          type: string
+          example: Exercise
+        description:
+          type: string
+          example: Daily workout routine
+        frequency:
+          type: string
+          example: daily
+        targetCount:
+          type: integer
+          example: 1
+        isActive:
+          type: boolean
+          example: true
+        createdAt:
+          type: string
+          format: date-time
+          example: '1970-01-01T00:00:00Z'
+        updatedAt:
+          type: string
+          format: date-time
+          example: '1970-01-01T00:00:00Z'
+
+    CompletionEntry:
+      type: object
+      properties:
+        id:
+          type: string
+          example: uuid-here
+        habitId:
+          type: string
+          example: habit-uuid
+        completion_date:
+          type: string
+          format: date-time
+          example: '1970-01-01T12:00:00Z'
+        note:
+          type: string
+          nullable: true
+          example: null
+        createdAt:
+          type: string
+          format: date-time
+          example: '1970-01-01T12:00:00Z'
+
+    HabitStats:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Exercise
+        current_streak:
+          type: integer
+          example: 7
+        longest_streak:
+          type: integer
+          example: 21
+        total_completions:
+          type: integer
+          example: 45
+        completion_percentage:
+          type: number
+          format: float
+          example: 75.5
+
+    ErrorResponse:
+      description: Standard error response format
+      type: object
+      properties:
+        code:
+          type: string
+          example: ERROR_CODE_TEXT
+        message:
+          type: string
+          example: Error details
+  # endregion
+
+
+  # region RESPONSE COMPONENTS
+  responses:
+    400BadRequest:
+      description: Validation failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            genericBadRequest:
+              value:
+                code: VALIDATION_FAILED
+                message: Invalid request format
+            missingField:
+              value:
+                code: VALIDATION_FAILED
+                message: Missing required field
+            invalidEmail:
+              value:
+                code: VALIDATION_FAILED
+                message: Invalid email format
+
+    401Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            genericUnauthorized:
+              value:
+                code: UNAUTHORIZED
+                message: Please provide a valid token
+
+    404NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            genericNotFound:
+              value:
+                code: NOT_FOUND
+                message: Resource not found
+            userNotFound:
+              value:
+                code: NOT_FOUND
+                message: User not found
+            habitNotFound:
+              value:
+                code: NOT_FOUND
+                message: Habit not found
+
+    409Conflict:
+      description: Conflict
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            genericConflict:
+              value:
+                code: CONFLICT
+                message: Conflict occurred
+            emailExists:
+              value:
+                code: CONFLICT
+                message: Email already registered
+
+    500InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          examples:
+            genericError:
+              value:
+                code: INTERNAL_SERVER_ERROR
+                message: Something went wrong
+# endregion
+
+
+# region PATHS
+paths:
+  /auth/register:
+    post:
+      tags:
+        - Auth
+      summary: Register new user
+      description: Create a new user account and return a JWT token and basic user info.
+      operationId: registerUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - username
+                - password
+                - firstName
+                - lastName
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: user@example.com
+                username:
+                  type: string
+                  example: johndoe
+                password:
+                  type: string
+                  format: password
+                  example: securePassword123
+                firstName:
+                  type: string
+                  example: John
+                lastName:
+                  type: string
+                  example: Doe
+      responses:
+        '201':
+          description: User registered successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: User registered successfully
+                  user:
+                    $ref: '#/components/schemas/UserPublic'
+                  token:
+                    type: string
+                    example: jwt-token-here
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '409':
+          $ref: '#/components/responses/409Conflict'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+
+
+  /auth/login:
+    post:
+      tags:
+        - Auth
+      summary: Login existing user
+      description: Authenticate a user with email and password and return a JWT token.
+      operationId: loginUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - password
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: user@example.com
+                password:
+                  type: string
+                  format: password
+                  example: securePassword123
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Login successful
+                  token:
+                    type: string
+                    example: jwt-token-here
+                  user:
+                    $ref: '#/components/schemas/UserPublic'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+
+
+  /habits:
+    get:
+      tags:
+        - Habits
+      summary: Get all user habits (paginated)
+      description: Retrieve a paginated list of habits belonging to the authenticated user.
+      operationId: listHabits
+      security:
+        - bearerAuth: [ ]
+      parameters:
+        - name: page
+          in: query
+          description: "Page number (default: 1)"
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: limit
+          in: query
+          description: "Items per page (default: 10, max: 100)"
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 10
+      responses:
+        '200':
+          description: A list of habits
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  habits:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Habit'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+    post:
+      tags:
+        - Habits
+      summary: Create a new habit
+      description: Create a new habit for the authenticated user.
+      operationId: createHabit
+      security:
+        - bearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - frequency
+              properties:
+                name:
+                  type: string
+                  example: Read for 30 minutes
+                description:
+                  type: string
+                  example: Daily reading habit
+                frequency:
+                  type: string
+                  example: daily
+                targetCount:
+                  type: integer
+                  example: 1
+      responses:
+        '201':
+          description: Habit created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Habit created successfully
+                  habit:
+                    $ref: '#/components/schemas/Habit'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+
+
+  /habits/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Habit ID
+    patch:
+      tags:
+        - Habits
+      summary: Update a habit
+      description: Update fields of an existing habit owned by the authenticated user.
+      operationId: updateHabit
+      security:
+        - bearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Read for 45 minutes
+                description:
+                  type: string
+                  example: Extended reading time
+      responses:
+        '200':
+          description: Habit updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Habit updated successfully
+                  habit:
+                    $ref: '#/components/schemas/Habit'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+    delete:
+      tags:
+        - Habits
+      summary: Delete a habit
+      description: Permanently delete a habit owned by the authenticated user.
+      operationId: deleteHabit
+      security:
+        - bearerAuth: [ ]
+      responses:
+        '200':
+          description: Habit deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Habit deleted successfully
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+
+
+  /habits/{id}/complete:
+    post:
+      tags:
+        - Habits
+      summary: Mark a habit as completed for today
+      description: Create a completion entry for a habit for the current day. Returns 409 if already completed today.
+      operationId: completeHabit
+      security:
+        - bearerAuth: [ ]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Habit ID
+      responses:
+        '201':
+          description: Habit completed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Habit completed successfully
+                  entry:
+                    $ref: '#/components/schemas/CompletionEntry'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '409':
+          $ref: '#/components/responses/409Conflict'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+
+
+  /habits/{id}/stats:
+    get:
+      tags:
+        - Habits
+      summary: Get habit statistics (streaks, totals)
+      description: Retrieve aggregated statistics for the given habit (current streak, longest streak, totals and completion percentage).
+      operationId: getHabitStats
+      security:
+        - bearerAuth: [ ]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Habit ID
+      responses:
+        '200':
+          description: Habit statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HabitStats'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '404':
+          $ref: '#/components/responses/404NotFound'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+
+
+  /health:
+    get:
+      tags:
+        - Health
+      summary: Health check
+      description: Returns a simple status object to indicate the API is reachable.
+      operationId: getHealth
+      responses:
+        '200':
+          description: 200 OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: OK
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: '1970-01-01T00:00:00Z'
+                  service:
+                    type: string
+                    example: Habit Tracker API
+
+
+  /users/profile:
+    get:
+      tags:
+        - Users
+      summary: Get current user's profile
+      description: Return the authenticated user's profile information.
+      operationId: getUserProfile
+      security:
+        - bearerAuth: [ ]
+      responses:
+        '200':
+          description: User profile
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+
+    put:
+      tags:
+        - Users
+      summary: Update current user's profile
+      description: Update fields such as firstName and lastName for the authenticated user.
+      operationId: updateUserProfile
+      security:
+        - bearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstName:
+                  type: string
+                  example: Jane
+                lastName:
+                  type: string
+                  example: Smith
+      responses:
+        '200':
+          description: Profile updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Profile updated successfully
+                  user:
+                    $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+
+
+  /users/password:
+    put:
+      tags:
+        - Users
+      summary: Change current user's password
+      description: Change the authenticated user's password given the current and new passwords.
+      operationId: changeUserPassword
+      security:
+        - bearerAuth: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - currentPassword
+                - newPassword
+              properties:
+                currentPassword:
+                  type: string
+                  format: password
+                  example: oldPassword123
+                newPassword:
+                  type: string
+                  format: password
+                  example: newSecurePassword456
+      responses:
+        '200':
+          description: Password changed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Password changed successfully
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+# endregion
