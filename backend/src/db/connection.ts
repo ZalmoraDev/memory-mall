@@ -7,7 +7,7 @@ import {env, isProd} from '../../env.ts';
 
 const createPool: Pool = () => {
     return new Pool({
-        connectionString: env.DATABASE_URL
+        connectionString: env.DB_HOST + ':' + env.DB_PORT
     });
 };
 

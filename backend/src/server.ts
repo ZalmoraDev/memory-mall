@@ -29,7 +29,7 @@ app.get('/api/health', (req, res) => {
     res.status(200).json({
         status: 'OK',
         timestamp: new Date().toISOString(),
-        service: 'Habit Tracker API'
+        service: 'Memory Mall API v1'
     });
 });
 

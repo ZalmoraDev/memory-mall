@@ -18,7 +18,7 @@ export default async function setup() {
         console.log('🚀 Pushing schema using drizzle-kit...');
         execSync(
             `npx drizzle-kit push \
-            --url="${process.env.DATABASE_URL}" \
+            --url="${process.env.DB_HOST + ':' + process.env.DB_PORT}" \
             --schema="./src/db/schema.ts" \
             --dialect="postgresql"`,
             {

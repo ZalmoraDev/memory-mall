@@ -1,7 +1,8 @@
 {
   "name": "memory-mall",
-  "version": "1.0.0",
-  "description": "90's themed computer hardware e-commerce platform",
+  "version": "0.1.0",
+  "description": "BE Express.js: 90's themed computer hardware e-commerce platform",
+  "author": "ZalmoraDev",
   "main": "src/index.ts",
   "type": "module",
   "scripts": {
@@ -16,7 +17,6 @@
     "test:watch": "cross-env APP_STAGE=test vitest",
     "test:coverage": "cross-env APP_STAGE=test vitest run --coverage"
   },
-  "author": "ZalmoraDev",
   "dependencies": {
     "express": "^5.1.0",
     "morgan": "^1.10.1",

@@ -15,24 +15,25 @@ else if (isTesting)
 // Set zod schema
 const envSchema = z.object({
     // Node environment
-    NODE_ENV: z
+    BE_NODE_ENV: z
         .enum(['development', 'test', 'production'])
         .default('development'),
 
     APP_STAGE: z.enum(['dev', 'test', 'production']).default('dev'),
 
-    // Database
-    PORT: z.coerce.number().positive(),
-    HOST: z.string().default('localhost'),
+    // Back-end
+    BE_HOST: z.string().default('localhost'),
+    BE_PORT: z.coerce.number().positive(),
 
     // Database
-    DATABASE_URL: z.string().startsWith('postgresql://'),
+    DB_HOST: z.string().default('localhost'),
+    DB_PORT: z.coerce.number().positive(),
     DATABASE_POOL_MIN: z.coerce.number().min(0).default(2),
     DATABASE_POOL_MAX: z.coerce.number().positive().default(10),
 
     // JWT & Auth
-    JWT_SECRET: z.string().min(32, 'JWT_SECRET must be at least 32 characters'),
-    JWT_EXPIRES_IN: z.string().default('7d'),
+    BE_JWT_SECRET: z.string().min(32, 'BE_JWT_SECRET must be at least 32 characters'),
+    BE_JWT_EXPIRES_IN: z.string().default('7d'),
     REFRESH_TOKEN_SECRET: z.string().min(32).optional(),
     REFRESH_TOKEN_EXPIRES_IN: z.string().default('30d'),
 
@@ -51,7 +52,7 @@ const envSchema = z.object({
         .default([]),
 
     // Logging
-    LOG_LEVEL: z
+    BE_LOG_LEVEL: z
         .enum(['error', 'warn', 'info', 'debug', 'trace'])
         .default(isProduction ? 'info' : 'debug'),
 });

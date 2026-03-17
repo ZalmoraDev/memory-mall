@@ -1,0 +1,14 @@
+{
+  "Servers": {
+    "1": {
+      "Name": "memory-mall",
+      "Group": "Project",
+      "Host": "postgres",
+      "Port": 5432,
+      "MaintenanceDB": "memory-mall",
+      "Username": "appuser",
+      "SSLMode": "prefer",
+      "SavePassword": true
+    }
+  }
+}
