@@ -19,7 +19,7 @@ app.use(express.json()); // Parse JSON bodies
 app.use(express.urlencoded({extended: true})); // Parse URL-encoded bodies
 
 app.use(helmet()); // CSP
-app.use(cors({origin: env.CORS_ORIGIN, credentials: true,})); // CORS
+app.use(cors({origin: env.ALLOWED_ORIGINS, credentials: true})); // CORS
 app.use(morgan('dev', {skip: () => isTest()})); // Logging to console
 
 app.use(errorHandler); // Global error handler

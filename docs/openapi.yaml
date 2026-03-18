@@ -1,8 +1,8 @@
-# region OPENAPI
+# region OAS3
 openapi: 3.0.3
 info:
-  title: api-design-node-v5
-  description: course on Frontend Masters
+  title: memory-mall
+  description: 90's themed computer hardware e-commerce platform
   version: 1.0.0
   contact:
     name: API Support
@@ -13,31 +13,42 @@ servers:
 security:
   - bearerAuth: [ ]
 tags:
+  - name: Health
+    description: Health check
   - name: Auth
     description: Authentication endpoints (register, login)
   - name: Habits
-    description: CRUD and action endpoints for habits
-  - name: Health
-    description: Health check
+    description: Habits
   - name: Users
     description: User profile and password management
 # endregion
 
-
-# region SECURITY COMPONENTS
 components:
+  # region Secutity Scheme
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
-# endregion
+  # endregion
 
-
-# region SCHEMA COMPONENTS
+  # region Schemas
   schemas:
-    User:
+    ErrorResponse:
       type: object
+      description: Standardized error response format
+      properties:
+        error:
+          type: string
+          example: Not Found
+        message:
+          type: string
+          example: Resource not found
+
+    # region User Models/DTOs
+    User (default):
+      type: object
+      description: Full user profile information including password
       properties:
         id:
           type: string
@@ -62,6 +73,7 @@ components:
 
     UserPublic:
       type: object
+      description: Full user profile information (excluding password)
       properties:
         id:
           type: string
@@ -73,7 +85,9 @@ components:
         username:
           type: string
           example: johndoe
+    # endregion
 
+    # region Habit Models/DTOs
     Habit:
       type: object
       properties:
@@ -107,7 +121,7 @@ components:
           format: date-time
           example: '1970-01-01T00:00:00Z'
 
-    CompletionEntry:
+    HabitCompletionEntry:
       type: object
       properties:
         id:
@@ -148,24 +162,14 @@ components:
           type: number
           format: float
           example: 75.5
-
-    ErrorResponse:
-      description: Standard error response format
-      type: object
-      properties:
-        code:
-          type: string
-          example: ERROR_CODE_TEXT
-        message:
-          type: string
-          example: Error details
+    # endregion
   # endregion
 
 
-  # region RESPONSE COMPONENTS
+  # region Error Responses
   responses:
     400BadRequest:
-      description: Validation failed
+      description: Bad request
       content:
         application/json:
           schema:
@@ -173,19 +177,19 @@ components:
           examples:
             genericBadRequest:
               value:
-                code: VALIDATION_FAILED
+                error: Bad request
                 message: Invalid request format
             missingField:
               value:
-                code: VALIDATION_FAILED
+                error: Bad request
                 message: Missing required field
             invalidEmail:
               value:
-                code: VALIDATION_FAILED
+                error: Bad request
                 message: Invalid email format
 
     401Unauthorized:
-      description: Authentication required
+      description: Unauthorized
       content:
         application/json:
           schema:
@@ -193,8 +197,8 @@ components:
           examples:
             genericUnauthorized:
               value:
-                code: UNAUTHORIZED
-                message: Please provide a valid token
+                error: Unauthorized
+                message: Please provide valid authentication credentials
 
     404NotFound:
       description: Resource not found
@@ -205,16 +209,12 @@ components:
           examples:
             genericNotFound:
               value:
-                code: NOT_FOUND
+                error: Not Found
                 message: Resource not found
             userNotFound:
               value:
-                code: NOT_FOUND
-                message: User not found
-            habitNotFound:
-              value:
-                code: NOT_FOUND
-                message: Habit not found
+                error: Not Found
+                message: User with id 123 not found
 
     409Conflict:
       description: Conflict
@@ -225,12 +225,16 @@ components:
           examples:
             genericConflict:
               value:
-                code: CONFLICT
+                error: Conflict
                 message: Conflict occurred
-            emailExists:
+            usernameTaken:
               value:
-                code: CONFLICT
-                message: Email already registered
+                error: Conflict
+                message: Username is already taken
+            emailTaken:
+              value:
+                error: Conflict
+                message: Email is already taken
 
     500InternalServerError:
       description: Internal server error
@@ -239,15 +243,44 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
           examples:
-            genericError:
+            genericServerError:
               value:
-                code: INTERNAL_SERVER_ERROR
-                message: Something went wrong
-# endregion
+                error: Internal Server Error
+                message: The server was unable to complete your request
+  # endregion
 
-
-# region PATHS
 paths:
+  # region Paths
+  # region Health
+  /health:
+    get:
+      tags:
+        - Health
+      summary: Health check
+      description: Returns a simple status object to indicate the API is reachable.
+      operationId: getHealth
+      responses:
+        '200':
+          description: 200 OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: OK
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: '1970-01-01T00:00:00Z'
+                  service:
+                    type: string
+                    example: Memory Mall e-commerce API
+  # endregion
+
+
+  # region Auth
   /auth/register:
     post:
       tags:
@@ -356,8 +389,10 @@ paths:
           $ref: '#/components/responses/401Unauthorized'
         '500':
           $ref: '#/components/responses/500InternalServerError'
+  # endregion
 
 
+  # region Habits
   /habits:
     get:
       tags:
@@ -557,7 +592,7 @@ paths:
                     type: string
                     example: Habit completed successfully
                   entry:
-                    $ref: '#/components/schemas/CompletionEntry'
+                    $ref: '#/components/schemas/HabitCompletionEntry'
         '401':
           $ref: '#/components/responses/401Unauthorized'
         '404':
@@ -597,35 +632,9 @@ paths:
           $ref: '#/components/responses/404NotFound'
         '500':
           $ref: '#/components/responses/500InternalServerError'
+  # endregion
 
-
-  /health:
-    get:
-      tags:
-        - Health
-      summary: Health check
-      description: Returns a simple status object to indicate the API is reachable.
-      operationId: getHealth
-      responses:
-        '200':
-          description: 200 OK
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: string
-                    example: OK
-                  timestamp:
-                    type: string
-                    format: date-time
-                    example: '1970-01-01T00:00:00Z'
-                  service:
-                    type: string
-                    example: Habit Tracker API
-
-
+  # region Users
   /users/profile:
     get:
       tags:
@@ -637,14 +646,14 @@ paths:
         - bearerAuth: [ ]
       responses:
         '200':
-          description: User profile
+          description: Retrieved current user profile
           content:
             application/json:
               schema:
                 type: object
                 properties:
                   user:
-                    $ref: '#/components/schemas/User'
+                    $ref: '#/components/schemas/User (default)'
         '401':
           $ref: '#/components/responses/401Unauthorized'
         '500':
@@ -683,7 +692,7 @@ paths:
                     type: string
                     example: Profile updated successfully
                   user:
-                    $ref: '#/components/schemas/User'
+                    $ref: '#/components/schemas/User (default)'
         '400':
           $ref: '#/components/responses/400BadRequest'
         '401':
@@ -736,4 +745,5 @@ paths:
           $ref: '#/components/responses/401Unauthorized'
         '500':
           $ref: '#/components/responses/500InternalServerError'
-# endregion
+  # endregion
+  # endregion

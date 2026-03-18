@@ -1,11 +1,12 @@
-FROM php:8.4-fpm
+FROM node:20
 
-# Install dependencies for PostgreSQL PDO
-RUN apt-get update && apt-get install -y \
-    libpq-dev \
-    && docker-php-ext-install pdo pdo_pgsql
+WORKDIR /app
 
-# Install Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# package.json & package-lock.json
+COPY /backend/package*.json ./
+RUN npm install
 
-CMD ["php-fpm"]
+# mount volume in compose for live reload
+COPY backend ./
+
+CMD ["npm", "run", "dev"]

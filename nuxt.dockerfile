@@ -2,11 +2,11 @@ FROM node:20
 
 WORKDIR /app
 
-# copy only package files first for caching
-COPY /backend/package*.json ./
+# package.json & package-lock.json
+COPY /frontend/package*.json ./
 RUN npm install
 
 # mount volume in compose for live reload
-COPY . .
+COPY frontend ./
 
 CMD ["npm", "run", "dev"]
