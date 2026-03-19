@@ -5,21 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="376d528a-d198-43bc-abc0-78d98f1b4794" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/public/styles/input.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/env.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/env.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/server.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/db/servers.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/db/servers.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/attributions.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/attributions.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/dependencies.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/dependencies.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/openapi.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docs/openapi.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/express.dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/express.dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/public/apple-dog.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/images/apple-dog.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nginx.conf" beforeDir="false" afterPath="$PROJECT_DIR$/nginx.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nuxt.dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/nuxt.dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,6 +154,8 @@
       <workItem from="1773765561979" duration="3950000" />
       <workItem from="1773770148241" duration="5473000" />
       <workItem from="1773823427477" duration="2151000" />
+      <workItem from="1773842320013" duration="4000" />
+      <workItem from="1773911043496" duration="3722000" />
     </task>
     <servers />
   </component>

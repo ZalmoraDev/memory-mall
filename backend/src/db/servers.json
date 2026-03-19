@@ -1,11 +1,11 @@
 {
   "Servers": {
     "1": {
-      "Name": "memory-mall",
+      "Name": "MemoryMallDB",
       "Group": "Project",
       "Host": "postgres",
       "Port": 5432,
-      "MaintenanceDB": "memory-mall",
+      "MaintenanceDB": "MemoryMallDB",
       "Username": "appuser",
       "SSLMode": "prefer",
       "SavePassword": true
