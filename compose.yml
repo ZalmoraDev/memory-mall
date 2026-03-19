@@ -4,24 +4,13 @@ volumes:
   postgres_vol: { }
 
 services:
-  nginx:
-    container_name: memory-mall-nginx
-    image: nginx:1.26
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
-      - .:/var/www
-    restart: no
-    depends_on:
-      - express
-      - nuxt
-
+  # Use `docker compose exec mm-express npm run 'command'` to run the drizzle-orm CLI
+  # commands from /backend/package.json inside the postgres container
   express:
-    container_name: memory-mall-express
+    container_name: mm-express
     build:
       context: .
-      dockerfile: express.dockerfile
+      dockerfile: express.dockerfile # image: node:24
     ports:
       - "3000:3000"
     command: npm run dev
@@ -34,10 +23,10 @@ services:
       - postgres
 
   nuxt:
-    container_name: memory-mall-nuxt
+    container_name: mm-nuxt
     build:
       context: .
-      dockerfile: nuxt.dockerfile
+      dockerfile: nuxt.dockerfile # image: node:24
     ports:
       - "3001:3000"
     command: npm run dev
@@ -50,8 +39,8 @@ services:
       - express
 
   postgres:
-    container_name: memory-mall-postgres
-    image: postgres:16
+    container_name: mm-postgres
+    image: postgres:18
     ports:
       - "5432:5432"
     environment:
@@ -64,8 +53,8 @@ services:
     restart: no
 
   pg-admin:
-    container_name: memory-mall-pgadmin
-    image: dpage/pgadmin4
+    container_name: mm-pgadmin
+    image: dpage/pgadmin4:9
     ports:
       - "8080:80"
     environment:

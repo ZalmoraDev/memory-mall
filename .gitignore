@@ -35,6 +35,9 @@
 
 !.env.example
 
+# Docs dir
+/docs/.$.drawio.*
+
 # Logs
 logs/
 *.log
