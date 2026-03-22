@@ -12,7 +12,9 @@ services:
       context: .
       dockerfile: express.dockerfile # image: node:24
     ports:
-      - "3000:3000"
+      - "3000:3000" # express server
+      - "4983:4983" # drizzle-orm
+      # TODO: Drizzle-studio is not reachable by the HOST, gives back 404.
     command: npm run dev
     volumes:
       - ./backend:/app
@@ -40,7 +42,7 @@ services:
 
   postgres:
     container_name: mm-postgres
-    image: postgres:18
+    image: postgres:16
     ports:
       - "5432:5432"
     environment:

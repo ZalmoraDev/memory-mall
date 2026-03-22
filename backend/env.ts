@@ -28,6 +28,9 @@ const envSchema = z.object({
     // Database
     DB_HOST: z.string().default('localhost'),
     DB_PORT: z.coerce.number().positive(),
+    DB_USERNAME: z.string(),
+    DB_PASSWORD: z.string(),
+    DB_DATABASE: z.string(),
     DATABASE_POOL_MIN: z.coerce.number().min(0).default(2),
     DATABASE_POOL_MAX: z.coerce.number().positive().default(10),
 
