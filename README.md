@@ -1,6 +1,6 @@
 <div align="center">
 <h1 style="margin-top: 0; padding: 0;">
-   <img src="public/assets/icons/logo/logo-FFF.svg" style="height: 48px; width: auto; vertical-align: middle; margin-bottom: 12px;">
+   <img src="frontend/public/icons/logo/logo-FFF.svg" style="height: 48px; width: auto; vertical-align: middle; margin-bottom: 12px;">
    Memory Mall
 </h1>
 </div>
@@ -18,8 +18,18 @@
 ![Express](https://img.shields.io/badge/express-000000.svg?style=for-the-badge&logo=express&logoColor=white)    
 ![Zod](https://img.shields.io/badge/zod-408AFF.svg?style=for-the-badge&logo=zod&logoColor=white)
 ![Drizzle](https://img.shields.io/badge/drizzle-1d1c21.svg?style=for-the-badge&logo=drizzle&logoColor=C5F74F)
-![Vitest](https://img.shields.io/badge/vitest-1c1d22.svg?style=for-the-badge&logo=vitest&logoColor=00FF74)  
-🖥 00-10's tech E-Commerce website 🌐Express.js, Nuxt.js & TypeScript
+![Vitest](https://img.shields.io/badge/vitest-1c1d22.svg?style=for-the-badge&logo=vitest&logoColor=00FF74)
+![Drizzle](https://img.shields.io/badge/sharp-242e22.svg?style=for-the-badge&logo=sharp&logoColor=99CC00)   
+🖥 Early 2000's themed tech marketplace Web Application 🌐Express.js, Nuxt.js & TypeScript
+
+[//]: # (TODO: Replace first table with screenshot of the website)
+
+<table>
+  <tr>
+    <td><img src="/docs/ERD.png" alt="Entity Relation Diagram"></td>
+    <td><img src="/docs/ERD.png" alt="Entity Relation Diagram"></td>
+  </tr>
+</table>
 
 ## Prerequisites
 
@@ -56,6 +66,8 @@
         - **Password:** database123
 
 ## Technologies Used
+
+[//]: # (TODO: Finalize dependencies)
 
 - Docker
 -
