@@ -90,24 +90,13 @@ export const categoryAttributes: PgTableWithColumns<any> = pgTable('category_att
     isRequired: boolean('is_required').notNull().default(false)
 });
 
-// 🟪ORDERS
-export const orders: PgTableWithColumns<any> = pgTable('orders', {
-    id: uuid('id').primaryKey().defaultRandom(),
-    userId: uuid('user_id').notNull().references(() => users.id, {onDelete: 'cascade'}),
-    totalPrice: decimal('total_price', {precision: 6, scale: 2}).notNull(),
-    status: orderStatus('status').notNull().default('ordered'),
-    orderedAt: timestamp().defaultNow().notNull(),
-    shippedAt: timestamp().default(null),
-    deliveredAt: timestamp().default(null)
-});
-
 // 🟩LISTINGS
 export const listings: PgTableWithColumns<any> = pgTable('listings', {
     id: uuid('id').primaryKey().defaultRandom(),
     sellingAccountId: uuid('selling_account_id').notNull().references(() => accounts.id, {onDelete: 'cascade'}),
     title: varchar('title', {length: 128}).notNull(),
     description: text('description'),
-    mainCategory: uuid('main_category').notNull().references(() => categories.id, {onDelete: 'cascade'}),
+    mainCategoryId: uuid('main_category_id').notNull().references(() => categories.id, {onDelete: 'cascade'}),
     price: decimal('price', {precision: 4, scale: 2}).notNull(),
     stockQuantity: smallint().notNull(),
     condition: listingCondition('condition').notNull(),
@@ -147,6 +136,17 @@ export const listingAttributeValues: PgTableWithColumns<any> = pgTable('listing_
 ]);
 // @formatter:on
 
+// 🟪ORDERS
+export const orders: PgTableWithColumns<any> = pgTable('orders', {
+    id: uuid('id').primaryKey().defaultRandom(),
+    userId: uuid('user_id').notNull().references(() => users.id, {onDelete: 'cascade'}),
+    totalPrice: decimal('total_price', {precision: 6, scale: 2}).notNull(),
+    status: orderStatus('status').notNull().default('ordered'),
+    orderedAt: timestamp().defaultNow().notNull(),
+    shippedAt: timestamp().default(null),
+    deliveredAt: timestamp().default(null)
+});
+
 // 🟪ORDERS, junction
 export const orderListings: PgTableWithColumns<any> = pgTable('order_listings', {
     orderId: uuid('order_id').primaryKey().references(() => orders.id, {onDelete: 'cascade'}),
@@ -164,50 +164,145 @@ export const cartItems: PgTableWithColumns<any> = pgTable('cart_ttems', {
 // endregion TABLES
 
 
-
 // region RELATIONS
-// Define table relations using Drizzle's relations() API.
 // relations() invokes the callback with helper functions { one, many },
 // which are destructured and used to declare relations between tables.
 // This runs when the module is first imported, creating relation mappings used by Drizzle.
 
-export const userRelations = relations(users, ({many}) => ({
-    habits: many(habits)
+// 🟥ACCOUNTS
+export const userRelations = relations(users, ({one, many}) => ({
+    account: one(accounts, {
+        fields: [users.id],
+        references: [accounts.userId]
+    }),
+    cartItems: many(cartItems),
+    orders: many(orders)
 }));
 
-export const habitRelations = relations(habits, ({one, many}) => ({
+// 🟥ACCOUNTS
+export const businessRelations = relations(businesses, ({one}) => ({
+    account: one(accounts, {
+        fields: [businesses.id],
+        references: [accounts.businessId]
+    })
+}));
+
+// 🟥ACCOUNTS
+export const accountRelations = relations(accounts, ({one}) => ({
     user: one(users, {
-        fields: [habits.userId],
+        fields: [accounts.userId],
         references: [users.id]
     }),
-    entries: many(entries),
-    habitTags: many(habitTags)
-}));
-
-export const entryRelations = relations(entries, ({one}) => ({
-    habit: one(habits, {
-        fields: [entries.habitId],
-        references: [habits.id]
-    })
-}));
-
-export const tagRelations = relations(tags, ({many}) => ({
-    habitTags: many(habitTags)
-}));
-
-export const habitTagRelations = relations(habitTags, ({one}) => ({
-    habit: one(habits, {
-        fields: [habitTags.habitId],
-        references: [habits.id]
+    business: one(businesses, {
+        fields: [accounts.businessId],
+        references: [businesses.id]
     }),
-    tag: one(tags, {
-        fields: [habitTags.habitId],
-        references: [tags.id]
+}));
+
+
+// 🟦CATEGORIES
+export const categoryRelations = relations(categories, ({one, many}) => ({
+    parent: one(categories, {
+        fields: [categories.parentId],
+        references: [categories.id]
+    }),
+    children: many(categories),
+    listings: many(listings),
+    categoryAttributes: many(categoryAttributes)
+}));
+
+// 🟦CATEGORIES
+export const attributeRelations = relations(attributes, ({many}) => ({
+    categoryAttributes: many(categoryAttributes),
+    listingAttributeValues: many(listingAttributeValues)
+}));
+
+// 🟦CATEGORIES, junction
+export const categoryAttributeRelations = relations(categoryAttributes, ({one}) => ({
+    category: one(categoryAttributes, {
+        fields: [categoryAttributes.categoryId],
+        references: [categories.id]
+    }),
+    attribute: one(categoryAttributes, {
+        fields: [categoryAttributes.attributeId],
+        references: [attributes.id]
     })
 }));
+
+// 🟦CATEGORIES, junction
+export const listingAttributeValueRelations = relations(listingAttributeValues, ({one}) => ({
+    listing: one(listingAttributeValues, {
+        fields: [listingAttributeValues.listingId],
+        references: [listings.id]
+    }),
+    attribute: one(listingAttributeValues, {
+        fields: [listingAttributeValues.attributeId],
+        references: [attributes.id]
+    })
+}));
+
+
+// 🟩LISTINGS
+export const listingRelations = relations(listings, ({one, many}) => ({
+    sellingAccount: one(listings, {
+        fields: [listings.sellingAccountId],
+        references: [accounts.id]
+    }),
+    mainCategory: one(listings, {
+        fields: [listings.mainCategoryId],
+        references: [categories.id]
+    }),
+    listingImages: many(listingImages),
+    listingAttributeValues: many(listingAttributeValues),
+    orderListings: many(orderListings),
+    cartItems: many(cartItems)
+}));
+
+// 🟩LISTINGS
+export const listingImageRelations = relations(listingImages, ({one}) => ({
+    listing: one(listingImages, {
+        fields: [listingImages.listingId],
+        references: [listings.id]
+    })
+}));
+
+
+// 🟪ORDERS
+export const orderRelations = relations(orders, ({one, many}) => ({
+    user: one(orders, {
+        fields: [orders.userId],
+        references: [users.id]
+    }),
+    orderListings: many(orderListings)
+}));
+
+// 🟪ORDERS, junction
+export const orderListingRelations = relations(orderListings, ({one}) => ({
+    order: one(orderListings, {
+        fields: [orderListings.orderId],
+        references: [orders.id]
+    }),
+    listing: one(orderListings, {
+        fields: [orderListings.listingId],
+        references: [listings.id]
+    }),
+}));
+
+// 🟪ORDERS, junction
+export const cartItemRelations = relations(cartItems, ({one}) => ({
+    user: one(cartItems, {
+        fields: [cartItems.userId],
+        references: [users.id]
+    }),
+    listing: one(cartItems, {
+        fields: [cartItems.listingId],
+        references: [listings.id]
+    }),
+}));
+// endregion RELATIONS
+
 
 // region EXPORT TYPES & VALIDATION SCHEMAS
-
 // Export TS types derived from table schemas
 // $inferInsert generates types for inserts, these wouldn't require NOT NULL defaults (like createdAt, updatedAt, id),
 export type User = typeof users.$inferSelect;
