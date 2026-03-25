@@ -12,7 +12,8 @@ import {
     smallint,
     real,
     type PgTableWithColumns,
-    type PgEnum, decimal
+    type PgEnum, decimal,
+    primaryKey
 } from 'drizzle-orm/pg-core';
 import {relations} from 'drizzle-orm';
 import {Relations} from 'drizzle-orm/relations';
@@ -25,7 +26,7 @@ import {type BuildSchema, createInsertSchema, createSelectSchema} from 'drizzle-
 
 // Enums
 export const orderStatus: PgEnum<any> = pgEnum('order_status', ['ordered', 'in_transit', 'delivered']); // ORDER
-export const dataType: PgEnum<any> = pgEnum('order_status', ['string', 'int', 'float', 'decimal', 'bool']); // CATEGORIES
+export const dataType: PgEnum<any> = pgEnum('data_type', ['string', 'int', 'float', 'decimal', 'bool']); // CATEGORIES
 export const listingCondition: PgEnum<any> = pgEnum('listing_condition', ['new', 'refurbished', 'used', 'modded_new', 'modded_used']); // LISTINGS
 
 // 🟥ACCOUNTS
@@ -48,8 +49,8 @@ export const businesses: PgTableWithColumns<any> = pgTable('businesses', {
 // @formatter:off
 export const accounts: PgTableWithColumns<any> = pgTable('accounts', {
     id: uuid('id').primaryKey().defaultRandom(),
-    userId: uuid('user_id').notNull().references(() => users.id, {onDelete: 'cascade'}),
-    businessId: uuid('business_id').notNull().references(() => businesses.id, {onDelete: 'cascade'}),
+    userId: uuid('user_id').references(() => users.id, {onDelete: 'cascade'}).unique(),
+    businessId: uuid('business_id').references(() => businesses.id, {onDelete: 'cascade'}).unique(),
     email: varchar('email', {length: 254}).notNull().unique(),
     phone: varchar('phone', {length: 15}),
     passwordHash: text('password_hash').notNull(),
@@ -84,11 +85,13 @@ export const attributes: PgTableWithColumns<any> = pgTable('attributes', {
 
 // 🟦CATEGORIES, junction
 export const categoryAttributes: PgTableWithColumns<any> = pgTable('category_attributes', {
-    categoryId: uuid('category_id').primaryKey().references(() => categories.id, {onDelete: 'cascade'}),
-    attributeId: uuid('attribute_id').primaryKey().references(() => attributes.id, {onDelete: 'cascade'}),
+    categoryId: uuid('category_id').references(() => categories.id, {onDelete: 'cascade'}).notNull(),
+    attributeId: uuid('attribute_id').references(() => attributes.id, {onDelete: 'cascade'}).notNull(),
     isFeatured: boolean('is_featured').notNull().default(false),
     isRequired: boolean('is_required').notNull().default(false)
-});
+}, (table) => [
+    primaryKey({ columns: [table.categoryId, table.attributeId] })
+]);
 
 // 🟩LISTINGS
 export const listings: PgTableWithColumns<any> = pgTable('listings', {
@@ -119,20 +122,22 @@ export const listingImages: PgTableWithColumns<any> = pgTable('listing_images', 
 // @formatter:off
 // TODO: Maybe change valueFloat being stored as a "real" to decimal
 export const listingAttributeValues: PgTableWithColumns<any> = pgTable('listing_attribute_values', {
-    listingId: uuid('listing_id').primaryKey().references(() => listings.id, {onDelete: 'cascade'}),
-    attributeId: uuid('attribute_id').primaryKey().references(() => attributes.id, {onDelete: 'cascade'}),
+    listingId: uuid('listing_id').references(() => listings.id, {onDelete: 'cascade'}).notNull(),
+    attributeId: uuid('attribute_id').references(() => attributes.id, {onDelete: 'cascade'}).notNull(),
     valueString: varchar('value_string', {length: 256}),
     valueInt: integer('value_int'),
     valueFloat: real('value_float'),
     valueDecimal: decimal('value_decimal', {precision: 64, scale: 2}),
     valueBool: boolean('value_bool')
-}, (table) => [check('account_unique_owner_check', sql`
+}, (table) => [
+    check('listing_attribute_value_check', sql`
     (${table.valueString} IS NOT NULL)::int +
     (${table.valueInt} IS NOT NULL)::int +
     (${table.valueFloat} IS NOT NULL)::int +
     (${table.valueDecimal} IS NOT NULL)::int +
     (${table.valueBool} IS NOT NULL)::int <= 1
-    `)
+    `),
+    primaryKey({ columns: [table.listingId, table.attributeId] })
 ]);
 // @formatter:on
 
@@ -149,18 +154,22 @@ export const orders: PgTableWithColumns<any> = pgTable('orders', {
 
 // 🟪ORDERS, junction
 export const orderListings: PgTableWithColumns<any> = pgTable('order_listings', {
-    orderId: uuid('order_id').primaryKey().references(() => orders.id, {onDelete: 'cascade'}),
-    listingId: uuid('listing_id').primaryKey().references(() => listings.id, {onDelete: 'cascade'}),
+    orderId: uuid('order_id').references(() => orders.id, {onDelete: 'cascade'}).notNull(),
+    listingId: uuid('listing_id').references(() => listings.id, {onDelete: 'cascade'}).notNull(),
     quantity: smallint('quantity').notNull(),
-    priceSnapshot: decimal('price_snapshot', {precision: 64, scale: 2}).notNull()
-});
+    priceSnapshot: decimal('price_snapshot', {precision: 12, scale: 2}).notNull()
+}, (table) => [
+    primaryKey({ columns: [table.orderId, table.listingId] })
+]);
 
 // 🟪ORDERS, junction
-export const cartItems: PgTableWithColumns<any> = pgTable('cart_ttems', {
-    userId: uuid('user_id').primaryKey().references(() => users.id, {onDelete: 'cascade'}),
-    listingId: uuid('listing_id').primaryKey().references(() => listings.id, {onDelete: 'cascade'}),
+export const cartItems: PgTableWithColumns<any> = pgTable('cart_items', {
+    userId: uuid('user_id').references(() => users.id, {onDelete: 'cascade'}).notNull(),
+    listingId: uuid('listing_id').references(() => listings.id, {onDelete: 'cascade'}).notNull(),
     quantity: smallint('quantity').notNull()
-});
+}, (table) => [
+    primaryKey({ columns: [table.userId, table.listingId] })
+]);
 // endregion TABLES
 
 
@@ -300,34 +309,3 @@ export const cartItemRelations = relations(cartItems, ({one}) => ({
     }),
 }));
 // endregion RELATIONS
-
-
-// region EXPORT TYPES & VALIDATION SCHEMAS
-// Export TS types derived from table schemas
-// $inferInsert generates types for inserts, these wouldn't require NOT NULL defaults (like createdAt, updatedAt, id),
-export type User = typeof users.$inferSelect;
-export type NewUser = typeof users.$inferInsert;
-
-export type Habit = typeof habits.$inferSelect;
-export type NewHabit = typeof habits.$inferInsert;
-
-export type Entries = typeof entries.$inferSelect;
-export type Tags = typeof tags.$inferSelect;
-export type HabitTag = typeof habitTags.$inferSelect;
-
-// Export Zod schemas for validating data against the table structures
-export const insertUserSchema = createInsertSchema(users);
-export const selectUserSchema = createSelectSchema(users);
-
-export const insertHabitSchema = createInsertSchema(habits);
-export const selectHabitSchema = createSelectSchema(habits);
-
-export const insertEntrySchema = createInsertSchema(entries);
-export const selectEntrySchema = createSelectSchema(entries);
-
-export const insertTagSchema = createInsertSchema(tags);
-export const selectTagSchema = createSelectSchema(tags);
-
-export const insertHabitTagSchema = createInsertSchema(habitTags);
-export const selectHabitTagSchema = createSelectSchema(habitTags);
-// endregion EXPORT VALIDATION
