@@ -1,67 +1,169 @@
+import {sql} from 'drizzle-orm';
 import {
     pgTable,
+    pgEnum,
+    check,
     uuid,
     varchar,
     text,
     timestamp,
     boolean,
-    integer, type PgTableWithColumns,
+    integer,
+    smallint,
+    real,
+    type PgTableWithColumns,
+    type PgEnum, decimal
 } from 'drizzle-orm/pg-core';
 import {relations} from 'drizzle-orm';
 import {Relations} from 'drizzle-orm/relations';
 import {type BuildSchema, createInsertSchema, createSelectSchema} from 'drizzle-zod';
 
 // region TABLES
-// Define DB schema using Drizzle ORM's table definitions
+// DB schema using Drizzle ORM's table definitions, see /docs/ERD.png for ERD diagram.
+// Before every table entry is noted what ERD group they belong to within the diagram, enums after
+// Groups: ACCOUNTS, ORDERS, LISTINGS & CATEGORIES
 
+// Enums
+export const orderStatus: PgEnum<any> = pgEnum('order_status', ['ordered', 'in_transit', 'delivered']); // ORDER
+export const dataType: PgEnum<any> = pgEnum('order_status', ['string', 'int', 'float', 'decimal', 'bool']); // CATEGORIES
+export const listingCondition: PgEnum<any> = pgEnum('listing_condition', ['new', 'refurbished', 'used', 'modded_new', 'modded_used']); // LISTINGS
+
+// 🟥ACCOUNTS
 export const users: PgTableWithColumns<any> = pgTable('users', {
     id: uuid('id').primaryKey().defaultRandom(),
-    email: varchar('email', {length: 255}).notNull().unique(),
     username: varchar('username', {length: 32}).notNull().unique(),
-    password: varchar('password', {length: 255}).notNull(),
-    firstName: varchar('first_name', {length: 50}),
-    lastName: varchar('last_name', {length: 50}),
-    createdAt: timestamp('created_at').defaultNow().notNull(),
-    updatedAt: timestamp().defaultNow().notNull()
+    firstName: varchar('first_name', {length: 64}).notNull(),
+    lastName: varchar('last_name', {length: 64}).notNull()
 });
 
-export const habits: PgTableWithColumns<any> = pgTable('habits', {
+// 🟥ACCOUNTS
+export const businesses: PgTableWithColumns<any> = pgTable('businesses', {
     id: uuid('id').primaryKey().defaultRandom(),
-    userId: uuid('user_id').references(() => users.id, {onDelete: 'cascade'}).notNull(),
+    name: varchar('name', {length: 128}).notNull().unique(),
+    description: text('description'),
+    vatNumber: varchar('vat_number', {length: 32}).notNull().unique()
+});
+
+// 🟥ACCOUNTS | C2 can only have 1 NOT NULL
+// @formatter:off
+export const accounts: PgTableWithColumns<any> = pgTable('accounts', {
+    id: uuid('id').primaryKey().defaultRandom(),
+    userId: uuid('user_id').notNull().references(() => users.id, {onDelete: 'cascade'}),
+    businessId: uuid('business_id').notNull().references(() => businesses.id, {onDelete: 'cascade'}),
+    email: varchar('email', {length: 254}).notNull().unique(),
+    phone: varchar('phone', {length: 15}),
+    passwordHash: text('password_hash').notNull(),
+    streetAddress: varchar('street_address', {length: 128}).notNull(),
+    streetNumber: varchar('street_number', {length: 16}).notNull(),
+    apartmentSuite: varchar('apartment_suite', {length: 32}),
+    city: varchar('city', {length: 128}).notNull(),
+    postalCode: varchar('postal_code', {length: 16}).notNull(),
+    createdAt: timestamp('created_at').defaultNow().notNull(),
+    deletedAt: timestamp('deleted_at').default(null)
+}, (table) => [check('account_unique_owner_check', sql`
+    (${table.userId} IS NOT NULL AND ${table.businessId} IS NULL) OR 
+    (${table.userId} IS NULL AND ${table.businessId} IS NOT NULL)
+    `)
+]);
+// @formatter:on
+
+// 🟦CATEGORIES
+export const categories: PgTableWithColumns<any> = pgTable('categories', {
+    id: uuid('id').primaryKey().defaultRandom(),
     name: varchar('name', {length: 128}).notNull(),
-    description: text('description').notNull(),
-    frequency: varchar('frequency', {length: 20}).notNull(), // TODO: Replace with enum (daily, weekly, etc.)
-    targetCount: integer('target_count').default(1),
-    isActive: boolean('is_active').default(true).notNull(),
-    createdAt: timestamp('created_at').defaultNow().notNull(),
-    updatedAt: timestamp().defaultNow().notNull()
+    isFeatured: boolean('is_featured').notNull().default(false),
+    parentId: uuid('parent_id').references(() => categories.id, {onDelete: 'cascade'})
 });
 
-export const entries: PgTableWithColumns<any> = pgTable('entries', {
+// 🟦CATEGORIES
+export const attributes: PgTableWithColumns<any> = pgTable('attributes', {
     id: uuid('id').primaryKey().defaultRandom(),
-    habitId: uuid('habit_id').references(() => habits.id, {onDelete: 'cascade'}).notNull(),
-    completionDate: timestamp('completion_date').defaultNow().notNull(),
-    note: text('note'),
-    createdAt: timestamp('created_at').defaultNow().notNull()
+    name: varchar('name', {length: 128}).notNull(),
+    dataType: dataType('data_type').notNull()
 });
 
-export const tags: PgTableWithColumns<any> = pgTable('tags', {
-    id: uuid('id').primaryKey().defaultRandom(),
-    name: varchar('name', {length: 64}).notNull(),
-    color: varchar('color', {length: 7}).default('#6b7280'),
-    createdAt: timestamp('created_at').defaultNow().notNull(),
-    updatedAt: timestamp().defaultNow().notNull()
+// 🟦CATEGORIES, junction
+export const categoryAttributes: PgTableWithColumns<any> = pgTable('category_attributes', {
+    categoryId: uuid('category_id').primaryKey().references(() => categories.id, {onDelete: 'cascade'}),
+    attributeId: uuid('attribute_id').primaryKey().references(() => attributes.id, {onDelete: 'cascade'}),
+    isFeatured: boolean('is_featured').notNull().default(false),
+    isRequired: boolean('is_required').notNull().default(false)
 });
 
-export const habitTags: PgTableWithColumns<any> = pgTable('habitTags', {
+// 🟪ORDERS
+export const orders: PgTableWithColumns<any> = pgTable('orders', {
     id: uuid('id').primaryKey().defaultRandom(),
-    habitId: uuid('habit_id').references(() => habits.id, {onDelete: 'cascade'}).notNull(),
-    tagId: uuid('tag_id').references(() => tags.id, {onDelete: 'cascade'}).notNull(),
-    createdAt: timestamp('created_at').defaultNow().notNull()
+    userId: uuid('user_id').notNull().references(() => users.id, {onDelete: 'cascade'}),
+    totalPrice: decimal('total_price', {precision: 6, scale: 2}).notNull(),
+    status: orderStatus('status').notNull().default('ordered'),
+    orderedAt: timestamp().defaultNow().notNull(),
+    shippedAt: timestamp().default(null),
+    deliveredAt: timestamp().default(null)
+});
+
+// 🟩LISTINGS
+export const listings: PgTableWithColumns<any> = pgTable('listings', {
+    id: uuid('id').primaryKey().defaultRandom(),
+    sellingAccountId: uuid('selling_account_id').notNull().references(() => accounts.id, {onDelete: 'cascade'}),
+    title: varchar('title', {length: 128}).notNull(),
+    description: text('description'),
+    mainCategory: uuid('main_category').notNull().references(() => categories.id, {onDelete: 'cascade'}),
+    price: decimal('price', {precision: 4, scale: 2}).notNull(),
+    stockQuantity: smallint().notNull(),
+    condition: listingCondition('condition').notNull(),
+    visitCount: integer('visit_count').notNull().default(0),
+    isListed: boolean('is_listed').notNull().default(true),
+    createdAt: timestamp('created_at').notNull().defaultNow(),
+    updatedAt: timestamp('updated_at').default(null)
+});
+
+// 🟩LISTINGS
+export const listingImages: PgTableWithColumns<any> = pgTable('listing_images', {
+    id: uuid('id').primaryKey().defaultRandom(),
+    listingId: uuid('listing_id').notNull().references(() => listings.id, {onDelete: 'cascade'}),
+    orderNr: smallint('order_nr').notNull(),
+    altText: varchar('alt_text', {length: 256}).notNull()
+});
+
+
+// 🟦CATEGORIES, junction | C1 can only have 0 OR 1 be NOT NULL, 0 is when is_required is FALSE
+// @formatter:off
+// TODO: Maybe change valueFloat being stored as a "real" to decimal
+export const listingAttributeValues: PgTableWithColumns<any> = pgTable('listing_attribute_values', {
+    listingId: uuid('listing_id').primaryKey().references(() => listings.id, {onDelete: 'cascade'}),
+    attributeId: uuid('attribute_id').primaryKey().references(() => attributes.id, {onDelete: 'cascade'}),
+    valueString: varchar('value_string', {length: 256}),
+    valueInt: integer('value_int'),
+    valueFloat: real('value_float'),
+    valueDecimal: decimal('value_decimal', {precision: 64, scale: 2}),
+    valueBool: boolean('value_bool')
+}, (table) => [check('account_unique_owner_check', sql`
+    (${table.valueString} IS NOT NULL)::int +
+    (${table.valueInt} IS NOT NULL)::int +
+    (${table.valueFloat} IS NOT NULL)::int +
+    (${table.valueDecimal} IS NOT NULL)::int +
+    (${table.valueBool} IS NOT NULL)::int <= 1
+    `)
+]);
+// @formatter:on
+
+// 🟪ORDERS, junction
+export const orderListings: PgTableWithColumns<any> = pgTable('order_listings', {
+    orderId: uuid('order_id').primaryKey().references(() => orders.id, {onDelete: 'cascade'}),
+    listingId: uuid('listing_id').primaryKey().references(() => listings.id, {onDelete: 'cascade'}),
+    quantity: smallint('quantity').notNull(),
+    priceSnapshot: decimal('price_snapshot', {precision: 64, scale: 2}).notNull()
+});
+
+// 🟪ORDERS, junction
+export const cartItems: PgTableWithColumns<any> = pgTable('cart_ttems', {
+    userId: uuid('user_id').primaryKey().references(() => users.id, {onDelete: 'cascade'}),
+    listingId: uuid('listing_id').primaryKey().references(() => listings.id, {onDelete: 'cascade'}),
+    quantity: smallint('quantity').notNull()
 });
 // endregion TABLES
 
-// TODO: Add unique to tags, but for compound of userId + name, so that different users can have same tag names
+
 
 // region RELATIONS
 // Define table relations using Drizzle's relations() API.
