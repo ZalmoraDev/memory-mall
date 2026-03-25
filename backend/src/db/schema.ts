@@ -309,3 +309,58 @@ export const cartItemRelations = relations(cartItems, ({one}) => ({
     }),
 }));
 // endregion RELATIONS
+
+
+
+// region EXPORT TYPES & VALIDATION SCHEMAS
+// Export TS types derived from table schemas &
+// Export Zod schemas for validating data against the table structures
+
+// 🟥ACCOUNTS
+export type User = typeof users.$inferSelect;
+export type Business = typeof businesses.$inferSelect;
+export type Account = typeof accounts.$inferSelect;
+
+export const insertUserSchema = createInsertSchema(users);
+export const selectUserSchema = createSelectSchema(users);
+export const insertBusinessSchema = createInsertSchema(businesses);
+export const selectBusinessSchema = createSelectSchema(businesses);
+export const insertAccountSchema = createInsertSchema(accounts);
+export const selectAccountSchema = createSelectSchema(accounts);
+
+// 🟦CATEGORIES
+export type Category = typeof categories.$inferSelect;
+export type Attribute = typeof attributes.$inferSelect;
+export type CategoryAttribute = typeof categoryAttributes.$inferSelect;
+export type ListingAttributeValue = typeof listingAttributeValues.$inferSelect;
+
+export const insertCategorySchema = createInsertSchema(categories);
+export const selectCategorySchema = createSelectSchema(categories);
+export const insertAttributeSchema = createInsertSchema(attributes);
+export const selectAttributeSchema = createSelectSchema(attributes);
+export const insertCategoryAttributeSchema = createInsertSchema(categoryAttributes);
+export const selectCategoryAttributeSchema = createSelectSchema(categoryAttributes);
+export const insertListingAttributeValueSchema = createInsertSchema(listingAttributeValues);
+export const selectListingAttributeValueSchema = createSelectSchema(listingAttributeValues);
+
+// 🟩LISTINGS
+export type Listing = typeof listings.$inferSelect;
+export type ListingImage = typeof listingImages.$inferSelect;
+
+export const insertListingSchema = createInsertSchema(listings);
+export const selectListingSchema = createSelectSchema(listings);
+export const insertListingImageSchema = createInsertSchema(listingImages);
+export const selectListingImageSchema = createSelectSchema(listingImages);
+
+// 🟪ORDERS
+export type Order = typeof orders.$inferSelect;
+export type OrderListing = typeof orderListings.$inferSelect;
+export type CartItem = typeof cartItems.$inferSelect;
+
+export const insertOrderSchema = createInsertSchema(orders);
+export const selectOrderSchema = createSelectSchema(orders);
+export const insertOrderListingSchema = createInsertSchema(orderListings);
+export const selectOrderListingSchema = createSelectSchema(orderListings);
+export const insertCartItemSchema = createInsertSchema(cartItems);
+export const selectCartItemSchema = createSelectSchema(cartItems);
+// endregion EXPORT TYPES & VALIDATION SCHEMAS
