@@ -19,14 +19,14 @@ import {relations} from 'drizzle-orm';
 import {createInsertSchema, createSelectSchema} from 'drizzle-zod';
 
 // region TABLES
-// DB schema using Drizzle ORM's table definitions, see /docs/ERD.png for ERD diagram.
-// Before every table entry is noted what ERD group they belong to within the diagram, enums after
+// DB schema using Drizzle ORM's table definitions, see /docs/ERD.png
+// Before every table-entry is noted what ERD group they belong to, enums after
 // Groups: ACCOUNTS, ORDERS, LISTINGS & CATEGORIES
 
 // Enums
-export const orderStatus: PgEnum<any> = pgEnum('order_status', ['ordered', 'in_transit', 'delivered']); // ORDER
-export const dataType: PgEnum<any> = pgEnum('data_type', ['string', 'int', 'float', 'decimal', 'bool']); // CATEGORIES
-export const listingCondition: PgEnum<any> = pgEnum('listing_condition', ['new', 'refurbished', 'used', 'modded_new', 'modded_used']); // LISTINGS
+export const dataType: PgEnum<any> = pgEnum('data_type', ['string', 'int', 'float', 'decimal', 'bool']); // 🟦CATEGORIES
+export const listingCondition: PgEnum<any> = pgEnum('listing_condition', ['new', 'refurbished', 'used', 'modded_new', 'modded_used']); // 🟩LISTINGS
+export const orderStatus: PgEnum<any> = pgEnum('order_status', ['ordered', 'in_transit', 'delivered']); // 🟪ORDER
 
 // 🟥ACCOUNTS
 export const users: PgTableWithColumns<any> = pgTable('users', {
@@ -78,19 +78,15 @@ export const categories: PgTableWithColumns<any> = pgTable('categories', {
 // 🟦CATEGORIES
 export const attributes: PgTableWithColumns<any> = pgTable('attributes', {
     id: uuid('id').primaryKey().defaultRandom(),
-    name: varchar('name', {length: 128}).notNull(),
-    dataType: dataType('data_type').notNull()
-});
-
-// 🟦CATEGORIES, junction
-export const categoryAttributes: PgTableWithColumns<any> = pgTable('category_attributes', {
     categoryId: uuid('category_id').references(() => categories.id, {onDelete: 'cascade'}).notNull(),
-    attributeId: uuid('attribute_id').references(() => attributes.id, {onDelete: 'cascade'}).notNull(),
+    name: varchar('name', {length: 128}).notNull(),
+    dataType: dataType('data_type').notNull(),
+    isSelectable: boolean('is_selectable').notNull().default(false),
     isFeatured: boolean('is_featured').notNull().default(false),
-    isRequired: boolean('is_required').notNull().default(false)
-}, (table) => [
-    primaryKey({ columns: [table.categoryId, table.attributeId] })
-]);
+    isRequired: boolean('is_required').notNull().default(false),
+    prefix: varchar('prefix', {length: 16}).default(null),
+    suffix: varchar('suffix', {length: 16}).default(null)
+});
 
 // 🟩LISTINGS
 export const listings: PgTableWithColumns<any> = pgTable('listings', {
@@ -99,7 +95,7 @@ export const listings: PgTableWithColumns<any> = pgTable('listings', {
     title: varchar('title', {length: 128}).notNull(),
     description: text('description'),
     mainCategoryId: uuid('main_category_id').notNull().references(() => categories.id, {onDelete: 'cascade'}),
-    price: decimal('price', {precision: 4, scale: 2}).notNull(),
+    price: decimal('price', {precision: 8, scale: 2}).notNull(),
     stockQuantity: smallint().notNull(),
     condition: listingCondition('condition').notNull(),
     visitCount: integer('visit_count').notNull().default(0),
@@ -126,7 +122,7 @@ export const listingAttributeValues: PgTableWithColumns<any> = pgTable('listing_
     valueString: varchar('value_string', {length: 256}),
     valueInt: integer('value_int'),
     valueFloat: real('value_float'),
-    valueDecimal: decimal('value_decimal', {precision: 64, scale: 2}),
+    valueDecimal: decimal('value_decimal', {precision: 34, scale: 2}),
     valueBool: boolean('value_bool')
 }, (table) => [
     check('listing_attribute_value_check', sql`
@@ -144,7 +140,7 @@ export const listingAttributeValues: PgTableWithColumns<any> = pgTable('listing_
 export const orders: PgTableWithColumns<any> = pgTable('orders', {
     id: uuid('id').primaryKey().defaultRandom(),
     userId: uuid('user_id').notNull().references(() => users.id, {onDelete: 'cascade'}),
-    totalPrice: decimal('total_price', {precision: 6, scale: 2}).notNull(),
+    totalPrice: decimal('total_price', {precision: 11, scale: 2}).notNull(),
     status: orderStatus('status').notNull().default('ordered'),
     orderedAt: timestamp().defaultNow().notNull(),
     shippedAt: timestamp().default(null),
@@ -156,9 +152,9 @@ export const orderListings: PgTableWithColumns<any> = pgTable('order_listings', 
     orderId: uuid('order_id').references(() => orders.id, {onDelete: 'cascade'}).notNull(),
     listingId: uuid('listing_id').references(() => listings.id, {onDelete: 'cascade'}).notNull(),
     quantity: smallint('quantity').notNull(),
-    priceSnapshot: decimal('price_snapshot', {precision: 12, scale: 2}).notNull()
+    priceSnapshot: decimal('price_snapshot', {precision: 11, scale: 2}).notNull()
 }, (table) => [
-    primaryKey({ columns: [table.orderId, table.listingId] })
+    primaryKey({columns: [table.orderId, table.listingId]})
 ]);
 
 // 🟪ORDERS, junction
@@ -167,7 +163,7 @@ export const cartItems: PgTableWithColumns<any> = pgTable('cart_items', {
     listingId: uuid('listing_id').references(() => listings.id, {onDelete: 'cascade'}).notNull(),
     quantity: smallint('quantity').notNull()
 }, (table) => [
-    primaryKey({ columns: [table.userId, table.listingId] })
+    primaryKey({columns: [table.userId, table.listingId]})
 ]);
 // endregion TABLES
 
@@ -216,25 +212,16 @@ export const categoryRelations = relations(categories, ({one, many}) => ({
     }),
     children: many(categories),
     listings: many(listings),
-    categoryAttributes: many(categoryAttributes)
+    categoryAttributes: many(attributes)
 }));
 
 // 🟦CATEGORIES
-export const attributeRelations = relations(attributes, ({many}) => ({
-    categoryAttributes: many(categoryAttributes),
-    listingAttributeValues: many(listingAttributeValues)
-}));
-
-// 🟦CATEGORIES, junction
-export const categoryAttributeRelations = relations(categoryAttributes, ({one}) => ({
-    category: one(categoryAttributes, {
-        fields: [categoryAttributes.categoryId],
+export const attributeRelations = relations(attributes, ({one, many}) => ({
+    category: one(attributes, {
+        fields: [attributes.categoryId],
         references: [categories.id]
     }),
-    attribute: one(categoryAttributes, {
-        fields: [categoryAttributes.attributeId],
-        references: [attributes.id]
-    })
+    listingAttributeValues: many(listingAttributeValues)
 }));
 
 // 🟦CATEGORIES, junction
@@ -310,7 +297,6 @@ export const cartItemRelations = relations(cartItems, ({one}) => ({
 // endregion RELATIONS
 
 
-
 // region EXPORT TYPES & VALIDATION SCHEMAS
 // Export TS types derived from table schemas &
 // Export Zod schemas for validating data against the table structures
@@ -330,15 +316,12 @@ export const selectAccountSchema = createSelectSchema(accounts);
 // 🟦CATEGORIES
 export type Category = typeof categories.$inferSelect;
 export type Attribute = typeof attributes.$inferSelect;
-export type CategoryAttribute = typeof categoryAttributes.$inferSelect;
 export type ListingAttributeValue = typeof listingAttributeValues.$inferSelect;
 
 export const insertCategorySchema = createInsertSchema(categories);
 export const selectCategorySchema = createSelectSchema(categories);
 export const insertAttributeSchema = createInsertSchema(attributes);
 export const selectAttributeSchema = createSelectSchema(attributes);
-export const insertCategoryAttributeSchema = createInsertSchema(categoryAttributes);
-export const selectCategoryAttributeSchema = createSelectSchema(categoryAttributes);
 export const insertListingAttributeValueSchema = createInsertSchema(listingAttributeValues);
 export const selectListingAttributeValueSchema = createSelectSchema(listingAttributeValues);
 

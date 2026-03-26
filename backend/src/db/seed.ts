@@ -5,7 +5,6 @@ import {
     accounts,
     categories,
     attributes,
-    categoryAttributes,
     listings,
     listingImages,
     listingAttributeValues,
@@ -16,8 +15,8 @@ import {
 import {hashPassword} from '../utils/passwords.ts';
 
 const seed = async () => {
+    console.log('🌱 Starting database seed...');
     try {
-        console.log('🌱 Starting database seed...');
         console.log('Clearing existing data...');
 
         // Delete in reverse order (because of table dependencies)
@@ -27,7 +26,6 @@ const seed = async () => {
         await db.delete(listingAttributeValues);
         await db.delete(listingImages);
         await db.delete(listings);
-        await db.delete(categoryAttributes);
         await db.delete(attributes);
         await db.delete(categories);
         await db.delete(accounts);
@@ -35,227 +33,239 @@ const seed = async () => {
         await db.delete(users);
 
         // region ACCOUNTS
-        console.log('🟥[ 1/12] Creating demo user...');
+        console.log('🟥[ 1/11] Creating demo user...');
         const [demoUser] = await db.insert(users).values({
-            username: 'johndoe',
-            firstName: 'John',
-            lastName: 'Doe'
+            username: 'samsepi0l',
+            firstName: 'Elliot',
+            lastName: 'Alderson'
         }).returning();
 
-        console.log('🟥[ 2/12] Creating demo business...');
+        console.log('🟥[ 2/11] Creating demo business...');
         const [demoBusiness] = await db.insert(businesses).values({
-            name: 'RetroTech Inc.',
-            description: 'The best source for vintage computing.',
+            name: 'Mr. Robot',
+            description: 'Computer Repair with a Smile!',
             vatNumber: 'VAT123456789'
         }).returning();
 
-        console.log('🟥[ 3/12] Creating demo accounts...');
-        const commonPassword = await hashPassword('password123');
-
+        console.log('🟥[ 3/11] Creating demo accounts...');
+        const password123 = await hashPassword('password123');
         const [demoUserAccount] = await db.insert(accounts).values({
             userId: demoUser.id,
-            email: 'john@example.com',
-            passwordHash: commonPassword,
+            email: 'user@example.com',
+            phone: '(212) 555-0179',
+            passwordHash: password123,
             streetAddress: '123 Main St',
             streetNumber: '1A',
-            city: 'Retroville',
+            city: 'New York',
             postalCode: '12345'
         }).returning();
-
         const [demoBusinessAccount] = await db.insert(accounts).values({
             businessId: demoBusiness.id,
-            email: 'sales@retrotech.com',
-            passwordHash: commonPassword,
-            streetAddress: '456 Business Ave',
-            streetNumber: '100',
-            city: 'Tech City',
-            postalCode: '67890'
+            email: 'business@example.com',
+            passwordHash: password123,
+            streetAddress: 'Purchase Street',
+            streetNumber: '14',
+            city: 'New York',
+            postalCode: '10580'
         }).returning();
         // endregion ACCOUNTS
 
 
         // region CATEGORIES
-        console.log('🟦[ 4/12] Creating categories...');
-        const [electronics] = await db.insert(categories).values({
-            name: 'Electronics',
-            isFeatured: true
-        }).returning();
-        const [clothing] = await db.insert(categories).values({
-            name: 'Clothing',
+        console.log('🟦[ 4/11] Creating categories...');
+        const [computerHardwareCat] = await db.insert(categories).values({
+            name: 'Computer Hardware',
             isFeatured: false
         }).returning();
-        const [computers] = await db.insert(categories).values({
-            name: 'Computers',
-            parentId: electronics.id,
+        const [cpuCat] = await db.insert(categories).values({
+            name: 'Processors (CPU\'s)',
+            parentId: computerHardwareCat.id,
             isFeatured: true
-        }).returning();
-        const [components] = await db.insert(categories).values({
-            name: 'Components',
-            parentId: electronics.id,
-            isFeatured: false
         }).returning();
 
-        console.log('🟦[ 5/12] Creating attributes...');
-        const [brandAttr] = await db.insert(attributes).values({
+        console.log('🟦[ 5/11] Creating attributes...');
+        const [cpuBrandAttr] = await db.insert(attributes).values({
+            categoryId: cpuCat.id,
             name: 'Brand',
-            dataType: 'string'
+            dataType: 'string',
+            isSelectable: true,
+            isFeatured: true,
+            isRequired: true
         }).returning();
-        const [ramAttr] = await db.insert(attributes).values({
-            name: 'RAM',
-            dataType: 'string'
-        }).returning();
-        const [coresAttr] = await db.insert(attributes).values({
+        const [cpuCoresAttr] = await db.insert(attributes).values({
+            categoryId: cpuCat.id,
             name: 'Cores',
-            dataType: 'int'
+            dataType: 'int',
+            isSelectable: false,
+            isFeatured: true,
+            isRequired: true
         }).returning();
-
-        console.log('🟦[ 6/12] Linking categories and attributes...');
-        await db.insert(categoryAttributes).values([
-            {
-                categoryId: computers.id,
-                attributeId: brandAttr.id,
-                isFeatured: true,
-                isRequired: true
-            },
-            {
-                categoryId: computers.id,
-                attributeId: ramAttr.id,
-                isFeatured: true,
-                isRequired: false
-            },
-            {
-                categoryId: components.id,
-                attributeId: coresAttr.id,
-                isFeatured: false,
-                isRequired: true
-            }
-        ]);
+        const [cpuFrequencyAttr] = await db.insert(attributes).values({
+            categoryId: cpuCat.id,
+            name: 'Base Clock',
+            dataType: 'decimal',
+            isSelectable: false,
+            isFeatured: true,
+            isRequired: true,
+            suffix: 'GHz'
+        }).returning();
+        const [cpuBaseClockAttr] = await db.insert(attributes).values({
+            categoryId: cpuCat.id,
+            name: 'Base Clock',
+            dataType: 'int',
+            isSelectable: false,
+            isFeatured: true,
+            isRequired: true,
+            suffix: 'MHz'
+        }).returning();
+        const [cpuTdpAttr] = await db.insert(attributes).values({
+            categoryId: cpuCat.id,
+            name: 'TDP',
+            dataType: 'int',
+            isSelectable: false,
+            isFeatured: true,
+            isRequired: true,
+            suffix: 'W'
+        }).returning();
         // endregion CATEGORIES
 
 
         // region LISTINGS
-        console.log('🟩[ 7/12] Creating listings...');
-        const [vintagePC] = await db.insert(listings).values({
+        console.log('🟩[ 6/11] Creating listings...');
+        const [amdCpuListing] = await db.insert(listings).values({
             sellingAccountId: demoBusinessAccount.id,
-            title: 'Vintage IBM PC 5150',
-            description: 'A classic piece of computing history.',
-            mainCategoryId: computers.id,
-            price: '1200.00',
-            stockQuantity: 5,
-            condition: 'used',
-            visitCount: 150,
+            title: 'AMD Opteron 850',
+            description: 'First generation x86-64 AMD CPU',
+            mainCategoryId: cpuCat.id,
+            price: 200.00,
+            stockQuantity: 50,
+            condition: 'new',
+            visitCount: 500,
             isListed: true
         }).returning();
-        const [gamingMouse] = await db.insert(listings).values({
+        const [intelCpuListing] = await db.insert(listings).values({
             sellingAccountId: demoBusinessAccount.id,
-            title: 'Retro Gaming Mouse',
-            description: 'Ball mouse with PS/2 connector.',
-            mainCategoryId: components.id,
-            price: '25.50',
-            stockQuantity: 20,
+            title: 'Intel Xeon 2.8GHz (Nocona)',
+            description: 'First generation x86-64 Intel CPU',
+            mainCategoryId: cpuCat.id,
+            price: 200.00,
+            stockQuantity: 5,
             condition: 'new',
-            visitCount: 45,
+            visitCount: 2500,
             isListed: true
         }).returning();
 
-        console.log('🟩[ 8/12] Adding listing images...');
+        console.log('🟩[ 7/11] Linking listingImages to listings (junction) (images already present)...');
         await db.insert(listingImages).values([
             {
-                listingId: vintagePC.id,
+                listingId: amdCpuListing.id,
                 orderNr: 1,
-                altText: 'Front view of IBM PC 5150'
+                altText: 'AMD CPU top view'
             },
             {
-                listingId: vintagePC.id,
-                orderNr: 2,
-                altText: 'Back view of ports'
-            },
-            {
-                listingId: gamingMouse.id,
+                listingId: intelCpuListing.id,
                 orderNr: 1,
-                altText: 'Gaming Mouse Top View'
+                altText: 'Intel CPU top view'
             }
         ]);
 
-        console.log('🟩[ 9/12] Adding listing attributes...');
+        console.log('🟩[ 8/11] Creating listingAttributeValues (junction)...');
         await db.insert(listingAttributeValues).values([
             {
-                listingId: vintagePC.id,
-                attributeId: brandAttr.id,
-                valueString: 'IBM'
+                listingId: amdCpuListing.id,
+                attributeId: cpuBrandAttr.id,
+                valueString: 'AMD'
             },
             {
-                listingId: vintagePC.id,
-                attributeId: ramAttr.id,
-                valueString: '64KB'
-            }
-            // gamingMouse is in 'Components' category which has 'Cores' attribute, 
-            // but let's assume 'Gaming Mouse' doesn't really have cores or we skip it for now 
-            // unless it's required. Cores IS required for Components.
-            // Wait, Mouse is not a CPU, so Components might be a bad category or I should add a subcat Peripherals.
-            // For simplicity, let's just add a Cores value or move it. 
-            // Or better, add a CPU product.
-        ]);
-        // Let's add CPU instead of mouse to be semantically correct with "Cores" attribute
-        const [pentiumCPU] = await db.insert(listings).values({
-            sellingAccountId: demoBusinessAccount.id,
-            title: 'Intel Pentium 4',
-            description: 'Legendary heater.',
-            mainCategoryId: components.id,
-            price: '15.00',
-            stockQuantity: 50,
-            condition: 'used',
-            visitCount: 10,
-            isListed: true
-        }).returning();
-        await db.insert(listingAttributeValues).values([
-            {
-                listingId: pentiumCPU.id,
-                attributeId: coresAttr.id,
+                listingId: amdCpuListing.id,
+                attributeId: cpuCoresAttr.id,
                 valueInt: 1
+            },
+            {
+                listingId: amdCpuListing.id,
+                attributeId: cpuFrequencyAttr.id,
+                valueDecimal: 2.4
+            },
+            {
+                listingId: amdCpuListing.id,
+                attributeId: cpuBaseClockAttr.id,
+                valueInt: 200
+            },
+            {
+                listingId: amdCpuListing.id,
+                attributeId: cpuTdpAttr.id,
+                valueInt: 89
+            },
+            {
+                listingId: intelCpuListing.id,
+                attributeId: cpuBrandAttr.id,
+                valueString: 'Intel'
+            },
+            {
+                listingId: intelCpuListing.id,
+                attributeId: cpuCoresAttr.id,
+                valueInt: 1
+            },
+            {
+                listingId: intelCpuListing.id,
+                attributeId: cpuFrequencyAttr.id,
+                valueDecimal: 2.8
+            },
+            {
+                listingId: intelCpuListing.id,
+                attributeId: cpuBaseClockAttr.id,
+                valueInt: 200
+            },
+            {
+                listingId: intelCpuListing.id,
+                attributeId: cpuTdpAttr.id,
+                valueInt: 135
             }
         ]);
         // endregion LISTINGS
 
 
         // region ORDERS
-        console.log('🟪[10/12] Creating orders...');
+        console.log('🟪[ 9/11] Creating orders...');
         const [order1] = await db.insert(orders).values({
             userId: demoUser.id,
-            totalPrice: '1225.50',
+            totalPrice: 600.00,
             status: 'delivered',
-            orderedAt: new Date('2023-01-15'),
-            shippedAt: new Date('2023-01-16'),
-            deliveredAt: new Date('2023-01-20')
+            orderedAt: new Date('2023-01-1'),
+            shippedAt: new Date('2023-01-2'),
+            deliveredAt: new Date('2023-01-5')
         }).returning();
-        console.log('🟪[11/12] Adding items to orders...');
+
+        console.log('🟪[10/11] Creating orderListings (junction)...');
         await db.insert(orderListings).values([
             {
                 orderId: order1.id,
-                listingId: vintagePC.id,
-                quantity: 1,
-                priceSnapshot: '1200.00'
+                listingId: amdCpuListing.id,
+                quantity: 2,
+                priceSnapshot: 200.00
             },
             {
                 orderId: order1.id,
-                listingId: gamingMouse.id,
+                listingId: intelCpuListing.id,
                 quantity: 1,
-                priceSnapshot: '25.50'
+                priceSnapshot: 200.00
             }
         ]);
-        console.log('🟪[12/12] Adding items to cart...');
+
+        console.log('🟪[11/11] Adding listings to cart (junction)...');
         await db.insert(cartItems).values({
             userId: demoUser.id,
-            listingId: pentiumCPU.id,
-            quantity: 2
+            listingId: intelCpuListing.id,
+            quantity: 5
         });
         // endregion ORDERS
 
         console.log('✅ DB seeded successfully');
-        console.log('User credentials:');
+        console.log('USER CREDENTIALS:');
         console.log(`email: ${demoUserAccount.email}`);
         console.log(`password: password123`);
-        console.log('Business credentials:');
+
+        console.log('BUSINESS CREDENTIALS:');
         console.log(`email: ${demoBusinessAccount.email}`);
         console.log(`password: password123`);
 

@@ -8,9 +8,9 @@ const isDevelopment: boolean = process.env.APP_STAGE === 'dev';
 const isTesting: boolean = process.env.APP_STAGE === 'test';
 
 if (isDevelopment)
-    loadEnv();
+    loadEnv('../');
 else if (isTesting)
-    loadEnv('test');
+    loadEnv('../', 'test');
 
 // Set zod schema
 const envSchema = z.object({
