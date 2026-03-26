@@ -2,7 +2,7 @@
 openapi: 3.0.3
 info:
   title: memory-mall
-  description: 90's themed computer hardware e-commerce platform
+  description: Early 2000's themed tech marketplace REST endpoints
   version: 1.0.0
   contact:
     name: API Support
@@ -21,7 +21,7 @@ tags:
     description: Habits
   - name: Users
     description: User profile and password management
-# endregion
+# endregion OAS3
 
 components:
   # region Secutity Scheme
@@ -32,7 +32,7 @@ components:
       bearerFormat: JWT
   # endregion
 
-  # region Schemas
+  # region SCHEMAS
   schemas:
     ErrorResponse:
       type: object
@@ -85,7 +85,7 @@ components:
         username:
           type: string
           example: johndoe
-    # endregion
+    # endregion User Models/DTOs
 
     # region Habit Models/DTOs
     Habit:
@@ -162,8 +162,8 @@ components:
           type: number
           format: float
           example: 75.5
-    # endregion
-  # endregion
+    # endregion Habit Models/DTOs
+  # endregion SCHEMAS
 
 
   # region Error Responses
@@ -250,7 +250,7 @@ components:
   # endregion
 
 paths:
-  # region Paths
+  # region PATHS
   # region Health
   /health:
     get:
@@ -277,7 +277,7 @@ paths:
                   service:
                     type: string
                     example: Memory Mall e-commerce API
-  # endregion
+  # endregion Health
 
 
   # region Auth
@@ -389,7 +389,7 @@ paths:
           $ref: '#/components/responses/401Unauthorized'
         '500':
           $ref: '#/components/responses/500InternalServerError'
-  # endregion
+  # endregion Auth
 
 
   # region Habits
@@ -632,7 +632,7 @@ paths:
           $ref: '#/components/responses/404NotFound'
         '500':
           $ref: '#/components/responses/500InternalServerError'
-  # endregion
+  # endregion Habits
 
   # region Users
   /users/profile:
@@ -745,5 +745,5 @@ paths:
           $ref: '#/components/responses/401Unauthorized'
         '500':
           $ref: '#/components/responses/500InternalServerError'
-  # endregion
-  # endregion
+  # endregion Users
+  # endregion PATHS

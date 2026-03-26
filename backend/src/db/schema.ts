@@ -16,8 +16,7 @@ import {
     primaryKey
 } from 'drizzle-orm/pg-core';
 import {relations} from 'drizzle-orm';
-import {Relations} from 'drizzle-orm/relations';
-import {type BuildSchema, createInsertSchema, createSelectSchema} from 'drizzle-zod';
+import {createInsertSchema, createSelectSchema} from 'drizzle-zod';
 
 // region TABLES
 // DB schema using Drizzle ORM's table definitions, see /docs/ERD.png for ERD diagram.

@@ -9,7 +9,7 @@ export interface AuthenticatedRequest extends Request {
 export const authenticateToken = async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
     try {
         const authHeader = req.headers['authorization'];
-        const token = authHeader && authHeader.split(' ')[1]; // Get second string after 'Bearer '
+        const token = authHeader && authHeader.split(' ')[1]; // Get second string containing the token, after "Bearer "
 
         if (!token)
             return res.status(401).json({error: 'Bad request'});
