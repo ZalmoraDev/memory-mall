@@ -29,7 +29,7 @@ export const validateParams = (zodSchema): RequestHandler => {
 };
 
 /**
- * HoF Middleware to validate GET request query parameters (req.query) against a given Zod schema.
+ * Middleware to validate GET request query parameters (req.query) against a given Zod schema.
  * @returns Inner middleware function that validates req.query and either:
  * - void, calling next()
  * - Response (400), validation failed */
@@ -54,7 +54,7 @@ export const validateQuery = (zodSchema): RequestHandler => {
 };
 
 /**
- * HoF Middleware to validate POST/PATCH/PUT/DELETE request body (req.body) against a given Zod schema.
+ * Middleware to validate REST request body (req.body) against a given Zod schema.
  * @returns Inner middleware function that validates req.body and either:
  * - void, calling next()
  * - Response (400), validation failed */
@@ -62,7 +62,7 @@ export const validateBody = (zodSchema): RequestHandler => {
     return (req, res, next): void | Response => {
         try {
             const validatedData = zodSchema.parse(req.body);
-            req.body = validatedData; // Rewrite, for if the schema changes any data of the body
+            req.body = validatedData; // Reassign, for if the schema changes any data of the body
             next();
         } catch (err) {
             if (err instanceof ZodError) {

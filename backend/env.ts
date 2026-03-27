@@ -14,6 +14,8 @@ else if (isTesting)
 
 // Set zod schema
 const envSchema = z.object({
+    API_VERSION: z.string().default('v1'),
+
     // Node environment
     BE_NODE_ENV: z
         .enum(['development', 'test', 'production'])
@@ -58,6 +60,9 @@ const envSchema = z.object({
     BE_LOG_LEVEL: z
         .enum(['error', 'warn', 'info', 'debug', 'trace'])
         .default(isProduction ? 'info' : 'debug'),
+
+    // Rate limit, 15min prod, 1min dev
+    BE_RATE_LIMIT_WINDOW: z.coerce.number().positive().default(isProduction ? 900000 : 60000)
 });
 
 export type Env = z.infer<typeof envSchema>;
@@ -68,7 +73,7 @@ try {
     env = envSchema.parse(process.env);
 } catch (e) {
     if (e instanceof z.ZodError) {
-        console.log('Invalid env var');
+        console.log('❌ Invalid environment vars');
         console.error(JSON.stringify(e.flatten().fieldErrors, null, 2));
 
         e.issues.forEach((err): void => {

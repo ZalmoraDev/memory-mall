@@ -3,11 +3,12 @@ import {createSecretKey} from 'node:crypto';
 import env from '../../env.ts';
 
 /** Extends `JWTPayload` to remain compatible with `jose`'s `SignJWT`,
- * which requires the base payload type with an index signature for arbitrary JWT claims. */
+ * which requires the base payload type with an index signature for arbitrary JWT claims.
+ * `name` is either a users username, or business name*/
 export interface JwtPayload extends JWTPayload {
     id: number;
     email: string;
-    username: string;
+    name: string;
 }
 
 /** Generates JWT token with given `JwtPayload`, signed using HS256 algorithm and secret key from `.env` */
@@ -30,6 +31,6 @@ export const verifyToken = async (token: string): Promise<JwtPayload> => {
     return {
         id: payload.id as number,
         email: payload.email as string,
-        username: payload.username as string
+        name: payload.username as string
     };
 };
