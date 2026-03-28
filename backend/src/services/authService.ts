@@ -33,7 +33,7 @@ export const createUser = async (body: any) => {
             userId: user.id,
             email,
             phone,
-            passwordHash: hashedPassword,
+            password: hashedPassword,
             streetAddress,
             streetNumber,
             apartmentSuite,
@@ -57,13 +57,15 @@ export const createUser = async (body: any) => {
 };
 
 /** Service handling business registration. Hashes password, creates business & account in DB, and returns account & JWT.*/
-export const createBusiness = async (data: any) => {
+export const createBusiness = async (body: any) => {
     // 1) Destructure controller req.body & hash the password
     const {
         name, description, vatNumber, email, phone, password,
         streetAddress, streetNumber, apartmentSuite, city, postalCode
-    } = data;
+    } = body;
     const hashedPassword = await hashPassword(password);
+
+
 
     // 2) Create business & account
     const result = await db.transaction(async (tx) => {
@@ -81,7 +83,7 @@ export const createBusiness = async (data: any) => {
             businessId: business.id,
             email,
             phone,
-            passwordHash: hashedPassword,
+            password: hashedPassword,
             streetAddress,
             streetNumber,
             apartmentSuite,
@@ -118,7 +120,7 @@ export const loginAccount = async (email: string, password: string) => {
         throw new Error('Invalid credentials');
 
     // 2) Validate password against the account's password hash
-    const isValidPassword = await comparePasswords(password, account.passwordHash);
+    const isValidPassword = await comparePasswords(password, account.password);
     if (!isValidPassword)
         throw new Error('Invalid credentials');
 

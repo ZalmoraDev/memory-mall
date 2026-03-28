@@ -17,6 +17,7 @@ import {
 } from 'drizzle-orm/pg-core';
 import {relations} from 'drizzle-orm';
 import {createInsertSchema, createSelectSchema} from 'drizzle-zod';
+import type {ZodObject} from 'zod';
 
 // region TABLES
 // DB schema using Drizzle ORM's table definitions, see /docs/ERD.png
@@ -52,7 +53,7 @@ export const accounts: PgTableWithColumns<any> = pgTable('accounts', {
     businessId: uuid('business_id').references(() => businesses.id, {onDelete: 'cascade'}).unique(),
     email: varchar('email', {length: 254}).notNull().unique(),
     phone: varchar('phone', {length: 15}),
-    passwordHash: text('password_hash').notNull(),
+    password: text('password_hash').notNull(),
     streetAddress: varchar('street_address', {length: 128}).notNull(),
     streetNumber: varchar('street_number', {length: 16}).notNull(),
     apartmentSuite: varchar('apartment_suite', {length: 32}),
@@ -297,52 +298,69 @@ export const cartItemRelations = relations(cartItems, ({one}) => ({
 // endregion RELATIONS
 
 
-// region EXPORT TYPES & VALIDATION SCHEMAS
-// Export TS types derived from table schemas &
-// Export Zod schemas for validating data against the table structures
+// region EXPORT TYPES
+// Export TS types derived from table schemas
 
 // 🟥ACCOUNTS
+export type Account = typeof accounts.$inferSelect;
 export type User = typeof users.$inferSelect;
 export type Business = typeof businesses.$inferSelect;
-export type Account = typeof accounts.$inferSelect;
-
-export const insertUserSchema = createInsertSchema(users);
-export const selectUserSchema = createSelectSchema(users);
-export const insertBusinessSchema = createInsertSchema(businesses);
-export const selectBusinessSchema = createSelectSchema(businesses);
-export const insertAccountSchema = createInsertSchema(accounts);
-export const selectAccountSchema = createSelectSchema(accounts);
 
 // 🟦CATEGORIES
 export type Category = typeof categories.$inferSelect;
 export type Attribute = typeof attributes.$inferSelect;
 export type ListingAttributeValue = typeof listingAttributeValues.$inferSelect;
 
-export const insertCategorySchema = createInsertSchema(categories);
-export const selectCategorySchema = createSelectSchema(categories);
-export const insertAttributeSchema = createInsertSchema(attributes);
-export const selectAttributeSchema = createSelectSchema(attributes);
-export const insertListingAttributeValueSchema = createInsertSchema(listingAttributeValues);
-export const selectListingAttributeValueSchema = createSelectSchema(listingAttributeValues);
-
 // 🟩LISTINGS
 export type Listing = typeof listings.$inferSelect;
 export type ListingImage = typeof listingImages.$inferSelect;
-
-export const insertListingSchema = createInsertSchema(listings);
-export const selectListingSchema = createSelectSchema(listings);
-export const insertListingImageSchema = createInsertSchema(listingImages);
-export const selectListingImageSchema = createSelectSchema(listingImages);
 
 // 🟪ORDERS
 export type Order = typeof orders.$inferSelect;
 export type OrderListing = typeof orderListings.$inferSelect;
 export type CartItem = typeof cartItems.$inferSelect;
+// endregion EXPORT TYPES
 
+
+// region VALIDATION SCHEMAS
+// Export Zod schemas for validating data against the table structures
+// 🟥ACCOUNTS
+
+export const insertAccountSchema = createInsertSchema(accounts);
+export const selectAccountSchema = createSelectSchema(accounts);
+
+export const insertUserSchema = createInsertSchema(users);
+export const selectUserSchema = createSelectSchema(users);
+
+export const insertBusinessSchema = createInsertSchema(businesses);
+export const selectBusinessSchema = createSelectSchema(businesses);
+
+
+// 🟦CATEGORIES
+export const insertCategorySchema = createInsertSchema(categories);
+export const selectCategorySchema = createSelectSchema(categories);
+
+export const insertAttributeSchema = createInsertSchema(attributes);
+export const selectAttributeSchema = createSelectSchema(attributes);
+
+export const insertListingAttributeValueSchema = createInsertSchema(listingAttributeValues);
+export const selectListingAttributeValueSchema = createSelectSchema(listingAttributeValues);
+
+
+// 🟩LISTINGS
+export const insertListingSchema = createInsertSchema(listings);
+export const selectListingSchema = createSelectSchema(listings);
+
+export const insertListingImageSchema = createInsertSchema(listingImages);
+export const selectListingImageSchema = createSelectSchema(listingImages);
+
+// 🟪ORDERS
 export const insertOrderSchema = createInsertSchema(orders);
 export const selectOrderSchema = createSelectSchema(orders);
+
 export const insertOrderListingSchema = createInsertSchema(orderListings);
 export const selectOrderListingSchema = createSelectSchema(orderListings);
+
 export const insertCartItemSchema = createInsertSchema(cartItems);
 export const selectCartItemSchema = createSelectSchema(cartItems);
-// endregion EXPORT TYPES & VALIDATION SCHEMAS
+// endregion VALIDATION SCHEMAS

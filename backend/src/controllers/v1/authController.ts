@@ -47,7 +47,7 @@ export const login = async (req: Request, res: Response) => {
         });
     } catch (err) {
         console.log('Login error: ', err);
-        if (err.message === 'Invalid credentials')
+        if (err.message === 'Invalid credentials') // TODO: Rework error handling logic
             return res.status(401).json({error: 'Invalid credentials'});
         res.status(500).json({error: 'Failed to log in'});
     }

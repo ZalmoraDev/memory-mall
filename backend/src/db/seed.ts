@@ -53,7 +53,7 @@ const seed = async () => {
             userId: demoUser.id,
             email: 'user@example.com',
             phone: '(212) 555-0179',
-            passwordHash: password123,
+            password: password123,
             streetAddress: '123 Main St',
             streetNumber: '1A',
             city: 'New York',
@@ -62,7 +62,7 @@ const seed = async () => {
         const [demoBusinessAccount] = await db.insert(accounts).values({
             businessId: demoBusiness.id,
             email: 'business@example.com',
-            passwordHash: password123,
+            password: password123,
             streetAddress: 'Purchase Street',
             streetNumber: '14',
             city: 'New York',
@@ -275,11 +275,15 @@ const seed = async () => {
     }
 };
 
-// If this file is run directly (e.g. `npm run db:seed`), execute the seed function. Prevents being run when imported by other modules.
+// If this file is run directly (e.g. `npm run db:seed`), execute the seed function.
+// Prevents being run when imported by other modules.
 if (import.meta.url === 'file://' + process.argv[1]) {
-    seed()
-        .then(() => process.exit(0))
-        .catch((e) => process.exit(1));
+    try {
+        await seed();
+        process.exit(0);
+    } catch (e) {
+        process.exit(1);
+    }
 }
 
 export {seed};

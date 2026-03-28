@@ -9,10 +9,10 @@
     "dev": "tsx watch src/index.ts",
     "start": "tsx src/index.ts",
     "db:generate": "drizzle-kit generate",
+    "db:seed": "tsx src/db/seed.ts",
     "db:push": "drizzle-kit push",
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio --host 0.0.0.0 --port 4983",
-    "db:seed": "tsx src/db/seed.ts",
     "test": "cross-env APP_STAGE=test vitest run",
     "test:watch": "cross-env APP_STAGE=test vitest",
     "test:coverage": "cross-env APP_STAGE=test vitest run --coverage"

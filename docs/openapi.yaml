@@ -225,29 +225,51 @@ paths:
             schema:
               type: object
               required:
-                - email
                 - username
-                - password
                 - firstName
                 - lastName
+                - email
+                - password
+                - streetAddress
+                - streetNumber
+                - city
+                - postalCode
               properties:
-                email:
-                  type: string
-                  format: email
-                  example: user@example.com
                 username:
                   type: string
                   example: johndoe
-                password:
-                  type: string
-                  format: password
-                  example: securePassword123
                 firstName:
                   type: string
                   example: John
                 lastName:
                   type: string
                   example: Doe
+                email:
+                  type: string
+                  format: email
+                  example: user2@example.com
+                phone:
+                  type: string
+                  example: '+1234567890'
+                password:
+                  type: string
+                  format: password
+                  example: securePassword123
+                streetAddress:
+                  type: string
+                  example: Main Street
+                streetNumber:
+                  type: string
+                  example: '123A'
+                apartmentSuite:
+                  type: string
+                  example: Apt 4B
+                city:
+                  type: string
+                  example: New York
+                postalCode:
+                  type: string
+                  example: '10001'
       responses:
         '201':
           description: User registered successfully
@@ -286,29 +308,50 @@ paths:
             schema:
               type: object
               required:
+                - name
                 - email
-                - username
                 - password
-                - firstName
-                - lastName
+                - vatNumber
+                - streetAddress
+                - streetNumber
+                - city
+                - postalCode
               properties:
+                name:
+                  type: string
+                  example: Microslop
+                description:
+                  type: string
+                  example: AI AI AI
+                vatNumber:
+                  type: string
+                  example: US123456789
                 email:
                   type: string
                   format: email
-                  example: user@example.com
-                username:
+                  example: contact@techcorp.com
+                phone:
                   type: string
-                  example: johndoe
+                  example: '+1234567890'
                 password:
                   type: string
                   format: password
                   example: securePassword123
-                firstName:
+                streetAddress:
                   type: string
-                  example: John
-                lastName:
+                  example: Business Road
+                streetNumber:
                   type: string
-                  example: Doe
+                  example: '456'
+                apartmentSuite:
+                  type: string
+                  example: Suite 100
+                city:
+                  type: string
+                  example: San Francisco
+                postalCode:
+                  type: string
+                  example: '94107'
       responses:
         '201':
           description: User registered successfully
