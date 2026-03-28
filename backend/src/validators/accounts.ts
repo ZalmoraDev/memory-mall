@@ -1,8 +1,15 @@
 import {z} from 'zod';
-import {insertAccountSchema, insertBusinessSchema, insertUserSchema} from '../db/schema.ts';
+import {insertBusinessAccountSchema, insertUserAccountSchema} from '../db/schema.ts';
 
-export const registerUserVal = insertAccountSchema.extend({password: z.string().min(8, 'Password must be at least 8 characters')}).merge(insertUserSchema.omit({id: true}));
-export const registerBusinessVal = insertAccountSchema.extend({password: z.string().min(8, 'Password must be at least 8 characters')}).merge(insertBusinessSchema.omit({id: true}));
+const minPasswordLength: number = 8;
+
+export const registerUserVal = insertUserAccountSchema.extend({
+    password: z.string().min(minPasswordLength, `Password must be at least ${minPasswordLength} characters`)
+});
+
+export const registerBusinessVal = insertBusinessAccountSchema.extend({
+    password: z.string().min(minPasswordLength, `Password must be at least ${minPasswordLength} characters`)
+});
 
 export const loginVal = z.object({
     email: z.email('Invalid email'),

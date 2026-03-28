@@ -170,10 +170,6 @@ export const cartItems: PgTableWithColumns<any> = pgTable('cart_items', {
 
 
 // region RELATIONS
-// relations() invokes the callback with helper functions { one, many },
-// which are destructured and used to declare relations between tables.
-// This runs when the module is first imported, creating relation mappings used by Drizzle.
-
 // 🟥ACCOUNTS
 export const userRelations = relations(users, ({one, many}) => ({
     account: one(accounts, {
@@ -323,17 +319,20 @@ export type CartItem = typeof cartItems.$inferSelect;
 
 
 // region VALIDATION SCHEMAS
-// Export Zod schemas for validating data against the table structures
+// Export Zod schemas for validating request.body data against the table structure
+// These schemas act as `models`, whereas the /src/validation dir acts as `dto's`
+
 // 🟥ACCOUNTS
+// Since an account cannot exist without being bound to a user/business,
+// it is not exported, it is instead a composition with user/business
+const localInsertAccountSchema = createInsertSchema(accounts);
+const localSelectAccountSchema = createSelectSchema(accounts);
 
-export const insertAccountSchema = createInsertSchema(accounts);
-export const selectAccountSchema = createSelectSchema(accounts);
+export const insertUserAccountSchema = localInsertAccountSchema.extend(createInsertSchema(users).shape);
+export const selectUserAccountSchema = localSelectAccountSchema.extend(createSelectSchema(users).shape);
 
-export const insertUserSchema = createInsertSchema(users);
-export const selectUserSchema = createSelectSchema(users);
-
-export const insertBusinessSchema = createInsertSchema(businesses);
-export const selectBusinessSchema = createSelectSchema(businesses);
+export const insertBusinessAccountSchema = localInsertAccountSchema.extend(createInsertSchema(businesses).shape);
+export const selectBusinessAccountSchema = localSelectAccountSchema.extend(createSelectSchema(businesses).shape);
 
 
 // 🟦CATEGORIES
