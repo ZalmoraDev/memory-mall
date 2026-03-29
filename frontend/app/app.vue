@@ -1,9 +1,6 @@
 <template>
   <div>
+    <!-- Markup shared across all pages, ex: NavBar -->
+    <NuxtPage />
   </div>
 </template>
-<script>
-fetch('http://localhost:3000/api/health')
-    .then(res => res.json())
-    .then(console.log)
-</script>

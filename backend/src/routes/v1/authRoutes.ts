@@ -2,7 +2,7 @@ import {Router} from 'express';
 import {login, registerBusiness, registerUser} from '../../controllers/v1/authController.ts';
 import {validateBody} from '../../middleware/validation.ts';
 
-import {registerBusinessVal, loginVal, registerUserVal} from '../../validators/accounts.ts';
+import {registerBusinessVal, loginVal, registerUserVal} from '../../validators/v1/accounts.ts';
 
 const router = Router();
 
