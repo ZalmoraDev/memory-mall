@@ -1,6 +1,30 @@
+<script setup lang="ts">
+useHead({
+  meta: [{name: 'viewport', content: 'width=device-width, initial-scale=1'}],
+  link: [{rel: 'icon', href: '/favicon.ico'}],
+  htmlAttrs: {lang: 'en'},
+});
+useSeoMeta({
+  titleTemplate: '%s | Memory Mall',
+  description: 'Early 2000\'s themed tech marketplace Web Application.',
+  ogTitle: 'Take a step back into Memory Mall',
+  ogImage: '/images/apple-dog.jpg',
+  ogImageAlt: 'Memory Mall',
+});
+</script>
+
 <template>
-  <div>
-    <!-- Markup shared across all pages, ex: NavBar -->
-    <NuxtPage />
-  </div>
+  <NuxtPage/>
 </template>
+
+<style lang="css">
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.4s;
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+  filter: blur(1rem);
+}
+</style>
