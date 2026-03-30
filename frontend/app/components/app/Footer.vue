@@ -5,6 +5,7 @@ const appConfig = useAppConfig();
 
 
 <template>
+  FOOTER
 </template>
 
 

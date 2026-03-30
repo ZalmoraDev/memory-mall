@@ -14,7 +14,13 @@ useSeoMeta({
 </script>
 
 <template>
-  <NuxtPage/>
+  <UApp>
+    <AppHeader />
+    <UContainer as="main" class="flex-grow py-4 sm:py-7 flex flex-col">
+      <NuxtPage />
+    </UContainer>
+    <AppFooter />
+  </UApp>
 </template>
 
 <style lang="css">

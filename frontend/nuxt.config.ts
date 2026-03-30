@@ -8,13 +8,18 @@ export default defineNuxtConfig({
         }
     },
     modules: [
-        '@nuxtjs/color-mode',
-        '@nuxtjs/tailwindcss'
+        '@nuxt/ui'
     ],
-    colorMode: {
-        classSuffix: '',
-    },
+    // colorMode: {
+    //     classSuffix: '',
+    // },
     css: ['~/assets/css/main.css'],
+
+    vite: {
+        server: {
+            allowedHosts: ["localhost", "127.0.0.1:3000"],
+        },
+    },
     pages: true,
     routeRules: {},
 
