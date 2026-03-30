@@ -8,11 +8,12 @@ export default defineNuxtConfig({
         }
     },
     modules: [
-        '@nuxt/ui',
         '@nuxtjs/color-mode',
         '@nuxtjs/tailwindcss'
     ],
-
+    colorMode: {
+        classSuffix: '',
+    },
     css: ['~/assets/css/main.css'],
     pages: true,
     routeRules: {},
