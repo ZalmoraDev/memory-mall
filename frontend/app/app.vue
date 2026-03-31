@@ -11,12 +11,14 @@ useSeoMeta({
   ogImage: '/images/apple-dog.jpg',
   ogImageAlt: 'Memory Mall',
 });
+
+const colorMode = useColorMode()
 </script>
 
 <template>
   <UApp>
     <AppHeader />
-    <UContainer as="main" class="flex-grow py-4 sm:py-7 flex flex-col bg-neutral">
+    <UContainer as="main" class="flex-grow py-4 sm:py-7 flex flex-col">
       <NuxtPage />
     </UContainer>
     <AppFooter />
@@ -24,13 +26,4 @@ useSeoMeta({
 </template>
 
 <style lang="css">
-.page-enter-active,
-.page-leave-active {
-  transition: all 0.4s;
-}
-.page-enter-from,
-.page-leave-to {
-  opacity: 0;
-  filter: blur(1rem);
-}
 </style>

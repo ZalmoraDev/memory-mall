@@ -10,14 +10,30 @@ export default defineNuxtConfig({
     modules: [
         '@nuxt/ui'
     ],
-    // colorMode: {
-    //     classSuffix: '',
-    // },
     css: ['~/assets/css/main.css'],
+    ui: {
+        theme: {
+            colors: [
+                'primary',
+                'secondary',
+                'tertiary',
+                'bg',
+                'fg-sm',
+                'fg-md',
+                'fg-lg',
+                'info',
+                'success',
+                'warning',
+                'error'
+            ]
+        }
+    },
+
+
 
     vite: {
         server: {
-            allowedHosts: ["localhost", "127.0.0.1:3000"],
+            allowedHosts: ['localhost', '127.0.0.1:3000'],
         },
     },
     pages: true,

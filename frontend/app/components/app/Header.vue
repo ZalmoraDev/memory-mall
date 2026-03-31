@@ -5,11 +5,10 @@ const appConfig = useAppConfig();
 
 
 <template>
-  <header class="flex items-center justify-between p-4 bg-(--th-backdrop) text-(--th-backdrop-fg) border-b-2 border-(--th-tertiary) shadow">
+  <header class="flex items-center justify-between p-4 bg-primary text-fg-md border-b-2 border-(--th-primary) shadow">
     <div class="font-bold text-lg">HEADER</div>
     <div class="flex items-center gap-4">
-      <ThemeCycler />
-      <ThemeToggle />
+      <ThemeSwitcher />
     </div>
   </header>
 </template>

@@ -3,12 +3,8 @@ export default defineAppConfig({
         container: {
             base: 'max-w-7xl w-full'
         },
-        colors: {
-            primary: 'red',
-            neutral: 'zinc'
-        },
         theme: {
-            colors: ['primary', 'secondary', 'tertiary', 'info', 'success', 'warning', 'error']
+            colors: ['primary', 'secondary', 'tertiary', 'bg', 'fg-sm', 'fg-md', 'fg-lg', 'info', 'success', 'warning', 'error']
         },
         button: {
             slots: {
