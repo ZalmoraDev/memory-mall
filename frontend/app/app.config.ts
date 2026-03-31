@@ -4,7 +4,7 @@ export default defineAppConfig({
             base: 'max-w-7xl w-full'
         },
         colors: {
-            primary: 'emerald',
+            primary: 'red',
             neutral: 'zinc'
         },
         theme: {

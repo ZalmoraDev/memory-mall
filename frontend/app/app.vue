@@ -16,7 +16,7 @@ useSeoMeta({
 <template>
   <UApp>
     <AppHeader />
-    <UContainer as="main" class="flex-grow py-4 sm:py-7 flex flex-col">
+    <UContainer as="main" class="flex-grow py-4 sm:py-7 flex flex-col bg-neutral">
       <NuxtPage />
     </UContainer>
     <AppFooter />

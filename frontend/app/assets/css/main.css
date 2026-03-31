@@ -14,7 +14,63 @@
     --color-mm-800: #b10303;
     --color-mm-900: #920a0a;
     --color-mm-950: #500000;
+
+    --color-primary: var(--th-primary);
+    --color-secondary: var(--th-secondary);
+    --color-tertiary: var(--th-tertiary);
+    --color-backdrop: var(--th-backdrop);
+    --color-backdrop-fg: var(--th-backdrop-fg);
 }
+
+:root, :root[data-theme="blue"] {
+    --th-primary: #0033cc;
+    --th-secondary: #008000;
+    --th-tertiary: #d4d0c8;
+    --th-backdrop: #ece9d8;
+    --th-backdrop-fg: #000000;
+}
+
+:root[data-theme="olive green"] {
+    --th-primary: #999966;
+    --th-secondary: #cc9933;
+    --th-tertiary: #b5b596;
+    --th-backdrop: #e1e1cc;
+    --th-backdrop-fg: #000000;
+}
+
+:root[data-theme="silver"] {
+    --th-primary: #8c90ad;
+    --th-secondary: #222222;
+    --th-tertiary: #c0c0c0;
+    --th-backdrop: #f0f0f0;
+    --th-backdrop-fg: #000000;
+}
+
+:root[data-theme="royale noir"] {
+    --th-primary: #3b6ea5;
+    --th-secondary: #f09e39;
+    --th-tertiary: #cfdfef;
+    --th-backdrop: #1d1d1d;
+    --th-backdrop-fg: #ffffff;
+}
+
+:root[data-theme="zune"] {
+    --th-primary: #2b2b2b;
+    --th-secondary: #4a4a4a;
+    --th-tertiary: #5c5c5c;
+    --th-backdrop: #1f1f1f;
+    --th-backdrop-fg: #ffffff;
+}
+
+:root[data-theme="embedded"] {
+    --th-primary: #000080;
+    --th-secondary: #c0c0c0;
+    --th-tertiary: #808080;
+    --th-backdrop: #ffffff;
+    --th-backdrop-fg: #000000;
+}
+
+
 
 .dark body {
     @apply bg-neutral-950 text-neutral-100;
