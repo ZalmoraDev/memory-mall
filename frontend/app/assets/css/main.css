@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
-:root,
+/*region Themes*/
 .blue {
     --ui-primary: #1767ce;
     --ui-secondary: #4e92e6;
@@ -10,6 +10,7 @@
     --ui-fg-sm: #acacac;
     --ui-fg-md: #000000;
     --ui-fg-lg: #0a246a;
+    --ui-wallpaper: url('../../../public/images/theme-wallpapers/1blue.jpg');
 }
 
 .olive-green {
@@ -20,6 +21,7 @@
     --ui-fg-sm: #acacac;
     --ui-fg-md: #000000;
     --ui-fg-lg: #756d44;
+    --ui-wallpaper: url('../../../public/images/theme-wallpapers/2olive-green.png');
 }
 
 .silver {
@@ -30,6 +32,7 @@
     --ui-fg-sm: #acacac;
     --ui-fg-md: #000000;
     --ui-fg-lg: #0a246a;
+    --ui-wallpaper: url('../../../public/images/theme-wallpapers/3silver.jpg');
 }
 
 .royale-noir {
@@ -40,6 +43,7 @@
     --ui-fg-sm: #717678;
     --ui-fg-md: #ffffff;
     --ui-fg-lg: #ffffff;
+    --ui-wallpaper: url('../../../public/images/theme-wallpapers/4royale-noir.webp');
 }
 
 .zune {
@@ -50,6 +54,7 @@
     --ui-fg-sm: #717678;
     --ui-fg-md: #ffffff;
     --ui-fg-lg: #ffffff;
+    --ui-wallpaper: url('../../../public/images/theme-wallpapers/5zune.jpg');
 }
 
 .embedded {
@@ -60,12 +65,44 @@
     --ui-fg-sm: #6c98c5;
     --ui-fg-md: #ffffff;
     --ui-fg-lg: #ffffff;
+    --ui-wallpaper: url('../../../public/images/theme-wallpapers/70f0eca80703cd282486686bb3040f44.jpeg');
+}
+/*endregion Themes*/
+
+
+/*region Components */
+@layer components {
+    .mm-bg-pri-sec {
+        @apply bg-linear-to-b from-primary to-secondary ;
+    }
+    .mm-bg-pri-sec-pri {
+        @apply bg-linear-to-b from-primary via-secondary to-primary;
+    }
+}
+/*endregion Components */
+
+
+/*region DOM*/
+html{
+    @apply h-full;
+}
+
+/*overwrite the nuxt body wrapper called __nuxt to scale*/
+#__nuxt {
+    @apply min-h-full flex flex-col;
 }
 
 body {
-    @apply bg-bg text-fg-md;
+    @apply text-fg-md flex flex-col w-full h-full;
+    background-image: var(--ui-wallpaper);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
+
+
 
 a {
     @apply underline text-fg-lg font-bold;
 }
+/*endregion DOM*/

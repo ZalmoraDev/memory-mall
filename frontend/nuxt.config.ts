@@ -11,6 +11,9 @@ export default defineNuxtConfig({
         '@nuxt/ui'
     ],
     css: ['~/assets/css/main.css'],
+    tailwindcss: {
+        exposeConfig: true
+    },
     ui: {
         theme: {
             colors: [
@@ -24,7 +27,8 @@ export default defineNuxtConfig({
                 'info',
                 'success',
                 'warning',
-                'error'
+                'error',
+                'wallpaper'
             ]
         }
     },

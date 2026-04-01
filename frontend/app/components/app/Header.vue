@@ -5,7 +5,7 @@ const appConfig = useAppConfig();
 
 
 <template>
-  <header class="flex items-center justify-between p-4 bg-primary text-fg-md border-b-2 border-(--th-primary) shadow">
+  <header class="flex items-center justify-between p-4 text-fg-md border-b-3 border-primary shadow mm-bg-pri-sec">
     <div class="font-bold text-lg">HEADER</div>
     <div class="flex items-center gap-4">
       <ThemeSwitcher />

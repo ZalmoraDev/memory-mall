@@ -12,16 +12,18 @@ useSeoMeta({
   ogImageAlt: 'Memory Mall',
 });
 
-const colorMode = useColorMode()
+const colorMode = useColorMode();
 </script>
 
 <template>
-  <UApp>
-    <AppHeader />
-    <UContainer as="main" class="flex-grow py-4 sm:py-7 flex flex-col">
-      <NuxtPage />
-    </UContainer>
-    <AppFooter />
+  <UApp class="flex-1 flex flex-col">
+    <main class="m-4 h-full container mx-auto border-primary border-3 rounded-t-2xl overflow-hidden bg-bg flex-1 flex flex-col">
+      <AppHeader/>
+      <div class="p-4 flex-1">
+        <NuxtPage/>
+      </div>
+    </main>
+    <AppFooter/>
   </UApp>
 </template>
 
