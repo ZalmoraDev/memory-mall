@@ -10,6 +10,7 @@
     --ui-fg-sm: #acacac;
     --ui-fg-md: #000000;
     --ui-fg-lg: #0a246a;
+    --ui-fg-on-pri: #ffffff;
     --ui-wallpaper: url('../../../public/images/theme-wallpapers/1blue.jpg');
 }
 
@@ -21,6 +22,7 @@
     --ui-fg-sm: #acacac;
     --ui-fg-md: #000000;
     --ui-fg-lg: #756d44;
+    --ui-fg-on-pri: #000000;
     --ui-wallpaper: url('../../../public/images/theme-wallpapers/2olive-green.png');
 }
 
@@ -32,6 +34,7 @@
     --ui-fg-sm: #acacac;
     --ui-fg-md: #000000;
     --ui-fg-lg: #0a246a;
+    --ui-fg-on-pri: #000000;
     --ui-wallpaper: url('../../../public/images/theme-wallpapers/3silver.jpg');
 }
 
@@ -43,6 +46,7 @@
     --ui-fg-sm: #717678;
     --ui-fg-md: #ffffff;
     --ui-fg-lg: #ffffff;
+    --ui-fg-on-pri: #ffffff;
     --ui-wallpaper: url('../../../public/images/theme-wallpapers/4royale-noir.webp');
 }
 
@@ -54,6 +58,7 @@
     --ui-fg-sm: #717678;
     --ui-fg-md: #ffffff;
     --ui-fg-lg: #ffffff;
+    --ui-fg-on-pri: #ffffff;
     --ui-wallpaper: url('../../../public/images/theme-wallpapers/5zune.jpg');
 }
 
@@ -65,7 +70,8 @@
     --ui-fg-sm: #6c98c5;
     --ui-fg-md: #ffffff;
     --ui-fg-lg: #ffffff;
-    --ui-wallpaper: url('../../../public/images/theme-wallpapers/70f0eca80703cd282486686bb3040f44.jpeg');
+    --ui-fg-on-pri: #ffffff;
+    --ui-wallpaper: url('../../../public/images/theme-wallpapers/6embedded.jpeg');
 }
 /*endregion Themes*/
 

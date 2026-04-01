@@ -24,6 +24,7 @@ export default defineNuxtConfig({
                 'fg-sm',
                 'fg-md',
                 'fg-lg',
+                'fg-on-pri',
                 'info',
                 'success',
                 'warning',

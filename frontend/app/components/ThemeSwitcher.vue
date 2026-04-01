@@ -2,8 +2,7 @@
 </script>
 
 <template>
-  <div>
-    <h1>Color mode: {{ $colorMode.value }}</h1>
+  <div class="bg-tertiary">
     <select v-model="$colorMode.preference">
       <option value="blue">blue</option>
       <option value="olive-green">olive green</option>

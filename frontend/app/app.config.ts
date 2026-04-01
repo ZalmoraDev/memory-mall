@@ -4,7 +4,7 @@ export default defineAppConfig({
             base: 'max-w-7xl w-full'
         },
         theme: {
-            colors: ['primary', 'secondary', 'tertiary', 'bg', 'fg-sm', 'fg-md', 'fg-lg', 'info', 'success', 'warning', 'error', 'wallpaper']
+            colors: ['primary', 'secondary', 'tertiary', 'bg', 'fg-sm', 'fg-md', 'fg-lg', 'fg-on-pri', 'info', 'success', 'warning', 'error', 'wallpaper']
         },
         button: {
             slots: {

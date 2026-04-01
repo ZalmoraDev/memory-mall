@@ -11,9 +11,8 @@ useSeoMeta({
   ogImage: '/images/apple-dog.jpg',
   ogImageAlt: 'Memory Mall',
 });
-
-const colorMode = useColorMode();
 </script>
+
 
 <template>
   <UApp class="flex-1 flex flex-col">
@@ -26,6 +25,7 @@ const colorMode = useColorMode();
     <AppFooter/>
   </UApp>
 </template>
+
 
 <style lang="css">
 </style>
