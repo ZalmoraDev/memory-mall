@@ -26,8 +26,8 @@
 
 <table>
   <tr>
-    <td><img src="/docs/ERD.png" alt="Entity Relation Diagram"></td>
-    <td><img src="/docs/ERD.png" alt="Entity Relation Diagram"></td>
+    <td><img src="/docs/readme/screenshot.png" alt="Screenshot of Memory Mall"></td>
+    <td><img src="/docs/readme/ERD.png" alt="Entity Relation Diagram"></td>
   </tr>
 </table>
 
@@ -70,8 +70,11 @@
 [//]: # (TODO: Finalize dependencies)
 
 - Docker
--
     - npm
         - tailwindcss: ^4
 - PostgreSQL: ^16
     - pgadmin: ^9
+
+test
+test
+test
