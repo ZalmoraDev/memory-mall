@@ -1,7 +1,8 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
-.blue body {
+:root,
+.blue {
     --ui-primary: #1767ce;
     --ui-secondary: #4e92e6;
     --ui-tertiary: #d3e5fa;
@@ -18,7 +19,7 @@
     --ui-bg: #ffffff;
     --ui-fg-sm: #acacac;
     --ui-fg-md: #000000;
-    --ui-fg-lg: #0a246a;
+    --ui-fg-lg: #756d44;
 }
 
 .silver {
@@ -65,10 +66,6 @@ body {
     @apply bg-bg text-fg-md;
 }
 
-button {
-    @apply underline bg-bg text-fg-md;
-}
-
 a {
-    @apply underline bg-bg text-fg-md;
+    @apply underline text-fg-lg font-bold;
 }

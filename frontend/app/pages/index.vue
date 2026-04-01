@@ -11,7 +11,7 @@ console.log(runtimeConfig.public.bePort) // remove this after you've confirmed i
 
 
 <template>
-  <h1 class="text-primary"> Index page</h1>
+  <h1 class="text-fg-lg font-bold"> Index page</h1>
   <NuxtLink to="/accounts">To Accounts</NuxtLink>
   <br>
   {{ data }}<br>
