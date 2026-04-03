@@ -1,10 +1,60 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
+@font-face {
+    font-family: "tahoma";
+    src: url("../fonts/tahoma-regular.ttf") format("truetype");
+}
+
+
+/*region DOM*/
+/*overwrite the nuxt body wrapper called __nuxt, in order to scale page to vertical full*/
+#__nuxt {
+    @apply min-h-full flex flex-col;
+}
+
+html{
+    @apply h-full;
+    font-family: "tahoma", sans-serif;
+}
+
+body {
+    @apply text-fg-md flex flex-col w-full h-full;
+    background-image: var(--ui-wallpaper);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+button {
+    @apply rounded-sm;
+}
+
+a {
+    @apply underline text-fg-lg font-bold;
+}
+/*endregion DOM*/
+
+
+/*region Components */
+@layer components {
+    .mm-bg-pri-sec {
+        @apply bg-linear-to-b from-primary to-secondary ;
+    }
+    .mm-bg-sec-pri {
+        @apply bg-linear-to-b from-secondary to-primary;
+    }
+    .mm-bg-pri-sec-pri {
+        @apply bg-linear-to-b from-primary via-secondary to-primary;
+    }
+}
+/*endregion Components */
+
+
 /*region Themes*/
 .blue {
     --ui-primary: #1767ce;
-    --ui-secondary: #4e92e6;
+    --ui-secondary: #4691eb;
     --ui-tertiary: #d3e5fa;
     --ui-bg: #ffffff;
     --ui-fg-sm: #acacac;
@@ -12,6 +62,16 @@
     --ui-fg-lg: #0a246a;
     --ui-fg-on-pri: #ffffff;
     --ui-wallpaper: url('../../../public/images/theme-wallpapers/1blue.jpg');
+    --ui-start-button: #00b400;
+    --ui-close-button: #e6440c;
+    --ui-turn-off-button: #e6440c;
+    --ui-log-off-button: #e3af66;
+}
+.blue .mm-gradient-direction {
+    @apply bg-red-500;
+}
+.blue .mm-inline-highlight {
+    @apply inset-shadow-sm inset-shadow-white/50;
 }
 
 .olive-green {
@@ -24,10 +84,20 @@
     --ui-fg-lg: #756d44;
     --ui-fg-on-pri: #000000;
     --ui-wallpaper: url('../../../public/images/theme-wallpapers/2olive-green.png');
+    --ui-start-button: #00b400;
+    --ui-close-button: #e6440c;
+    --ui-turn-off-button: #e6440c;
+    --ui-log-off-button: #e3af66;
+}
+.olive-green .mm-gradient-direction {
+    @apply bg-lime-500;
+}
+.olive-green .mm-inline-highlight {
+    @apply inset-shadow-sm inset-shadow-white;
 }
 
 .silver {
-    --ui-primary: #acacc3;
+    --ui-primary: #b0b2c7;
     --ui-secondary: #ffffff;
     --ui-tertiary: #e7e6ed;
     --ui-bg: #ffffff;
@@ -36,6 +106,16 @@
     --ui-fg-lg: #0a246a;
     --ui-fg-on-pri: #000000;
     --ui-wallpaper: url('../../../public/images/theme-wallpapers/3silver.jpg');
+    --ui-start-button: #00b400;
+    --ui-close-button: #e6440c;
+    --ui-turn-off-button: #e6440c;
+    --ui-log-off-button: #e3af66;
+}
+.silver .mm-gradient-direction {
+    @apply bg-slate-400;
+}
+.silver .mm-inline-highlight {
+    @apply inset-shadow-sm inset-shadow-white/80;
 }
 
 .royale-noir {
@@ -48,6 +128,13 @@
     --ui-fg-lg: #ffffff;
     --ui-fg-on-pri: #ffffff;
     --ui-wallpaper: url('../../../public/images/theme-wallpapers/4royale-noir.webp');
+    --ui-start-button: #1f2e4a;
+    --ui-close-button: #19202d;
+    --ui-turn-off-button: #e6440c;
+    --ui-log-off-button: #e3af66;
+}
+.royale-noir .mm-gradient-direction {
+    @apply bg-neutral-800;
 }
 
 .zune {
@@ -60,6 +147,13 @@
     --ui-fg-lg: #ffffff;
     --ui-fg-on-pri: #ffffff;
     --ui-wallpaper: url('../../../public/images/theme-wallpapers/5zune.jpg');
+    --ui-start-button: #fe6700;
+    --ui-close-button: #575757;
+    --ui-turn-off-button: #e6440c;
+    --ui-log-off-button: #e3af66;
+}
+.zune .mm-gradient-direction {
+    @apply bg-orange-500;
 }
 
 .embedded {
@@ -72,43 +166,12 @@
     --ui-fg-lg: #ffffff;
     --ui-fg-on-pri: #ffffff;
     --ui-wallpaper: url('../../../public/images/theme-wallpapers/6embedded.jpeg');
+    --ui-start-button: #00548c;
+    --ui-close-button: #337ab2;
+    --ui-turn-off-button: #e6440c;
+    --ui-log-off-button: #e3af66;
+}
+.embedded .mm-gradient-direction {
+    @apply bg-sky-500;
 }
 /*endregion Themes*/
-
-
-/*region Components */
-@layer components {
-    .mm-bg-pri-sec {
-        @apply bg-linear-to-b from-primary to-secondary ;
-    }
-    .mm-bg-pri-sec-pri {
-        @apply bg-linear-to-b from-primary via-secondary to-primary;
-    }
-}
-/*endregion Components */
-
-
-/*region DOM*/
-html{
-    @apply h-full;
-}
-
-/*overwrite the nuxt body wrapper called __nuxt to scale*/
-#__nuxt {
-    @apply min-h-full flex flex-col;
-}
-
-body {
-    @apply text-fg-md flex flex-col w-full h-full;
-    background-image: var(--ui-wallpaper);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-}
-
-
-
-a {
-    @apply underline text-fg-lg font-bold;
-}
-/*endregion DOM*/

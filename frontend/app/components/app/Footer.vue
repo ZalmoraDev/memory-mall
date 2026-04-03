@@ -1,12 +1,25 @@
 <script setup lang="ts">
+import StartMenu from '../StartMenu.vue';
+import { ref } from 'vue';
+
 const runtimeConfig = useRuntimeConfig();
 const appConfig = useAppConfig();
+
+const showStartMenu = ref(false);
+
+async function onClickStartButton() {
+  showStartMenu.value = !showStartMenu.value;
+}
 </script>
 
 
 <template>
-  <footer class="flex items-center justify-between w-fill bg-primary text-fg-md mm-bg-pri-sec">
-    <UButton class="font-bold p-1 rounded-l-none rounded-r-lg text-lg bg-green-500 hover:bg-green-600 active:bg-green-600">Start</UButton>
+  <footer class="flex items-center justify-between h-8 w-fill bg-primary text-fg-md mm-bg-pri-sec">
+    <UButton @click="onClickStartButton" color="start-button"
+             class="font-bold h-full p-1 rounded-l-none! rounded-r-lg! text-lg">
+      start
+    </UButton>
+    <StartMenu v-if="showStartMenu" />
   </footer>
 </template>
 
