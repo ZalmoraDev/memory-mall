@@ -16,7 +16,7 @@ useSeoMeta({
 
 <template>
   <UApp class="flex-1 flex flex-col">
-    <main class="m-4 h-full container mx-auto rounded-t-xl border-2 border-primary overflow-hidden bg-bg flex-1 flex flex-col">
+    <main class="m-4 h-full container mx-auto rounded-t-lg border-2 border-primary overflow-hidden bg-bg flex-1 flex flex-col">
       <AppHeader/>
       <div class="p-4 flex-1">
         <NuxtPage/>

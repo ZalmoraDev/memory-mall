@@ -13,7 +13,7 @@
     @apply min-h-full flex flex-col;
 }
 
-html{
+html {
     @apply h-full;
     font-family: "tahoma", sans-serif;
 }
@@ -33,19 +33,14 @@ button {
 a {
     @apply underline text-fg-lg font-bold;
 }
+
 /*endregion DOM*/
 
 
 /*region Components */
 @layer components {
-    .mm-bg-pri-sec {
-        @apply bg-linear-to-b from-primary to-secondary ;
-    }
-    .mm-bg-sec-pri {
-        @apply bg-linear-to-b from-secondary to-primary;
-    }
-    .mm-bg-pri-sec-pri {
-        @apply bg-linear-to-b from-primary via-secondary to-primary;
+    .comp-bg-pri-sec {
+        @apply bg-linear-to-b from-primary to-secondary;
     }
 }
 /*endregion Components */
@@ -56,122 +51,175 @@ a {
     --ui-primary: #1767ce;
     --ui-secondary: #4691eb;
     --ui-tertiary: #d3e5fa;
+
     --ui-bg: #ffffff;
     --ui-fg-sm: #acacac;
     --ui-fg-md: #000000;
     --ui-fg-lg: #0a246a;
     --ui-fg-on-pri: #ffffff;
+
     --ui-wallpaper: url('../../../public/images/theme-wallpapers/1blue.jpg');
     --ui-start-button: #00b400;
     --ui-close-button: #e6440c;
     --ui-turn-off-button: #e6440c;
     --ui-log-off-button: #e3af66;
 }
-.blue .mm-gradient-direction {
-    @apply bg-red-500;
-}
 .blue .mm-inline-highlight {
     @apply inset-shadow-sm inset-shadow-white/50;
 }
+.blue .mm-color-startmenu-top {
+    @apply bg-linear-to-b from-primary to-secondary
+}
+.blue .mm-color-startmenu-bottom {
+    @apply bg-linear-to-b from-secondary to-primary
+}
+.blue .mm-color-taskbar {
+    @apply bg-linear-to-b from-primary to-secondary;
+}
+
 
 .olive-green {
     --ui-primary: #b6c694;
     --ui-secondary: #dcecbf;
     --ui-tertiary: #f1f2e4;
+
     --ui-bg: #ffffff;
     --ui-fg-sm: #acacac;
     --ui-fg-md: #000000;
     --ui-fg-lg: #756d44;
     --ui-fg-on-pri: #000000;
+
     --ui-wallpaper: url('../../../public/images/theme-wallpapers/2olive-green.png');
     --ui-start-button: #00b400;
     --ui-close-button: #e6440c;
     --ui-turn-off-button: #e6440c;
     --ui-log-off-button: #e3af66;
 }
-.olive-green .mm-gradient-direction {
-    @apply bg-lime-500;
-}
 .olive-green .mm-inline-highlight {
     @apply inset-shadow-sm inset-shadow-white;
 }
+.olive-green .mm-color-startmenu-top {
+    @apply bg-linear-to-b from-primary to-secondary
+}
+.olive-green .mm-color-startmenu-bottom {
+    @apply bg-linear-to-b from-secondary to-primary
+}
+.olive-green .mm-color-taskbar {
+    @apply bg-linear-to-b from-primary to-secondary;
+}
+
 
 .silver {
     --ui-primary: #b0b2c7;
     --ui-secondary: #ffffff;
     --ui-tertiary: #e7e6ed;
+
     --ui-bg: #ffffff;
     --ui-fg-sm: #acacac;
     --ui-fg-md: #000000;
     --ui-fg-lg: #0a246a;
     --ui-fg-on-pri: #000000;
+
     --ui-wallpaper: url('../../../public/images/theme-wallpapers/3silver.jpg');
     --ui-start-button: #00b400;
     --ui-close-button: #e6440c;
     --ui-turn-off-button: #e6440c;
     --ui-log-off-button: #e3af66;
 }
-.silver .mm-gradient-direction {
-    @apply bg-slate-400;
-}
 .silver .mm-inline-highlight {
     @apply inset-shadow-sm inset-shadow-white/80;
 }
+.silver .mm-color-startmenu-top {
+    @apply bg-linear-to-b from-primary to-secondary
+}
+.silver .mm-color-startmenu-bottom {
+    @apply bg-linear-to-b from-secondary to-primary
+}
+.silver .mm-color-taskbar {
+    @apply bg-linear-to-b from-primary to-secondary;
+}
+
 
 .royale-noir {
-    --ui-primary: #19202d;
-    --ui-secondary: #10141a;
+    --ui-primary: #162132;
+    --ui-secondary: #5a6576;
     --ui-tertiary: #5a606f;
+
     --ui-bg: #353f4d;
     --ui-fg-sm: #717678;
     --ui-fg-md: #ffffff;
     --ui-fg-lg: #ffffff;
     --ui-fg-on-pri: #ffffff;
+
     --ui-wallpaper: url('../../../public/images/theme-wallpapers/4royale-noir.webp');
     --ui-start-button: #1f2e4a;
     --ui-close-button: #19202d;
     --ui-turn-off-button: #e6440c;
     --ui-log-off-button: #e3af66;
 }
-.royale-noir .mm-gradient-direction {
-    @apply bg-neutral-800;
+.royale-noir .mm-color-startmenu-top {
+    background-image: linear-gradient(to bottom, var(--ui-secondary) 0%, var(--ui-secondary) 35%, var(--ui-primary) 65%);
+}
+.royale-noir .mm-color-startmenu-bottom {
+    background-image: linear-gradient(to bottom, var(--ui-secondary) 0%, var(--ui-secondary) 0%, var(--ui-bg) 50%);
+}
+.royale-noir .mm-color-taskbar {
+    background-image: linear-gradient(to bottom, var(--ui-secondary) 0%, var(--ui-secondary) 35%, var(--ui-bg) 65%);
 }
 
+
 .zune {
-    --ui-primary: #575757;
-    --ui-secondary: #131313;
+    --ui-primary: #000000;
+    --ui-secondary: #575757;
     --ui-tertiary: #666666;
+
     --ui-bg: #2f2f2f;
     --ui-fg-sm: #717678;
     --ui-fg-md: #ffffff;
     --ui-fg-lg: #ffffff;
     --ui-fg-on-pri: #ffffff;
+
     --ui-wallpaper: url('../../../public/images/theme-wallpapers/5zune.jpg');
     --ui-start-button: #fe6700;
     --ui-close-button: #575757;
     --ui-turn-off-button: #e6440c;
     --ui-log-off-button: #e3af66;
 }
-.zune .mm-gradient-direction {
-    @apply bg-orange-500;
+.zune .mm-color-startmenu-top {
+    background-image: linear-gradient(to bottom, var(--ui-secondary) 0%, var(--ui-secondary) 35%, var(--ui-primary) 65%);
+}
+.zune .mm-color-startmenu-bottom {
+    background-image: linear-gradient(to bottom, var(--ui-secondary) 0%, var(--ui-secondary) 35%, var(--ui-primary) 65%);
+}
+.zune .mm-color-taskbar {
+    background-image: linear-gradient(to bottom, var(--ui-secondary) 0%, var(--ui-secondary) 35%, var(--ui-bg) 65%);
 }
 
+
 .embedded {
-    --ui-primary: #337ab2;
-    --ui-secondary: #013661;
+    --ui-primary: #01457c;
+    --ui-secondary: #256ca4;
     --ui-tertiary: #2e75ad;
+
     --ui-bg: #013c6b;
     --ui-fg-sm: #6c98c5;
     --ui-fg-md: #ffffff;
     --ui-fg-lg: #ffffff;
     --ui-fg-on-pri: #ffffff;
+
     --ui-wallpaper: url('../../../public/images/theme-wallpapers/6embedded.jpeg');
     --ui-start-button: #00548c;
     --ui-close-button: #337ab2;
     --ui-turn-off-button: #e6440c;
     --ui-log-off-button: #e3af66;
 }
-.embedded .mm-gradient-direction {
-    @apply bg-sky-500;
+.embedded .mm-color-startmenu-top {
+    background-image: linear-gradient(to bottom, var(--ui-secondary) 0%, var(--ui-secondary) 35%, var(--ui-primary) 65%);
+}
+.embedded .mm-color-startmenu-bottom {
+    background-image: linear-gradient(to bottom, var(--ui-secondary) 0%, var(--ui-secondary) 35%, var(--ui-primary) 65%);
+}
+.embedded .mm-color-taskbar {
+    background-image: linear-gradient(to bottom, var(--ui-secondary) 0%, var(--ui-secondary) 35%, var(--ui-primary) 65%);
 }
 /*endregion Themes*/

@@ -14,7 +14,7 @@ async function onClickStartButton() {
 
 
 <template>
-  <footer class="flex items-center justify-between h-8 w-fill bg-primary text-fg-md mm-bg-pri-sec">
+  <footer class="mm-color-taskbar mm-inline-highlight flex items-center justify-between h-8 w-fill text-fg-md">
     <UButton @click="onClickStartButton" color="start-button"
              class="font-bold h-full p-1 rounded-l-none! rounded-r-lg! text-lg">
       start
