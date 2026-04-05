@@ -1,0 +1,9 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+/* Suffix = wb-
+Describes 'web browser' styling, such as:
+* Address Bar
+* Bookmarks Bar
+* Navigation Bar
+*/

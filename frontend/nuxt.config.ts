@@ -8,10 +8,19 @@ export default defineNuxtConfig({
         }
     },
     modules: [
-        '@nuxt/ui'
+        '@nuxt/ui',
+        '@nuxtjs/color-mode'
     ],
-    css: ['~/assets/css/main.css',
-    '~/assets/css/memory-mall.css'],
+
+
+    css: ['~/assets/css/operating-system.css',
+        '~/assets/css/web-browser.css',
+        '~/assets/css/projects/memory-mall.css'],
+    colorMode: {
+        preference: 'system', // default
+        fallback: 'light', // fallback
+        classSuffix: '' // removes default '-mode' suffix of color themes (.light instead of .light-mode etc.)
+    },
     ui: {
         theme: {
             colors: [

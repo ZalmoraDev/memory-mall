@@ -1,0 +1,354 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+@font-face {
+    font-family: "tahoma";
+    src: url("../fonts/tahoma-regular.ttf") format("truetype");
+}
+
+/* Suffix = os-
+Describes 'operating system' styling, such as:
+* OS Colors & Wallpaper
+* Windows
+* Taskbar
+* Start Menu
+*/
+
+/*region DOM*/
+/*overwrite the nuxt body wrapper called __nuxt, in order to scale page to vertical full*/
+#__nuxt {
+    @apply min-h-full flex flex-col;
+}
+
+html {
+    @apply h-full;
+    font-family: "tahoma", sans-serif;
+}
+
+body {
+    @apply text-fg-md flex flex-col w-full h-full;
+    background-image: var(--ui-wallpaper);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+/* Global overwrite of vanilla-css &
+Nuxt UI Components, overwrittable per project */
+button {
+    @apply rounded-sm text-fg-on-pri justify-center inset-shadow-sm inset-shadow-white/25 active:inset-shadow-sm! active:inset-shadow-black/50!;
+}
+
+a {
+    @apply underline text-fg-lg font-bold justify-center;
+}
+
+/*endregion DOM*/
+
+
+/*region Components */
+@layer components {
+    .comp-bg-pri-sec {
+        @apply bg-linear-to-b from-primary to-secondary;
+    }
+}
+
+/*endregion Components */
+
+/*region THEMES
+/* Groups specifying whether themes are light or dark */
+:is(.light, .os-blue, .os-olive-green, .os-silver) {
+    color-scheme: light;
+}
+
+:is(.dark, .os-royale-noir, .os-zune, .os-embedded) {
+    color-scheme: dark;
+}
+
+/*region Themes Light*/
+:is(.os-blue, .light) {
+    --ui-primary: #1767ce;
+    --ui-secondary: #4691eb;
+    --ui-tertiary: #d3e5fa;
+
+    --ui-bg: #ffffff;
+    --ui-fg-sm: #acacac;
+    --ui-fg-md: #000000;
+    --ui-fg-lg: #0a246a;
+    --ui-fg-on-pri: #ffffff;
+
+    --ui-wallpaper: url('../../../public/images/theme-wallpapers/1blue.jpg');
+
+    .os-inline-highlight {
+        @apply inset-shadow-sm inset-shadow-white/50;
+    }
+
+    .os-button-general-colors {
+        @apply bg-primary
+    }
+
+    .os-button-close-colors {
+        @apply bg-[#e6440c]
+    }
+
+    .os-window-titlebar-colors {
+        @apply bg-linear-to-b from-primary to-secondary
+    }
+
+    .os-taskbar-colors {
+        @apply bg-linear-to-b from-primary to-secondary;
+    }
+
+    .os-taskbar-startbutton-colors {
+        @apply bg-linear-to-b from-[#00b400] to-[#00b400]
+    }
+
+    .os-startmenu-top-colors {
+        @apply bg-linear-to-b from-primary to-secondary
+    }
+
+    .os-startmenu-bottom-colors {
+        @apply bg-linear-to-b from-secondary to-primary
+    }
+}
+
+.os-olive-green {
+    --ui-primary: #b6c694;
+    --ui-secondary: #dcecbf;
+    --ui-tertiary: #f1f2e4;
+
+    --ui-bg: #ffffff;
+    --ui-fg-sm: #acacac;
+    --ui-fg-md: #000000;
+    --ui-fg-lg: #756d44;
+    --ui-fg-on-pri: #000000;
+
+    --ui-wallpaper: url('../../../public/images/theme-wallpapers/2olive-green.png');
+
+    .os-inline-highlight {
+        @apply inset-shadow-sm inset-shadow-white;
+    }
+
+    .os-button-general-colors {
+        @apply bg-primary
+    }
+
+    .os-button-close-colors {
+        @apply bg-[#e6440c]
+    }
+
+    .os-window-titlebar-colors {
+        @apply bg-linear-to-b from-primary to-secondary
+    }
+
+    .os-taskbar-colors {
+        @apply bg-linear-to-b from-primary to-secondary;
+    }
+
+    .os-taskbar-startbutton-colors {
+        @apply bg-linear-to-b from-[#00b400] to-[#00b400]
+    }
+
+    .os-startmenu-top-colors {
+        @apply bg-linear-to-b from-primary to-secondary
+    }
+
+    .os-startmenu-bottom-colors {
+        @apply bg-linear-to-b from-secondary to-primary
+    }
+}
+
+
+.os-silver {
+    --ui-primary: #b0b2c7;
+    --ui-secondary: #ffffff;
+    --ui-tertiary: #e7e6ed;
+
+    --ui-bg: #ffffff;
+    --ui-fg-sm: #acacac;
+    --ui-fg-md: #000000;
+    --ui-fg-lg: #0a246a;
+    --ui-fg-on-pri: #000000;
+
+    --ui-wallpaper: url('../../../public/images/theme-wallpapers/3silver.jpg');
+
+    .os-inline-highlight {
+        @apply inset-shadow-sm inset-shadow-white/80;
+    }
+
+    .os-button-general-colors {
+        @apply bg-primary
+    }
+
+    .os-button-close-colors {
+        @apply bg-[#e6440c]
+    }
+
+    .os-window-titlebar-colors {
+        @apply bg-linear-to-b from-primary to-secondary
+    }
+
+    .os-taskbar-colors {
+        @apply bg-linear-to-b from-primary to-secondary;
+    }
+
+    .os-taskbar-startbutton-colors {
+        @apply bg-linear-to-b from-[#00b400] to-[#00b400]
+    }
+
+    .os-startmenu-top-colors {
+        @apply bg-linear-to-b from-primary to-secondary
+    }
+
+    .os-startmenu-bottom-colors {
+        @apply bg-linear-to-b from-secondary to-primary
+    }
+}
+
+/*endregion Themes Light*/
+
+
+/*region Themes Dark*/
+:is(.os-royale-noir, .dark) {
+    --ui-primary: #162132;
+    --ui-secondary: #5a6576;
+    --ui-tertiary: #5a606f;
+
+    --ui-bg: #353f4d;
+    --ui-fg-sm: #717678;
+    --ui-fg-md: #ffffff;
+    --ui-fg-lg: #ffffff;
+    --ui-fg-on-pri: #ffffff;
+
+    --ui-wallpaper: url('../../../public/images/theme-wallpapers/4royale-noir.webp');
+
+    .os-inline-highlight {
+    }
+
+    .os-button-general-colors {
+        @apply bg-[080c13]
+    }
+
+    .os-button-close-colors {
+        @apply bg-[#19202d]
+    }
+
+    .os-window-titlebar-colors {
+        background-image: linear-gradient(to bottom, var(--ui-primary) 0%, #080c13 50%, #080c13 50%);
+    }
+
+    .os-taskbar-colors {
+        background-image: linear-gradient(to bottom, var(--ui-secondary) 0%, var(--ui-secondary) 35%, var(--ui-bg) 65%);
+    }
+
+    .os-taskbar-startbutton-colors {
+        @apply bg-linear-to-b from-[#1f2e4a] to-[#1f2e4a]
+    }
+
+    .os-startmenu-top-colors {
+        @apply bg-linear-to-b from-secondary to-primary
+    }
+
+    .os-startmenu-bottom-colors {
+        @apply bg-secondary
+    }
+}
+
+
+.os-zune {
+    --ui-primary: #000000;
+    --ui-secondary: #575757;
+    --ui-tertiary: #666666;
+
+    --ui-bg: #2f2f2f;
+    --ui-fg-sm: #717678;
+    --ui-fg-md: #ffffff;
+    --ui-fg-lg: #ffffff;
+    --ui-fg-on-pri: #ffffff;
+
+    --ui-wallpaper: url('../../../public/images/theme-wallpapers/5zune.jpg');
+
+    .os-inline-highlight {
+        @apply inset-shadow-sm inset-shadow-white/20;
+    }
+
+    .os-button-general-colors {
+        background-image: linear-gradient(to bottom, var(--ui-bg) 0%, var(--ui-bg) 35%, var(--ui-secondary) 65%);
+
+    }
+
+    .os-button-close-colors {
+        background-image: linear-gradient(to bottom, var(--ui-bg) 0%, var(--ui-bg) 35%, var(--ui-secondary) 65%);
+
+    }
+
+    .os-window-titlebar-colors {
+        background-image: linear-gradient(to bottom, var(--ui-bg) 0%, var(--ui-bg) 35%, var(--ui-secondary) 65%);
+    }
+
+    .os-taskbar-colors {
+        background-image: linear-gradient(to bottom, var(--ui-secondary) 0%, var(--ui-secondary) 35%, var(--ui-bg) 65%);
+    }
+
+    .os-taskbar-startbutton-colors {
+        @apply bg-linear-to-b from-[#fe6700] to-[#fe6700]
+    }
+
+    .os-startmenu-top-colors {
+        background-image: linear-gradient(to bottom, var(--ui-secondary) 0%, var(--ui-secondary) 35%, var(--ui-primary) 65%);
+    }
+
+    .os-startmenu-bottom-colors {
+        background-image: linear-gradient(to bottom, var(--ui-secondary) 0%, var(--ui-secondary) 35%, var(--ui-primary) 65%);
+    }
+}
+
+
+.os-embedded {
+    --ui-primary: #01325a;
+    --ui-secondary: #256ca4;
+    --ui-tertiary: #2e75ad;
+
+    --ui-bg: #013c6b;
+    --ui-fg-sm: #6c98c5;
+    --ui-fg-md: #ffffff;
+    --ui-fg-lg: #ffffff;
+    --ui-fg-on-pri: #ffffff;
+
+    --ui-wallpaper: url('../../../public/images/theme-wallpapers/6embedded.jpeg');
+
+    .os-inline-highlight {
+        @apply inset-shadow-sm inset-shadow-white/10;
+    }
+
+    .os-button-general-colors {
+        background-image: linear-gradient(to bottom, #014479 0%, #014479 35%, var(--ui-secondary) 65%);
+    }
+
+    .os-button-close-colors {
+        background-image: linear-gradient(to bottom, #014479 0%, #014479 35%, var(--ui-secondary) 65%);
+    }
+
+    .os-window-titlebar-colors {
+        background-image: linear-gradient(to bottom, var(--ui-primary) 0%, var(--ui-primary) 40%, #145b93 60%);
+    }
+
+    .os-taskbar-colors {
+        background-image: linear-gradient(to bottom, var(--ui-secondary) 0%, var(--ui-secondary) 35%, var(--ui-primary) 65%);
+    }
+
+    .os-taskbar-startbutton-colors {
+        @apply bg-linear-to-b from-[#00548c] to-[#00548c]
+    }
+
+    .os-startmenu-top-colors {
+        background-image: linear-gradient(to bottom, var(--ui-secondary) 0%, var(--ui-secondary) 35%, var(--ui-primary) 65%);
+    }
+
+    .os-startmenu-bottom-colors {
+        background-image: linear-gradient(to bottom, var(--ui-secondary) 0%, var(--ui-secondary) 35%, var(--ui-primary) 65%);
+    }
+}
+
+/*endregion Themes Dark*/
+/*endregion THEMES

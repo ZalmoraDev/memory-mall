@@ -17,11 +17,11 @@ useSeoMeta({
 <template>
   <UApp class="flex-1 flex flex-col">
     <main class="mx-auto my-0 sm:my-4 h-full container  rounded-t-lg border-2 border-primary overflow-hidden bg-bg flex-1 flex flex-col">
-      <AppHeader/>
+      <AppWindowTitleBar/>
       <div class="p-4 flex-1">
         <NuxtPage/>
       </div>
     </main>
-    <AppFooter/>
+    <AppTaskBar/>
   </UApp>
 </template>
