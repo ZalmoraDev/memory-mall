@@ -10,10 +10,8 @@ export default defineNuxtConfig({
     modules: [
         '@nuxt/ui'
     ],
-    css: ['~/assets/css/main.css'],
-    tailwindcss: {
-        exposeConfig: true
-    },
+    css: ['~/assets/css/main.css',
+    '~/assets/css/memory-mall.css'],
     ui: {
         theme: {
             colors: [

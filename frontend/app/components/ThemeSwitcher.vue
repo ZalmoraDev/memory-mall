@@ -2,14 +2,12 @@
 </script>
 
 <template>
-  <div class="bg-tertiary">
-    <select v-model="$colorMode.preference">
-      <option value="blue">blue</option>
-      <option value="olive-green">olive green</option>
-      <option value="silver">silver</option>
-      <option value="royale-noir">royale noir</option>
-      <option value="zune">zune</option>
-      <option value="embedded">embedded</option>
-    </select>
-  </div>
+  <select class="w-full" v-model="$colorMode.preference">
+    <option value="blue">Light: blue</option>
+    <option value="olive-green">Light: olive green</option>
+    <option value="silver">Light: silver</option>
+    <option value="royale-noir">Dark: royale noir</option>
+    <option value="zune">Dark: zune</option>
+    <option value="embedded">Dark: embedded</option>
+  </select>
 </template>

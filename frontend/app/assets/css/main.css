@@ -6,6 +6,7 @@
     src: url("../fonts/tahoma-regular.ttf") format("truetype");
 }
 
+/* Suffix = main- */
 
 /*region DOM*/
 /*overwrite the nuxt body wrapper called __nuxt, in order to scale page to vertical full*/
@@ -43,6 +44,7 @@ a {
         @apply bg-linear-to-b from-primary to-secondary;
     }
 }
+
 /*endregion Components */
 
 
@@ -61,22 +63,23 @@ a {
     --ui-wallpaper: url('../../../public/images/theme-wallpapers/1blue.jpg');
     --ui-start-button: #00b400;
     --ui-close-button: #e6440c;
-    --ui-turn-off-button: #e6440c;
-    --ui-log-off-button: #e3af66;
-}
-.blue .mm-inline-highlight {
-    @apply inset-shadow-sm inset-shadow-white/50;
-}
-.blue .mm-color-startmenu-top {
-    @apply bg-linear-to-b from-primary to-secondary
-}
-.blue .mm-color-startmenu-bottom {
-    @apply bg-linear-to-b from-secondary to-primary
-}
-.blue .mm-color-taskbar {
-    @apply bg-linear-to-b from-primary to-secondary;
-}
 
+    .mm-inline-highlight {
+        @apply inset-shadow-sm inset-shadow-white/50;
+    }
+
+    .mm-color-startmenu-top {
+        @apply bg-linear-to-b from-primary to-secondary
+    }
+
+    .mm-color-startmenu-bottom {
+        @apply bg-linear-to-b from-secondary to-primary
+    }
+
+    .mm-color-taskbar {
+        @apply bg-linear-to-b from-primary to-secondary;
+    }
+}
 
 .olive-green {
     --ui-primary: #b6c694;
@@ -92,20 +95,22 @@ a {
     --ui-wallpaper: url('../../../public/images/theme-wallpapers/2olive-green.png');
     --ui-start-button: #00b400;
     --ui-close-button: #e6440c;
-    --ui-turn-off-button: #e6440c;
-    --ui-log-off-button: #e3af66;
-}
-.olive-green .mm-inline-highlight {
-    @apply inset-shadow-sm inset-shadow-white;
-}
-.olive-green .mm-color-startmenu-top {
-    @apply bg-linear-to-b from-primary to-secondary
-}
-.olive-green .mm-color-startmenu-bottom {
-    @apply bg-linear-to-b from-secondary to-primary
-}
-.olive-green .mm-color-taskbar {
-    @apply bg-linear-to-b from-primary to-secondary;
+
+    .mm-inline-highlight {
+        @apply inset-shadow-sm inset-shadow-white;
+    }
+
+    .mm-color-startmenu-top {
+        @apply bg-linear-to-b from-primary to-secondary
+    }
+
+    .mm-color-startmenu-bottom {
+        @apply bg-linear-to-b from-secondary to-primary
+    }
+
+    .mm-color-taskbar {
+        @apply bg-linear-to-b from-primary to-secondary;
+    }
 }
 
 
@@ -123,20 +128,22 @@ a {
     --ui-wallpaper: url('../../../public/images/theme-wallpapers/3silver.jpg');
     --ui-start-button: #00b400;
     --ui-close-button: #e6440c;
-    --ui-turn-off-button: #e6440c;
-    --ui-log-off-button: #e3af66;
-}
-.silver .mm-inline-highlight {
-    @apply inset-shadow-sm inset-shadow-white/80;
-}
-.silver .mm-color-startmenu-top {
-    @apply bg-linear-to-b from-primary to-secondary
-}
-.silver .mm-color-startmenu-bottom {
-    @apply bg-linear-to-b from-secondary to-primary
-}
-.silver .mm-color-taskbar {
-    @apply bg-linear-to-b from-primary to-secondary;
+
+    .mm-inline-highlight {
+        @apply inset-shadow-sm inset-shadow-white/80;
+    }
+
+    .mm-color-startmenu-top {
+        @apply bg-linear-to-b from-primary to-secondary
+    }
+
+    .mm-color-startmenu-bottom {
+        @apply bg-linear-to-b from-secondary to-primary
+    }
+
+    .mm-color-taskbar {
+        @apply bg-linear-to-b from-primary to-secondary;
+    }
 }
 
 
@@ -154,17 +161,18 @@ a {
     --ui-wallpaper: url('../../../public/images/theme-wallpapers/4royale-noir.webp');
     --ui-start-button: #1f2e4a;
     --ui-close-button: #19202d;
-    --ui-turn-off-button: #e6440c;
-    --ui-log-off-button: #e3af66;
-}
-.royale-noir .mm-color-startmenu-top {
-    background-image: linear-gradient(to bottom, var(--ui-secondary) 0%, var(--ui-secondary) 35%, var(--ui-primary) 65%);
-}
-.royale-noir .mm-color-startmenu-bottom {
-    background-image: linear-gradient(to bottom, var(--ui-secondary) 0%, var(--ui-secondary) 0%, var(--ui-bg) 50%);
-}
-.royale-noir .mm-color-taskbar {
-    background-image: linear-gradient(to bottom, var(--ui-secondary) 0%, var(--ui-secondary) 35%, var(--ui-bg) 65%);
+
+    .mm-color-startmenu-top {
+        background-image: linear-gradient(to bottom, var(--ui-secondary) 0%, var(--ui-secondary) 35%, var(--ui-primary) 65%);
+    }
+
+    .mm-color-startmenu-bottom {
+        background-image: linear-gradient(to bottom, var(--ui-secondary) 0%, var(--ui-secondary) 0%, var(--ui-bg) 50%);
+    }
+
+    .mm-color-taskbar {
+        background-image: linear-gradient(to bottom, var(--ui-secondary) 0%, var(--ui-secondary) 35%, var(--ui-bg) 65%);
+    }
 }
 
 
@@ -182,17 +190,18 @@ a {
     --ui-wallpaper: url('../../../public/images/theme-wallpapers/5zune.jpg');
     --ui-start-button: #fe6700;
     --ui-close-button: #575757;
-    --ui-turn-off-button: #e6440c;
-    --ui-log-off-button: #e3af66;
-}
-.zune .mm-color-startmenu-top {
-    background-image: linear-gradient(to bottom, var(--ui-secondary) 0%, var(--ui-secondary) 35%, var(--ui-primary) 65%);
-}
-.zune .mm-color-startmenu-bottom {
-    background-image: linear-gradient(to bottom, var(--ui-secondary) 0%, var(--ui-secondary) 35%, var(--ui-primary) 65%);
-}
-.zune .mm-color-taskbar {
-    background-image: linear-gradient(to bottom, var(--ui-secondary) 0%, var(--ui-secondary) 35%, var(--ui-bg) 65%);
+
+    .mm-color-startmenu-top {
+        background-image: linear-gradient(to bottom, var(--ui-secondary) 0%, var(--ui-secondary) 35%, var(--ui-primary) 65%);
+    }
+
+    .mm-color-startmenu-bottom {
+        background-image: linear-gradient(to bottom, var(--ui-secondary) 0%, var(--ui-secondary) 35%, var(--ui-primary) 65%);
+    }
+
+    .mm-color-taskbar {
+        background-image: linear-gradient(to bottom, var(--ui-secondary) 0%, var(--ui-secondary) 35%, var(--ui-bg) 65%);
+    }
 }
 
 
@@ -210,16 +219,18 @@ a {
     --ui-wallpaper: url('../../../public/images/theme-wallpapers/6embedded.jpeg');
     --ui-start-button: #00548c;
     --ui-close-button: #337ab2;
-    --ui-turn-off-button: #e6440c;
-    --ui-log-off-button: #e3af66;
+
+    .mm-color-startmenu-top {
+        background-image: linear-gradient(to bottom, var(--ui-secondary) 0%, var(--ui-secondary) 35%, var(--ui-primary) 65%);
+    }
+
+    .mm-color-startmenu-bottom {
+        background-image: linear-gradient(to bottom, var(--ui-secondary) 0%, var(--ui-secondary) 35%, var(--ui-primary) 65%);
+    }
+
+    .mm-color-taskbar {
+        background-image: linear-gradient(to bottom, var(--ui-secondary) 0%, var(--ui-secondary) 35%, var(--ui-primary) 65%);
+    }
 }
-.embedded .mm-color-startmenu-top {
-    background-image: linear-gradient(to bottom, var(--ui-secondary) 0%, var(--ui-secondary) 35%, var(--ui-primary) 65%);
-}
-.embedded .mm-color-startmenu-bottom {
-    background-image: linear-gradient(to bottom, var(--ui-secondary) 0%, var(--ui-secondary) 35%, var(--ui-primary) 65%);
-}
-.embedded .mm-color-taskbar {
-    background-image: linear-gradient(to bottom, var(--ui-secondary) 0%, var(--ui-secondary) 35%, var(--ui-primary) 65%);
-}
+
 /*endregion Themes*/
