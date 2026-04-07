@@ -11,7 +11,7 @@ async function onClickStartButton() {
 
 
 <template>
-  <footer class="os-taskbar-colors os-inline-highlight flex items-center justify-between h-8 w-fill text-fg-md">
+  <footer class="os-taskbar-colors os-inline-highlight flex items-center justify-between h-8 w-fill text-os-fg-md">
     <UButton @click="onClickStartButton" icon="material-symbols:window"
              class="os-taskbar-startbutton-colors font-bold text-white! rounded-l-none! rounded-r-lg! h-full py-1 pl-2 pr-5 text-lg">
       start

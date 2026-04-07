@@ -6,7 +6,3 @@ const appConfig = useAppConfig();
 
 <template>
 </template>
-
-
-<style lang="css">
-</style>

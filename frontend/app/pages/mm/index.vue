@@ -11,11 +11,11 @@ console.log(runtimeConfig.public.bePort); // remove this after you've confirmed 
 
 
 <template>
-  <h1 class="text-fg-lg font-bold"> Index page</h1>
+  <h1 class="text-os-fg-lg font-bold"> Index page</h1>
   <NuxtLink to="/accounts">To Accounts</NuxtLink>
   <br>
   <p> {{ data }}</p>
   <div class="mt-4 flex gap-4">
-    <UButton color="primary">Primary UButton</UButton>
+    <UButton color="os-primary">Primary UButton</UButton>
   </div>
 </template>

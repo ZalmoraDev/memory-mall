@@ -7,3 +7,18 @@ Describes 'web browser' styling, such as:
 * Bookmarks Bar
 * Navigation Bar
 */
+
+body {
+    --ui-wb-primary: #4686f6;
+}
+
+:is(.light, .os-blue, .os-olive-green, .os-silver) {
+    --ui-wb-bg: #ffffff;
+    --ui-wb-fg: #000000;
+}
+
+
+:is(.dark, .os-royale-noir, .os-zune, .os-embedded) {
+    --ui-wb-bg: #242424;
+    --ui-wb-fg: #ffffff;
+}

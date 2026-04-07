@@ -10,7 +10,3 @@ const {data} = await useFetch('http://localhost:3000/api/v1/health', {
   <NuxtLink to="/">To Home</NuxtLink><br>
   {{ data }}
 </template>
-
-
-<style lang="css">
-</style>
