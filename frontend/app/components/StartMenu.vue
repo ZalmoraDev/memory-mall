@@ -18,7 +18,8 @@
       </div>
       <div class="flex flex-col gap-2 p-4 h-full w-full bg-tertiary text-fg-lg font-bold">
         <ThemeSwitcher/>
-        <ColorModeButton/>
+        <hr>
+        <MediaPlayer/>
       </div>
     </div>
 

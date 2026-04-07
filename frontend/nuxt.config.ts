@@ -9,7 +9,8 @@ export default defineNuxtConfig({
     },
     modules: [
         '@nuxt/ui',
-        '@nuxtjs/color-mode'
+        '@nuxtjs/color-mode',
+        'nuxt-music-flow'
     ],
 
 
@@ -26,8 +27,8 @@ export default defineNuxtConfig({
             colors: [
                 'primary', 'secondary', 'tertiary',
                 'bg', 'fg-sm', 'fg-md', 'fg-lg', 'fg-on-pri',
-                'info', 'success', 'warning', 'error',
-                'wallpaper', 'start-button', 'close-button', 'turn-off-button', 'log-off-button'
+                'wallpaper',
+                'info', 'success', 'warning', 'error'
             ]
         }
     },

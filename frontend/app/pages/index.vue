@@ -1,25 +1,18 @@
 <script setup lang="ts">
-const runtimeConfig = useRuntimeConfig();
-const appConfig = useAppConfig();
-
-const {data} = await useFetch('/health', {
-  baseURL: runtimeConfig.public.apiBase,
-  server: false
-});
-console.log(runtimeConfig.public.bePort); // remove this after you've confirmed it is working
 </script>
 
 
 <template>
-  <h1 class="text-fg-lg font-bold"> Index page</h1>
-  <NuxtLink to="/accounts">To Accounts</NuxtLink>
-  <br>
-  <p> {{ data }}</p>
-  <div class="mt-4 flex gap-4">
-    <UButton color="primary">Primary UButton</UButton>
+  <div class="p-4 flex-1 flex flex-col items-center justify-center">
+    <img src="/images/schmoogle.png" alt="Schmoogle Logo">
+    <div class="grid grid-cols-3 sm:grid-cols-4 p-2 rounded-xl gap-2 mt-4">
+      <UButton
+          color="primary"
+          :avatar="{src:'/icons/logo/logo-FFF.svg', class:'w-10 h-10 bg-transparent rounded-none'}"
+          class="flex flex-col items-center gap-2 text-fg-on-pri"
+      >
+        <NuxtLink to="/mm" class="text-fg-on-pri">Memory Mall</NuxtLink>
+      </UButton>
+    </div>
   </div>
 </template>
-
-
-<style lang="css">
-</style>

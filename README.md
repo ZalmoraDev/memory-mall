@@ -20,7 +20,7 @@
 ![Drizzle](https://img.shields.io/badge/drizzle-1d1c21.svg?style=for-the-badge&logo=drizzle&logoColor=C5F74F)
 ![Vitest](https://img.shields.io/badge/vitest-1c1d22.svg?style=for-the-badge&logo=vitest&logoColor=00FF74)
 ![Drizzle](https://img.shields.io/badge/sharp-242e22.svg?style=for-the-badge&logo=sharp&logoColor=99CC00)   
-🖥 Early 2000's themed tech marketplace Web Application 🌐Express.js, Nuxt.js & TypeScript
+🖥 2004-2013 themed tech marketplace Web Application 🌐Express.js, Nuxt.js & TypeScript
 
 [//]: # (TODO: Replace first table with screenshot of the website)
 
