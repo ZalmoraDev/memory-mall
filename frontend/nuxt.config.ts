@@ -14,7 +14,8 @@ export default defineNuxtConfig({
     ],
 
 
-    css: ['~/assets/css/operating-system.css',
+    css: ['~/assets/css/main.css',
+        '~/assets/css/operating-system.css',
         '~/assets/css/web-browser.css',
         '~/assets/css/projects/memory-mall.css'],
     colorMode: {
@@ -30,7 +31,9 @@ export default defineNuxtConfig({
                 'os-primary', 'os-secondary', 'os-tertiary', 'os-wallpaper',
                 'os-bg', 'os-fg-sm', 'os-fg-md', 'os-fg-lg', 'os-fg-on-pri',
 
-                'wb-primary', 'wb-bg', 'wb-fg'
+                'wb-primary', 'wb-bg', 'wb-fg',
+
+                'mm-primary', 'mm-bg', 'mm-fg', 'mm-backdrop'
             ]
         }
     },

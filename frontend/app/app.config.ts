@@ -7,7 +7,9 @@ export default defineAppConfig({
                 'os-primary', 'os-secondary', 'os-tertiary', 'os-wallpaper',
                 'os-bg', 'os-fg-sm', 'os-fg-md', 'os-fg-lg', 'os-fg-on-pri',
 
-                'wb-primary', 'wb-bg', 'wb-fg'
+                'wb-primary', 'wb-bg', 'wb-fg',
+
+                'mm-primary', 'mm-bg', 'mm-fg', 'mm-backdrop'
             ],
         },
         button: {

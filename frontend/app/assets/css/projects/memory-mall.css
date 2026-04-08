@@ -3,3 +3,19 @@
 
 /* Suffix = mm- */
 
+body {
+    --ui-mm-primary: #b30621;
+}
+
+:is(.light, .os-blue, .os-olive-green, .os-silver) {
+    --ui-mm-bg: #ffffff;
+    --ui-mm-fg: #000000;
+    --ui-mm-backdrop: #434343;
+}
+
+
+:is(.dark, .os-royale-noir, .os-zune, .os-embedded) {
+    --ui-mm-bg: #434343;
+    --ui-mm-fg: #ffffff;
+    --ui-mm-backdrop: #000000;
+}
