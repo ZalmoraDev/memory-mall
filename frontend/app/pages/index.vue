@@ -2,6 +2,13 @@
 <!--Web Browser-->
 <!--------------->
 <script setup lang="ts">
+useSeoMeta({
+  title: 'Schmoogle',
+});
+
+definePageMeta({
+  title: 'Schmoogle'
+});
 </script>
 
 <!-- TODO: Make this a Nuxt Layout, when creating additional 'windows' besides this 'web browser'  -->

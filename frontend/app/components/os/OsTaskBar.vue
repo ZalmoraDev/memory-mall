@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import StartMenu from '../StartMenu.vue';
 import {ref} from 'vue';
 
 const showStartMenu = ref(false);
@@ -16,7 +15,7 @@ async function onClickStartButton() {
              class="os-taskbar-startbutton-colors font-bold text-white! rounded-l-none! rounded-r-lg! h-full py-1 pl-2 pr-5 text-lg">
       start
     </UButton>
-    <StartMenu v-if="showStartMenu"/>
+    <OsStartMenu v-if="showStartMenu"/>
   </footer>
 </template>
 

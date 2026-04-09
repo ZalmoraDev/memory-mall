@@ -3,8 +3,10 @@ export default defineNuxtConfig({
     devtools: {enabled: false},
     app: {
         head: {
-            title: 'Home',
+            title: 'Memory Mall',
             titleTemplate: '%s | Memory Mall',
+            link: [{rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}],
+            viewport: 'width=device-width, initial-scale=1, maximum-scale=1'
         }
     },
     modules: [

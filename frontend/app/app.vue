@@ -18,9 +18,9 @@ useSeoMeta({
   <UApp class="flex-1 flex flex-col">
     <main
         class="flex-1 flex flex-col mx-auto sm:my-4 h-full container rounded-t-lg border-2 border-os-primary overflow-hidden">
-      <AppWindowTitleBar/>
+      <OsWindowTitleBar/>
       <NuxtPage/>
     </main>
-    <AppTaskBar/>
+    <OsTaskBar/>
   </UApp>
 </template>

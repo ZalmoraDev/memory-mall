@@ -17,9 +17,9 @@
       <div class="flex flex-col gap-2 p-4 h-full w-full border-r-2 border-os-primary/50 bg-os-bg">
       </div>
       <div class="flex flex-col gap-2 p-4 h-full w-full bg-os-tertiary text-os-fg-lg font-bold">
-        <ThemeSwitcher/>
+        <OsThemeSwitcher/>
         <hr>
-        <MediaPlayer/>
+        <OsMediaPlayer/>
       </div>
     </div>
 
