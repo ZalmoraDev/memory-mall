@@ -2,7 +2,7 @@
 
 definePageMeta({
   title: 'Account',
-  middleware: 'mm-auth',
+  middleware: 'web-mm-auth',
 });
 
 const {data} = await useFetch('http://localhost:3000/api/v1/health', {

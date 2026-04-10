@@ -16,10 +16,9 @@ export default defineNuxtConfig({
     ],
 
 
-    css: ['~/assets/css/main.css',
-        '~/assets/css/operating-system.css',
+    css: ['~/assets/css/operating-system.css',
         '~/assets/css/web-browser.css',
-        '~/assets/css/projects/memory-mall.css'],
+        '~/assets/css/web/memory-mall.css'],
     colorMode: {
         preference: 'system', // default
         fallback: 'light', // fallback
@@ -55,7 +54,7 @@ export default defineNuxtConfig({
     runtimeConfig: {
         public: {
             bePort: process.env.NUXT_PUBLIC_BE_PORT,
-            apiBase: process.env.NUXT_PUBLIC_API_BASE || 'http://localhost:3000/api/v1',
+            apiBase: 'http://127.0.0.1:3000/api/v1',
         }
     }
 });

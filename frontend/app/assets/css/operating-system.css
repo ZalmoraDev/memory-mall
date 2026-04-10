@@ -9,6 +9,41 @@ Describes 'operating system' styling, such as:
 * Start Menu
 */
 
+/*region Global DOM Styling*/
+@font-face {
+    font-family: "tahoma";
+    src: url("../fonts/tahoma-regular.ttf") format("truetype");
+}
+
+/*overwrite the nuxt body wrapper called __nuxt,
+in order to scale page to vertical full*/
+#__nuxt {
+    @apply min-h-full flex flex-col;
+}
+
+html {
+    @apply h-full;
+    font-family: "tahoma", sans-serif;
+}
+
+body {
+    @apply text-os-fg-md flex flex-col w-full h-full;
+    background-image: var(--ui-os-wallpaper);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+button {
+    @apply rounded-sm text-os-fg-on-pri justify-center inset-shadow-sm inset-shadow-white/25 active:inset-shadow-sm! active:inset-shadow-black/50!;
+}
+
+a {
+    @apply underline text-os-fg-lg font-bold justify-center;
+}
+/*endregion Global DOM Styling*/
+
+
 /*region Themes Light*/
 :is(.os-blue, .light) {
     --ui-os-primary: #1767ce;
