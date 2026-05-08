@@ -15,12 +15,11 @@ useSeoMeta({
 
 
 <template>
-  <UApp class="flex-1 flex flex-col">
-    <main
-        class="flex-1 flex flex-col mx-auto sm:my-4 h-full container rounded-t-lg border-2 border-os-primary overflow-hidden">
+  <UApp class="flex-col">
+    <div class="flex flex-col container overflow-hidden mx-auto sm:my-4 h-full rounded-t-lg border-2 border-os-primary">
       <OsWindowTitleBar/>
-      <NuxtPage/>
-    </main>
+      <NuxtPage class="overflow-y-auto"/>
+    </div>
     <OsTaskBar/>
   </UApp>
 </template>

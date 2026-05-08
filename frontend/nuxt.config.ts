@@ -1,3 +1,4 @@
+declare const process: { env: Record<any, any> };
 export default defineNuxtConfig({
     compatibilityDate: '2025-07-15',
     devtools: {enabled: false},
@@ -15,7 +16,9 @@ export default defineNuxtConfig({
         'nuxt-music-flow'
     ],
 
-
+    imports: {
+        dirs: ['types']
+    },
     css: ['~/assets/css/operating-system.css',
         '~/assets/css/web-browser.css',
         '~/assets/css/web/memory-mall.css'],
@@ -33,7 +36,6 @@ export default defineNuxtConfig({
                 'os-bg', 'os-fg-sm', 'os-fg-md', 'os-fg-lg', 'os-fg-on-pri',
 
                 'wb-primary', 'wb-bg', 'wb-fg',
-
                 'mm-primary', 'mm-bg', 'mm-fg', 'mm-backdrop'
             ]
         }
@@ -53,8 +55,7 @@ export default defineNuxtConfig({
 
     runtimeConfig: {
         public: {
-            bePort: process.env.NUXT_PUBLIC_BE_PORT,
-            apiBase: 'http://127.0.0.1:3000/api/v1',
+            apiBase: process.env.NUXT_PUBLIC_API_BASE || 'http://127.0.0.1:3000/api/v1',
         }
     }
 });

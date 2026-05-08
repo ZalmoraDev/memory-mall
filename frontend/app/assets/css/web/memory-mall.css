@@ -3,19 +3,45 @@
 
 /* Suffix = mm- */
 
+@font-face {
+    font-family: Arial;
+}
+
 body {
     --ui-mm-primary: #b30621;
 }
 
 :is(.light, .os-blue, .os-olive-green, .os-silver) {
-    --ui-mm-bg: #ffffff;
     --ui-mm-fg: #000000;
-    --ui-mm-backdrop: #434343;
+    --ui-mm-bg: #ffffff;
+    --ui-mm-backdrop: #ebedef;
 }
 
 
 :is(.dark, .os-royale-noir, .os-zune, .os-embedded) {
-    --ui-mm-bg: #434343;
     --ui-mm-fg: #ffffff;
-    --ui-mm-backdrop: #222222;
+    --ui-mm-bg: #272a2e;
+    --ui-mm-backdrop: #32363b;
+}
+
+/* 2000s Retro Styling */
+.web-mm-retro-button {
+    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+    transition: all 0.1s ease;
+}
+
+.web-mm-retro-button:active {
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.3);
+    transform: translate(2px, 2px);
+}
+
+.web-mm-retro-card {
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+    border-style: solid;
+    border-width: 3px;
+}
+
+/* Retro text effects */
+.web-mm-glitch {
+    text-shadow: 2px 2px 0 rgba(255, 0, 0, 0.5);
 }
