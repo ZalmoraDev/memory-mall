@@ -3,6 +3,8 @@
 <!--------------->
 <script setup lang="ts">
 
+import type {WebMmProductCondition} from '~/shared/types/web/mm';
+
 useSeoMeta({
   title: 'Memory Mall - Tech Deals & Electronics',
 });
@@ -14,10 +16,12 @@ definePageMeta({
 
 
 <template>
-  <WebMmLayoutHeader/>
-  <WebMmLayoutNav/>
-  <main class="w-full bg-mm-backdrop text-black flex-1 min-h-0 overflow-y-auto">
+  <div class="flex flex-col h-full">
+    <main class="flex-1 w-full text-black bg-mm-backdrop">
+      <WebMmLayoutHeader/>
+      <WebMmLayoutNav/>
 
-  </main>
-  <WebMmLayoutFooter/>
+    </main>
+    <WebMmLayoutFooter/>
+  </div>
 </template>
