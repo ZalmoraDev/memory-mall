@@ -24,24 +24,17 @@ body {
     --ui-mm-backdrop: #32363b;
 }
 
-/* 2000s Retro Styling */
-.web-mm-retro-button {
-    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
-    transition: all 0.1s ease;
+.web-mm-glossy-button-primary {
+    @apply inset-shadow-sm inset-shadow-white text-white! no-underline! hover:brightness-110 active:inset-shadow-sm! active:inset-shadow-black!
+    bg-[linear-gradient(to_bottom,var(--color-primary-500)_0%,var(--color-primary-500)_35%,var(--color-primary-600)_65%)]
 }
 
-.web-mm-retro-button:active {
-    box-shadow: 0 0 0 rgba(0, 0, 0, 0.3);
-    transform: translate(2px, 2px);
+.web-mm-glossy-button-green {
+    @apply inset-shadow-sm inset-shadow-white text-white! no-underline! hover:brightness-110 active:inset-shadow-sm! active:inset-shadow-black!
+    bg-[linear-gradient(to_bottom,var(--color-green-500)_0%,var(--color-green-500)_35%,var(--color-green-600)_65%)]
 }
 
-.web-mm-retro-card {
-    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
-    border-style: solid;
-    border-width: 3px;
-}
-
-/* Retro text effects */
-.web-mm-glitch {
-    text-shadow: 2px 2px 0 rgba(255, 0, 0, 0.5);
+.web-mm-glossy-button-blue {
+    @apply inset-shadow-sm inset-shadow-white text-white! no-underline! hover:brightness-110 active:inset-shadow-sm! active:inset-shadow-black!
+    bg-[linear-gradient(to_bottom,var(--color-blue-500)_0%,var(--color-blue-500)_35%,var(--color-blue-600)_65%)]
 }

@@ -1,5 +1,4 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <footer class="mt-auto bg-gray-700 text-white p-4 border-t-4 border-gray-800 text-center text-sm">

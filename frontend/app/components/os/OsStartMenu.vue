@@ -8,7 +8,7 @@
 
     <div
         class="os-startmenu-top-colors os-inline-highlight flex items-center w-full p-2 gap-2 border-b-2 border-os-primary">
-      <img src="/images/profile-picture.jpg"
+      <img src="/images/os/profile-picture.jpg"
            class="w-16 h-16 rounded-md object-cover self-center border border-neutral-300" alt="profile picture"/>
       <span class="text-xl font-bold text-white text-shadow-md text-shadow-black/50"> Administrator</span>
     </div>

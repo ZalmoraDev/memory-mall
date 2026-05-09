@@ -41,6 +41,7 @@ button {
 a {
     @apply underline text-os-fg-lg font-bold justify-center;
 }
+
 /*endregion Global DOM Styling*/
 
 
@@ -49,7 +50,7 @@ a {
     --ui-os-primary: #1767ce;
     --ui-os-secondary: #4691eb;
     --ui-os-tertiary: #d3e5fa;
-    --ui-os-wallpaper: url('../../../public/images/theme-wallpapers/1blue.jpg');
+    --ui-os-wallpaper: url('../../../public/images/os/theme-wallpapers/1blue.jpg');
 
     --ui-os-bg: #ffffff;
     --ui-os-fg-sm: #acacac;
@@ -94,7 +95,7 @@ a {
     --ui-os-primary: #b6c694;
     --ui-os-secondary: #dcecbf;
     --ui-os-tertiary: #f1f2e4;
-    --ui-os-wallpaper: url('../../../public/images/theme-wallpapers/2olive-green.png');
+    --ui-os-wallpaper: url('../../../public/images/os/theme-wallpapers/2olive-green.png');
 
     --ui-os-bg: #ffffff;
     --ui-os-fg-sm: #acacac;
@@ -140,7 +141,7 @@ a {
     --ui-os-primary: #b0b2c7;
     --ui-os-secondary: #ffffff;
     --ui-os-tertiary: #e7e6ed;
-    --ui-os-wallpaper: url('../../../public/images/theme-wallpapers/3silver.jpg');
+    --ui-os-wallpaper: url('../../../public/images/os/theme-wallpapers/3silver.jpg');
 
     --ui-os-bg: #ffffff;
     --ui-os-fg-sm: #acacac;
@@ -189,7 +190,7 @@ a {
     --ui-os-primary: #162132;
     --ui-os-secondary: #5a6576;
     --ui-os-tertiary: #5a606f;
-    --ui-os-wallpaper: url('../../../public/images/theme-wallpapers/4royale-noir.png');
+    --ui-os-wallpaper: url('../../../public/images/os/theme-wallpapers/4royale-noir.png');
 
     --ui-os-bg: #353f4d;
     --ui-os-fg-sm: #717678;
@@ -234,7 +235,7 @@ a {
     --ui-os-primary: #000000;
     --ui-os-secondary: #575757;
     --ui-os-tertiary: #666666;
-    --ui-os-wallpaper: url('../../../public/images/theme-wallpapers/5zune.jpg');
+    --ui-os-wallpaper: url('../../../public/images/os/theme-wallpapers/5zune.jpg');
 
     --ui-os-bg: #2f2f2f;
     --ui-os-fg-sm: #717678;
@@ -282,7 +283,7 @@ a {
     --ui-os-primary: #01325a;
     --ui-os-secondary: #256ca4;
     --ui-os-tertiary: #2e75ad;
-    --ui-os-wallpaper: url('../../../public/images/theme-wallpapers/6embedded.jpeg');
+    --ui-os-wallpaper: url('../../../public/images/os/theme-wallpapers/6embedded.jpeg');
 
     --ui-os-bg: #013c6b;
     --ui-os-fg-sm: #6c98c5;
