@@ -4,7 +4,8 @@
 /* Suffix = mm- 'memory mall' styling */
 
 @font-face {
-    font-family: Arial;
+    font-family: "comic-sans";
+    src: url("../../fonts/comic-sans.ttf") format("truetype");
 }
 
 @theme static {
@@ -24,6 +25,13 @@
     --color-web-mm-primary-800: #b30621; /* BASE */
     --color-web-mm-primary-900: #8f0d21;
     --color-web-mm-primary-950: #8f0d21;
+}
+
+/* Memory Mall Page Styling - Apply this class to your root container */
+.STYLE-web-mm {
+    font-family: "comic-sans", sans-serif;
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: auto;
 }
 
 :is(.light, .os-blue, .os-olive-green, .os-silver) {

@@ -6,7 +6,7 @@ async function onClickStartButton() {
 </script>
 
 <template>
-  <footer class="os-taskbar-colors os-inline-highlight flex items-center justify-between h-8 w-fill text-os-fg-md">
+  <footer class="STYLE-os os-taskbar-colors os-inline-highlight flex items-center justify-between h-8 w-fill text-os-fg-md">
     <UButton
       @click="onClickStartButton"
       icon="material-symbols:window"

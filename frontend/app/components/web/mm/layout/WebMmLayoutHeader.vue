@@ -5,7 +5,7 @@ const categories = ["All", "Laptops", "Desktops", "Monitors", "Printers", "Camer
 
 <template>
   <header
-    class="sticky top-0 z-50 flex items-center w-full p-1.5 gap-2 text-white shadow-lg border-b-4 border-web-mm-primary-950 bg-gradient-to-r from-web-mm-primary-800 to-web-mm-primary-700"
+    class="STYLE-web-mm sticky top-0 z-50 flex items-center w-full p-1.5 gap-2 text-white shadow-lg border-b-4 border-web-mm-primary-950 bg-gradient-to-r from-web-mm-primary-800 to-web-mm-primary-700"
   >
     <!-- Logo + Title -->
     <div class="flex flex-shrink-0 items-center gap-3">

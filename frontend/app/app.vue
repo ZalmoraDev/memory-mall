@@ -15,9 +15,9 @@ useSeoMeta({
 
 <template>
   <UApp class="flex-col">
-    <div class="flex flex-col container overflow-hidden mx-auto sm:my-4 h-full rounded-t-lg border-2 border-os-primary">
+    <div class="flex flex-col container mx-auto sm:my-4 h-full rounded-t-lg border-2 border-os-primary">
       <OsWindowTitleBar />
-      <NuxtPage class="overflow-y-auto" />
+      <NuxtPage class="overflow-y-auto overflow-hidden" />
     </div>
     <OsTaskBar />
   </UApp>

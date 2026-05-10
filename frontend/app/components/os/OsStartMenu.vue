@@ -6,7 +6,7 @@ async function onClick() {
 
 <template>
   <div
-    class="absolute bottom-8 left-0 flex flex-col items-center rounded-t-lg border-2 border-os-primary overflow-hidden w-120 h-160 shadow-[2px_1px_4px_0px_rgba(0,0,0,0.5)]"
+    class="STYLE-os absolute bottom-8 left-0 flex flex-col items-center rounded-t-lg border-2 border-os-primary overflow-hidden w-120 h-160 shadow-[2px_1px_4px_0px_rgba(0,0,0,0.5)]"
   >
     <div class="os-startmenu-top-colors os-inline-highlight flex items-center w-full p-2 gap-2 border-b-2 border-os-primary">
       <img src="/images/os/profile-picture.jpg" class="w-16 h-16 rounded-md object-cover self-center border border-neutral-300" alt="profile picture" />

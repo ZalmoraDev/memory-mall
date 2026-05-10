@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <nav class="bg-gradient-to-r from-slate-600 to-slate-500 border-b-4 border-slate-800 py-2 px-4">
+  <nav class="STYLE-web-mm bg-gradient-to-r from-slate-600 to-slate-500 border-b-4 border-slate-800 py-2 px-4">
     <!-- Searchbar -->
     <div class="flex flex-1 gap-2">
       <input type="text" placeholder="Search products..." class="flex-1 px-3 py-2 bg-white text-black border-2 border-gray-400 text-sm" />

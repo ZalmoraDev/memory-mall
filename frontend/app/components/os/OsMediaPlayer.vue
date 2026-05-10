@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="STYLE-os">
     <ul class="flex flex-col gap-2">
       <li v-for="track in tracks" :key="track.id">
         <UButton

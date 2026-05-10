@@ -18,7 +18,7 @@ const getColorClasses = () => {
 </script>
 
 <template>
-  <div :class="`mt-4 p-3 rounded-t-xl text-white shadow-md bg-gradient-to-r ${getColorClasses()}`">
+  <div :class="`STYLE-web-mm mt-4 p-3 rounded-t-xl text-white shadow-md bg-linear-to-r ${getColorClasses()}`">
     <h2 class="uppercase tracking-wider text-2xl font-black">{{ title }}</h2>
     <p v-if="subtitle" class="text-sm font-semibold mt-1">{{ subtitle }}</p>
   </div>

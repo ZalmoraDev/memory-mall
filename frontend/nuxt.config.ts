@@ -24,20 +24,7 @@ export default defineNuxtConfig({
     classSuffix: "", // removes default '-mode' suffix of color themes (.light instead of .light-mode etc.)
   },
   ui: {
-    colorMode: false,
-    theme: {
-      colors: [
-        "os-primary",
-        "os-secondary",
-        "os-tertiary",
-        "os-wallpaper",
-        "os-bg",
-        "os-fg-sm",
-        "os-fg-md",
-        "os-fg-lg",
-        "os-fg-on-pri"
-      ],
-    },
+    colorMode: false
   },
 
 

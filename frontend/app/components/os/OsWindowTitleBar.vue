@@ -10,10 +10,10 @@ const pageTitle = computed(() => {
 </script>
 
 <template>
-  <header class="os-window-titlebar-colors os-inline-highlight flex items-center justify-between text-os-fg-md border-b-2 border-os-primary">
+  <header class="STYLE-os flex items-center justify-between rounded-t-md text-os-fg-md border-b-2 border-os-primary os-inline-highlight os-window-titlebar-colors">
     <div class="p-1 flex items-center gap-2">
       <img src="/icons/web/MyIE2.png" alt="MyIE2 Logo" class="w-6 h-6 items-center rounded-full" />
-      <div class="font-bold text-os-fg-on-pri">{{ pageTitle }} - Microsoft Internet Explorer</div>
+      <div class="font-bold text-os-fg-on-pri">{{ pageTitle }} - Michaelsoft MyIE2</div>
     </div>
     <div class="p-0.75 flex items-center gap-0.5">
       <UButton

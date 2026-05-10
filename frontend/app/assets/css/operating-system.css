@@ -13,34 +13,43 @@
     src: url("../fonts/tahoma-regular.ttf") format("truetype");
 }
 
-:root {
-    font-family: "tahoma", sans-serif;
+@theme static {
+    /* Placeholder declarations */
+    --color-os-primary: none;
+    --color-os-secondary: none;
+    --color-os-tertiary: none;
+    --color-os-wallpaper: none;
+
+    --color-os-bg: none;
+    --color-os-fg-sm: none;
+    --color-os-fg-md: none;
+    --color-os-fg-lg: none;
+    --color-os-fg-on-pri: none;
 }
 
-html {
-    @apply h-full;
+.STYLE-os {
+    font-family: "tahoma", sans-serif;
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: auto;
 }
 
 body {
-    @apply text-os-fg-md flex flex-col w-full h-full;
-    background-image: var(--ui-os-wallpaper);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
+    @apply text-os-fg-md flex flex-col w-full h-full bg-cover bg-no-repeat bg-center;
+    @apply bg-[image:var(--color-os-wallpaper)];
 }
 
 /*region Themes Light*/
 :is(.os-blue, .light) {
-    --ui-os-primary: #1767ce;
-    --ui-os-secondary: #4691eb;
-    --ui-os-tertiary: #d3e5fa;
-    --ui-os-wallpaper: url('../../../public/images/os/theme-wallpapers/1blue.jpg');
+    --color-os-primary: #1767ce;
+    --color-os-secondary: #4691eb;
+    --color-os-tertiary: #d3e5fa;
+    --color-os-wallpaper: url('../../../public/images/os/theme-wallpapers/1blue.jpg');
 
-    --ui-os-bg: #ffffff;
-    --ui-os-fg-sm: #acacac;
-    --ui-os-fg-md: #000000;
-    --ui-os-fg-lg: #0a246a;
-    --ui-os-fg-on-pri: #ffffff;
+    --color-os-bg: #ffffff;
+    --color-os-fg-sm: #acacac;
+    --color-os-fg-md: #000000;
+    --color-os-fg-lg: #0a246a;
+    --color-os-fg-on-pri: #ffffff;
 
     .os-inline-highlight {
         @apply inset-shadow-sm inset-shadow-white/50;
@@ -76,16 +85,16 @@ body {
 }
 
 .os-olive-green {
-    --ui-os-primary: #b6c694;
-    --ui-os-secondary: #dcecbf;
-    --ui-os-tertiary: #f1f2e4;
-    --ui-os-wallpaper: url('../../../public/images/os/theme-wallpapers/2olive-green.png');
+    --color-os-primary: #b6c694;
+    --color-os-secondary: #dcecbf;
+    --color-os-tertiary: #f1f2e4;
+    --color-os-wallpaper: url('../../../public/images/os/theme-wallpapers/2olive-green.png');
 
-    --ui-os-bg: #ffffff;
-    --ui-os-fg-sm: #acacac;
-    --ui-os-fg-md: #000000;
-    --ui-os-fg-lg: #756d44;
-    --ui-os-fg-on-pri: #000000;
+    --color-os-bg: #ffffff;
+    --color-os-fg-sm: #acacac;
+    --color-os-fg-md: #000000;
+    --color-os-fg-lg: #756d44;
+    --color-os-fg-on-pri: #000000;
 
     .os-inline-highlight {
         @apply inset-shadow-sm inset-shadow-white;
@@ -122,16 +131,16 @@ body {
 
 
 .os-silver {
-    --ui-os-primary: #b0b2c7;
-    --ui-os-secondary: #ffffff;
-    --ui-os-tertiary: #e7e6ed;
-    --ui-os-wallpaper: url('../../../public/images/os/theme-wallpapers/3silver.jpg');
+    --color-os-primary: #b0b2c7;
+    --color-os-secondary: #ffffff;
+    --color-os-tertiary: #e7e6ed;
+    --color-os-wallpaper: url('../../../public/images/os/theme-wallpapers/3silver.jpg');
 
-    --ui-os-bg: #ffffff;
-    --ui-os-fg-sm: #acacac;
-    --ui-os-fg-md: #000000;
-    --ui-os-fg-lg: #0a246a;
-    --ui-os-fg-on-pri: #000000;
+    --color-os-bg: #ffffff;
+    --color-os-fg-sm: #acacac;
+    --color-os-fg-md: #000000;
+    --color-os-fg-lg: #0a246a;
+    --color-os-fg-on-pri: #000000;
 
     .os-inline-highlight {
         @apply inset-shadow-sm inset-shadow-white/80;
@@ -171,16 +180,16 @@ body {
 
 /*region Themes Dark*/
 :is(.os-royale-noir, .dark) {
-    --ui-os-primary: #162132;
-    --ui-os-secondary: #5a6576;
-    --ui-os-tertiary: #5a606f;
-    --ui-os-wallpaper: url('../../../public/images/os/theme-wallpapers/4royale-noir.png');
+    --color-os-primary: #162132;
+    --color-os-secondary: #5a6576;
+    --color-os-tertiary: #5a606f;
+    --color-os-wallpaper: url('../../../public/images/os/theme-wallpapers/4royale-noir.png');
 
-    --ui-os-bg: #353f4d;
-    --ui-os-fg-sm: #717678;
-    --ui-os-fg-md: #ffffff;
-    --ui-os-fg-lg: #ffffff;
-    --ui-os-fg-on-pri: #ffffff;
+    --color-os-bg: #353f4d;
+    --color-os-fg-sm: #717678;
+    --color-os-fg-md: #ffffff;
+    --color-os-fg-lg: #ffffff;
+    --color-os-fg-on-pri: #ffffff;
 
     .os-inline-highlight {
     }
@@ -194,11 +203,11 @@ body {
     }
 
     .os-window-titlebar-colors {
-        background-image: linear-gradient(to bottom, var(--ui-os-primary) 0%, #080c13 50%, #080c13 50%);
+        @apply bg-[linear-gradient(to_bottom,var(--color-os-primary)_0%,#080c13_50%,#080c13_50%)]
     }
 
     .os-taskbar-colors {
-        background-image: linear-gradient(to bottom, var(--ui-os-secondary) 0%, var(--ui-os-secondary) 35%, var(--ui-os-bg) 65%);
+        @apply bg-[linear-gradient(to_bottom,var(--color-os-secondary)_0%,var(--color-os-secondary)_35%,var(--color-os-bg)_65%)]
     }
 
     .os-taskbar-startbutton-colors {
@@ -216,37 +225,35 @@ body {
 
 
 .os-zune {
-    --ui-os-primary: #000000;
-    --ui-os-secondary: #575757;
-    --ui-os-tertiary: #666666;
-    --ui-os-wallpaper: url('../../../public/images/os/theme-wallpapers/5zune.jpg');
+    --color-os-primary: #000000;
+    --color-os-secondary: #575757;
+    --color-os-tertiary: #666666;
+    --color-os-wallpaper: url('../../../public/images/os/theme-wallpapers/5zune.jpg');
 
-    --ui-os-bg: #2f2f2f;
-    --ui-os-fg-sm: #717678;
-    --ui-os-fg-md: #ffffff;
-    --ui-os-fg-lg: #ffffff;
-    --ui-os-fg-on-pri: #ffffff;
+    --color-os-bg: #2f2f2f;
+    --color-os-fg-sm: #717678;
+    --color-os-fg-md: #ffffff;
+    --color-os-fg-lg: #ffffff;
+    --color-os-fg-on-pri: #ffffff;
 
     .os-inline-highlight {
         @apply inset-shadow-sm inset-shadow-white/20;
     }
 
     .os-button-general-colors {
-        background-image: linear-gradient(to bottom, var(--ui-os-bg) 0%, var(--ui-os-bg) 35%, var(--ui-os-secondary) 65%);
-
+        @apply bg-[linear-gradient(to_bottom,var(--color-os-bg)_0%,var(--color-os-bg)_35%,var(--color-os-secondary)_65%)]
     }
 
     .os-button-close-colors {
-        background-image: linear-gradient(to bottom, var(--ui-os-bg) 0%, var(--ui-os-bg) 35%, var(--ui-os-secondary) 65%);
-
+        @apply bg-[linear-gradient(to_bottom,var(--color-os-bg)_0%,var(--color-os-bg)_35%,var(--color-os-secondary)_65%)]
     }
 
     .os-window-titlebar-colors {
-        background-image: linear-gradient(to bottom, var(--ui-os-bg) 0%, var(--ui-os-bg) 35%, var(--ui-os-secondary) 65%);
+        @apply bg-[linear-gradient(to_bottom,var(--color-os-bg)_0%,var(--color-os-bg)_35%,var(--color-os-secondary)_65%)]
     }
 
     .os-taskbar-colors {
-        background-image: linear-gradient(to bottom, var(--ui-os-secondary) 0%, var(--ui-os-secondary) 35%, var(--ui-os-bg) 65%);
+        @apply bg-[linear-gradient(to_bottom,var(--color-os-secondary)_0%,var(--color-os-secondary)_35%,var(--color-os-bg)_65%)]
     }
 
     .os-taskbar-startbutton-colors {
@@ -254,45 +261,45 @@ body {
     }
 
     .os-startmenu-top-colors {
-        background-image: linear-gradient(to bottom, var(--ui-os-secondary) 0%, var(--ui-os-secondary) 35%, var(--ui-os-primary) 65%);
+        @apply bg-[linear-gradient(to_bottom,var(--color-os-secondary)_0%,var(--color-os-secondary)_35%,var(--color-os-primary)_65%)]
     }
 
     .os-startmenu-bottom-colors {
-        background-image: linear-gradient(to bottom, var(--ui-os-secondary) 0%, var(--ui-os-secondary) 35%, var(--ui-os-primary) 65%);
+        @apply bg-[linear-gradient(to_bottom,var(--color-os-secondary)_0%,var(--color-os-secondary)_35%,var(--color-os-primary)_65%)]
     }
 }
 
 
 .os-embedded {
-    --ui-os-primary: #01325a;
-    --ui-os-secondary: #256ca4;
-    --ui-os-tertiary: #2e75ad;
-    --ui-os-wallpaper: url('../../../public/images/os/theme-wallpapers/6embedded.jpeg');
+    --color-os-primary: #01325a;
+    --color-os-secondary: #256ca4;
+    --color-os-tertiary: #2e75ad;
+    --color-os-wallpaper: url('../../../public/images/os/theme-wallpapers/6embedded.jpeg');
 
-    --ui-os-bg: #013c6b;
-    --ui-os-fg-sm: #6c98c5;
-    --ui-os-fg-md: #ffffff;
-    --ui-os-fg-lg: #ffffff;
-    --ui-os-fg-on-pri: #ffffff;
+    --color-os-bg: #013c6b;
+    --color-os-fg-sm: #6c98c5;
+    --color-os-fg-md: #ffffff;
+    --color-os-fg-lg: #ffffff;
+    --color-os-fg-on-pri: #ffffff;
 
     .os-inline-highlight {
         @apply inset-shadow-sm inset-shadow-white/10;
     }
 
     .os-button-general-colors {
-        background-image: linear-gradient(to bottom, #014479 0%, #014479 35%, var(--ui-os-secondary) 65%);
+        @apply bg-[linear-gradient(to_bottom,#014479_0%,#014479_35%,var(--color-os-secondary)_65%)]
     }
 
     .os-button-close-colors {
-        @apply bg-[linear-gradient(to_bottom,#014479_0%,#014479_35%,var(--ui-os-secondary)_65%)]
+        @apply bg-[linear-gradient(to_bottom,#014479_0%,#014479_35%,var(--color-os-secondary)_65%)]
     }
 
     .os-window-titlebar-colors {
-        background-image: linear-gradient(to bottom, var(--ui-os-primary) 0%, var(--ui-os-primary) 40%, #145b93 60%);
+        @apply bg-[linear-gradient(to_bottom,var(--color-os-primary)_0%,var(--color-os-primary)_40%,#145b93_60%)]
     }
 
     .os-taskbar-colors {
-        background-image: linear-gradient(to bottom, var(--ui-os-secondary) 0%, var(--ui-os-secondary) 35%, var(--ui-os-primary) 65%);
+        @apply bg-[linear-gradient(to_bottom,var(--color-os-secondary)_0%,var(--color-os-secondary)_35%,var(--color-os-primary)_65%)]
     }
 
     .os-taskbar-startbutton-colors {
@@ -300,11 +307,11 @@ body {
     }
 
     .os-startmenu-top-colors {
-        background-image: linear-gradient(to bottom, var(--ui-os-secondary) 0%, var(--ui-os-secondary) 35%, var(--ui-os-primary) 65%);
+        @apply bg-[linear-gradient(to_bottom,var(--color-os-secondary)_0%,var(--color-os-secondary)_35%,var(--color-os-primary)_65%)]
     }
 
     .os-startmenu-bottom-colors {
-        background-image: linear-gradient(to bottom, var(--ui-os-secondary) 0%, var(--ui-os-secondary) 35%, var(--ui-os-primary) 65%);
+        @apply bg-[linear-gradient(to_bottom,var(--color-os-secondary)_0%,var(--color-os-secondary)_35%,var(--color-os-primary)_65%)]
     }
 }
 
