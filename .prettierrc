@@ -1,0 +1,12 @@
+{
+  "overrides": [
+    {
+      "files": ["*.html", "*.vue"],
+      "options": {
+        "printWidth": 160,
+        "singleAttributePerLine": false,
+        "insertPragma": false
+      }
+    }
+  ]
+}

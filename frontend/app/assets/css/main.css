@@ -1,0 +1,24 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+/*overwrite the nuxt body wrapper,
+in order to scale page to vertical full*/
+#__nuxt {
+    @apply min-h-full flex flex-col;
+}
+
+a {
+    @apply underline font-bold text-white
+}
+
+/* NuxtButton is rendered as a button when it DOES NOT have a ':to' prop, */
+button {
+    @apply p-2 rounded-sm font-bold text-white justify-center hover:brightness-115
+    inset-shadow-sm inset-shadow-white/75 active:inset-shadow-black/75!
+}
+
+/* NuxtButton is rendered as an anchor (a) when it has a ':to' prop, apply this class for those NuxtButtons */
+.main-link-button {
+    @apply p-2 no-underline! rounded-sm justify-center hover:brightness-115
+    inset-shadow-sm inset-shadow-white/75 active:inset-shadow-black/75!
+}

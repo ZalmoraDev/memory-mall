@@ -1,29 +1,24 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
-/* Suffix = os-
-Describes 'operating system' styling, such as:
+/* Suffix = os- 'operating system' styling:
 * OS Colors & Wallpaper
 * Windows
 * Taskbar
 * Start Menu
 */
 
-/*region Global DOM Styling*/
 @font-face {
     font-family: "tahoma";
     src: url("../fonts/tahoma-regular.ttf") format("truetype");
 }
 
-/*overwrite the nuxt body wrapper called __nuxt,
-in order to scale page to vertical full*/
-#__nuxt {
-    @apply min-h-full flex flex-col;
+:root {
+    font-family: "tahoma", sans-serif;
 }
 
 html {
     @apply h-full;
-    font-family: "tahoma", sans-serif;
 }
 
 body {
@@ -33,17 +28,6 @@ body {
     background-repeat: no-repeat;
     background-position: center center;
 }
-
-button {
-    @apply rounded-sm text-os-fg-on-pri justify-center inset-shadow-sm inset-shadow-white/25 active:inset-shadow-sm! active:inset-shadow-black/50!;
-}
-
-a {
-    @apply underline text-os-fg-lg font-bold justify-center;
-}
-
-/*endregion Global DOM Styling*/
-
 
 /*region Themes Light*/
 :is(.os-blue, .light) {
@@ -300,7 +284,7 @@ a {
     }
 
     .os-button-close-colors {
-        background-image: linear-gradient(to bottom, #014479 0%, #014479 35%, var(--ui-os-secondary) 65%);
+        @apply bg-[linear-gradient(to_bottom,#014479_0%,#014479_35%,var(--ui-os-secondary)_65%)]
     }
 
     .os-window-titlebar-colors {

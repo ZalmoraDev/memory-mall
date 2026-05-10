@@ -1,40 +1,52 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
-/* Suffix = mm- */
+/* Suffix = mm- 'memory mall' styling */
 
 @font-face {
     font-family: Arial;
 }
 
-body {
-    --ui-mm-primary: #b30621;
+@theme static {
+    /* Placeholder declarations */
+    --color-web-mm-fg: none;
+    --color-web-mm-bg: none;
+    --color-web-mm-backdrop: none;
+
+    --color-web-mm-primary-50: #fff0f2;
+    --color-web-mm-primary-100: #ffdde2;
+    --color-web-mm-primary-200: #ffc1cb;
+    --color-web-mm-primary-300: #ff96a6;
+    --color-web-mm-primary-400: #ff5a74;
+    --color-web-mm-primary-500: #ff2749;
+    --color-web-mm-primary-600: #fb072d;
+    --color-web-mm-primary-700: #d30223;
+    --color-web-mm-primary-800: #b30621; /* BASE */
+    --color-web-mm-primary-900: #8f0d21;
+    --color-web-mm-primary-950: #8f0d21;
 }
 
 :is(.light, .os-blue, .os-olive-green, .os-silver) {
-    --ui-mm-fg: #000000;
-    --ui-mm-bg: #ffffff;
-    --ui-mm-backdrop: #ebedef;
+    --color-web-mm-fg: #000000;
+    --color-web-mm-bg: #ffffff;
+    --color-web-mm-backdrop: #ebedef;
 }
 
 
 :is(.dark, .os-royale-noir, .os-zune, .os-embedded) {
-    --ui-mm-fg: #ffffff;
-    --ui-mm-bg: #272a2e;
-    --ui-mm-backdrop: #32363b;
+    --color-web-mm-fg: #ffffff;
+    --color-web-mm-bg: #272a2e;
+    --color-web-mm-backdrop: #32363b;
 }
 
 .web-mm-glossy-button-primary {
-    @apply inset-shadow-sm inset-shadow-white text-white! no-underline! hover:brightness-110 active:inset-shadow-sm! active:inset-shadow-black!
-    bg-[linear-gradient(to_bottom,var(--color-primary-500)_0%,var(--color-primary-500)_35%,var(--color-primary-600)_65%)]
+    @apply bg-[linear-gradient(to_bottom,var(--color-web-mm-primary-500)_0%,var(--color-web-mm-primary-500)_35%,var(--color-web-mm-primary-600)_65%)]
 }
 
 .web-mm-glossy-button-green {
-    @apply inset-shadow-sm inset-shadow-white text-white! no-underline! hover:brightness-110 active:inset-shadow-sm! active:inset-shadow-black!
-    bg-[linear-gradient(to_bottom,var(--color-green-500)_0%,var(--color-green-500)_35%,var(--color-green-600)_65%)]
+    @apply bg-[linear-gradient(to_bottom,var(--color-green-500)_0%,var(--color-green-500)_35%,var(--color-green-600)_65%)]
 }
 
 .web-mm-glossy-button-blue {
-    @apply inset-shadow-sm inset-shadow-white text-white! no-underline! hover:brightness-110 active:inset-shadow-sm! active:inset-shadow-black!
-    bg-[linear-gradient(to_bottom,var(--color-blue-500)_0%,var(--color-blue-500)_35%,var(--color-blue-600)_65%)]
+    @apply bg-[linear-gradient(to_bottom,var(--color-blue-500)_0%,var(--color-blue-500)_35%,var(--color-blue-600)_65%)]
 }

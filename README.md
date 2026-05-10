@@ -1,6 +1,6 @@
 <div align="center">
 <h1 style="margin-top: 0; padding: 0;">
-   <img src="frontend/public/icons/logo/logo-FFF.svg" style="height: 48px; width: auto; vertical-align: middle; margin-bottom: 12px;">
+   <img src="frontend/public/icons/web/logo/logo-FFF.svg" style="height: 48px; width: auto; vertical-align: middle; margin-bottom: 12px;">
    Memory Mall
 </h1>
 </div>

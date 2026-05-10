@@ -1,24 +1,31 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
-/* Suffix = wb-
-Describes 'web browser' styling, such as:
+/* Suffix = wb- 'web browser' styling:
 * Address Bar
 * Bookmarks Bar
 * Navigation Bar
 */
 
-body {
-    --ui-wb-primary: #4686f6;
+@font-face {
+    font-family: "tahoma";
+    src: url("../fonts/tahoma-regular.ttf") format("truetype");
+}
+
+@theme static {
+    /* Placeholder declarations */
+    --color-web-primary: #4686f6;
+    --color-web-egg: none;
+    --color-web-fg: none;
 }
 
 :is(.light, .os-blue, .os-olive-green, .os-silver) {
-    --ui-wb-bg: #ffffff;
-    --ui-wb-fg: #000000;
+    --color-web-bg: #ffffff;
+    --color-web-fg: #000000;
 }
 
 
 :is(.dark, .os-royale-noir, .os-zune, .os-embedded) {
-    --ui-wb-bg: #242424;
-    --ui-wb-fg: #ffffff;
+    --color-web-bg: #242424;
+    --color-web-fg: #ffffff;
 }

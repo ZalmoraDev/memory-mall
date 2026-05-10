@@ -4,7 +4,9 @@ const categories = ["All", "Laptops", "Desktops", "Monitors", "Printers", "Camer
 </script>
 
 <template>
-  <header class="sticky top-0 z-50 flex items-center w-full p-1.5 gap-2 text-white shadow-lg border-b-4 border-red-900 bg-gradient-to-r from-mm-primary to-red-700">
+  <header
+    class="sticky top-0 z-50 flex items-center w-full p-1.5 gap-2 text-white shadow-lg border-b-4 border-web-mm-primary-950 bg-gradient-to-r from-web-mm-primary-800 to-web-mm-primary-700"
+  >
     <!-- Logo + Title -->
     <div class="flex flex-shrink-0 items-center gap-3">
       <img src="/icons/web/mm/logo-FFF.svg" alt="Memory mall logo" class="w-12 h-12" />
@@ -42,3 +44,7 @@ const categories = ["All", "Laptops", "Desktops", "Monitors", "Printers", "Camer
   <!--    />-->
   <!--  </div>-->
 </template>
+
+<style>
+@import "~/assets/css/web/memory-mall.css";
+</style>

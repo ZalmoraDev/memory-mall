@@ -28,7 +28,7 @@ const popularBusinessProducts = [
 
 <template>
   <div class="flex flex-col h-full">
-    <main class="flex-1 w-full text-black bg-mm-backdrop">
+    <main class="flex-1 w-full text-black bg-web-mm-backdrop">
       <WebMmLayoutHeader />
       <WebMmLayoutNav />
 
@@ -36,7 +36,13 @@ const popularBusinessProducts = [
       <div class="px-4">
         <WebMmSectionHeader title="Trending" subtitle="Business last 7 days" color="blue" />
         <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 mb-8 border-l border-t border-gray-300">
-          <WebMmProductGallery v-for="product in popularBusinessProducts" :uuid="product.uuid" :title="product.title" :price="product.price" :condition="product.condition as WebMmProductCondition" />
+          <WebMmProductGallery
+            v-for="product in popularBusinessProducts"
+            :uuid="product.uuid"
+            :title="product.title"
+            :price="product.price"
+            :condition="product.condition as WebMmProductCondition"
+          />
         </div>
       </div>
 
@@ -44,10 +50,20 @@ const popularBusinessProducts = [
       <div class="px-4">
         <WebMmSectionHeader title="Trending" subtitle="Customer last 7 days" color="green" />
         <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 mb-8 border-l border-t border-gray-300">
-          <WebMmProductGallery v-for="product in popularBusinessProducts" :uuid="product.uuid" :title="product.title" :price="product.price" :condition="product.condition as WebMmProductCondition" />
+          <WebMmProductGallery
+            v-for="product in popularBusinessProducts"
+            :uuid="product.uuid"
+            :title="product.title"
+            :price="product.price"
+            :condition="product.condition as WebMmProductCondition"
+          />
         </div>
       </div>
     </main>
     <WebMmLayoutFooter />
   </div>
 </template>
+
+<style>
+@import "~/assets/css/web/memory-mall.css";
+</style>

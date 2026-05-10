@@ -1,4 +1,5 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+</script>
 
 <template>
   <footer class="mt-auto bg-gray-700 text-white p-4 border-t-4 border-gray-800 text-center text-sm">
@@ -7,3 +8,7 @@
     <NuxtLink to="/web/mm/about" class="text-white!">About Us</NuxtLink>
   </footer>
 </template>
+
+<style>
+@import "~/assets/css/web/memory-mall.css";
+</style>
