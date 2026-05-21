@@ -1,11 +1,11 @@
 <script setup lang="ts"></script>
 
 <template>
-  <nav class="STYLE-web-mm bg-gradient-to-r from-slate-600 to-slate-500 border-b-4 border-slate-800 py-2 px-4">
+  <nav class="STYLE-web-mm bg-web-mm-backdrop py-2 px-4">
     <!-- Searchbar -->
     <div class="flex flex-1 gap-2">
-      <input type="text" placeholder="Search products..." class="flex-1 px-3 py-2 bg-white text-black border-2 border-gray-400 text-sm" />
-      <button class="flex-shrink-0 text-sm px-4 py-2 font-bold text-black border-2 border-amber-700 bg-amber-600 hover:bg-amber-700">SEARCH</button>
+      <input type="text" placeholder="Search products..." class="flex-1 px-3 py-2 bg-web-mm-bg text-web-mm-fg text-sm" />
+      <button class="shrink-0 text-sm px-4 py-2 font-bold text-black border-2 border-amber-700 bg-amber-600 hover:bg-amber-700">SEARCH</button>
     </div>
   </nav>
 </template>

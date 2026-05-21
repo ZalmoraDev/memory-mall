@@ -28,14 +28,14 @@ const popularBusinessProducts = [
 
 <template>
   <div class="STYLE-web-mm flex flex-col h-full">
-    <main class="flex-1 w-full text-black bg-web-mm-backdrop">
+    <main class="flex-1 w-full text-black bg-web-mm-bg">
       <WebMmLayoutHeader />
       <WebMmLayoutNav />
 
       <!-- Featured Products Section -->
       <div class="px-4">
         <WebMmSectionHeader title="Trending" subtitle="Business last 7 days" color="blue" />
-        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 mb-8 border-l border-t border-gray-300">
+        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 mb-8">
           <WebMmProductGallery
             v-for="product in popularBusinessProducts"
             :uuid="product.uuid"
@@ -49,7 +49,7 @@ const popularBusinessProducts = [
       <!-- Featured User Products Section -->
       <div class="px-4">
         <WebMmSectionHeader title="Trending" subtitle="Customer last 7 days" color="green" />
-        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 mb-8 border-l border-t border-gray-300">
+        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 mb-8">
           <WebMmProductGallery
             v-for="product in popularBusinessProducts"
             :uuid="product.uuid"

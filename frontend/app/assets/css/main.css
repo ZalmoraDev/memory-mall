@@ -18,11 +18,19 @@ a {
 /* NuxtButton is rendered as a button when it DOES NOT have a ':to' prop, */
 button {
     @apply p-2 rounded-sm font-bold text-white justify-center hover:brightness-115
-    inset-shadow-sm inset-shadow-white/75 active:inset-shadow-black/75!
+    inset-shadow-sm inset-shadow-white/50 active:inset-shadow-black/75!
 }
 
 /* NuxtButton is rendered as an anchor (a) when it has a ':to' prop, apply this class for those NuxtButtons */
 .main-link-button {
     @apply p-2 no-underline! rounded-sm justify-center hover:brightness-115
-    inset-shadow-sm inset-shadow-white/75 active:inset-shadow-black/75!
+    inset-shadow-sm inset-shadow-white/50 active:inset-shadow-black/75!
+}
+
+:focus {
+    @apply outline-0;
+}
+
+:focus-visible {
+    @apply outline outline-white;
 }
