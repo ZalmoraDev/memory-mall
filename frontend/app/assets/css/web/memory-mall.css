@@ -1,25 +1,36 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
-/* Suffix = mm- 'memory mall' styling */
-
 @font-face {
     font-family: "general-sans";
-    src: url("../../fonts/comic-sans.ttf") format("truetype");
+    src: url("../../fonts/swansea.ttf") format("truetype");
 }
-
-/* Memory Mall Page Styling - Apply this class to your root container */
+/* Suffix = mm- 'memory mall' styling */
+/* Apply this class to your root page/comp containers */
 .STYLE-web-mm {
-    font-family: "comic-sans", sans-serif;
+    font-family: "swansea", sans-serif;
     -webkit-font-smoothing: none;
     -moz-osx-font-smoothing: auto;
 }
 
+/* Color Pallet */
 @theme static {
-    /* Placeholder declarations */
-    --color-web-mm-fg: none;
-    --color-web-mm-bg: none;
-    --color-web-mm-backdrop: none;
+    /* Dynamic declarations (Light/Dark Modes) */
+    --color-web-mm-bg-base: none;
+    --color-web-mm-bg-surface: none;
+    --color-web-mm-bg-raised: none;
+
+    --color-web-mm-border: none;
+
+    --color-web-mm-text: none;
+    --color-web-mm-text-dimmed: none;
+
+    /* Static declarations */
+    --color-web-mm-primary: var(--color-web-mm-primary-50);
+    --color-web-mm-primary-dimmed: var(--color-web-mm-primary-50);
+
+    --color-web-mm-secondary: var(--color-web-mm-secondary-50);
+    --color-web-mm-secondary-dimmed: var(--color-web-mm-secondary-50);
 
     --color-web-mm-primary-50: #fff0f2;
     --color-web-mm-primary-100: #ffdde2;
@@ -32,21 +43,46 @@
     --color-web-mm-primary-800: #b30621; /* BASE */
     --color-web-mm-primary-900: #8f0d21;
     --color-web-mm-primary-950: #8f0d21;
+
+    --color-web-mm-secondary-50: #fff0f2;
+    --color-web-mm-secondary-100: #ffdde2;
+    --color-web-mm-secondary-200: #ffc1cb;
+    --color-web-mm-secondary-300: #ff96a6;
+    --color-web-mm-secondary-400: #ff5a74;
+    --color-web-mm-secondary-500: #ff2749;
+    --color-web-mm-secondary-600: #fb072d;
+    --color-web-mm-secondary-700: #d30223;
+    --color-web-mm-secondary-800: #b30621; /* BASE */
+    --color-web-mm-secondary-900: #8f0d21;
+    --color-web-mm-secondary-950: #8f0d21;
 }
 
+
+/* Color Modes */
 :is(.light, .os-blue, .os-olive-green, .os-silver) {
-    --color-web-mm-fg: #000000;
-    --color-web-mm-bg: #f0f8ff;
-    --color-web-mm-backdrop: #d0d8f0;
-}
+    --color-web-mm-bg-base: #f0f8ff;
+    --color-web-mm-bg-surface: #d0d8f0;
+    --color-web-mm-bg-raised: none;
 
+    --color-web-mm-text: #000000;
+    --color-web-mm-text-dimmed: none;
+
+    --color-web-mm-border: none;
+}
 
 :is(.dark, .os-royale-noir, .os-zune, .os-embedded) {
-    --color-web-mm-fg: #ffffff;
-    --color-web-mm-bg: #384048;
-    --color-web-mm-backdrop: #485058;
+    --color-web-mm-bg-base: #384048;
+    --color-web-mm-bg-surface: #485058;
+    --color-web-mm-bg-raised: none;
+
+    --color-web-mm-text: #ffffff;
+    --color-web-mm-text-dimmed: none;
+
+    --color-web-mm-border: none;
 }
 
+
+/* Prefabs */
 .web-mm-glossy-button-primary {
     @apply bg-[linear-gradient(to_bottom,var(--color-web-mm-primary-500)_0%,var(--color-web-mm-primary-500)_35%,var(--color-web-mm-primary-600)_65%)]
 }

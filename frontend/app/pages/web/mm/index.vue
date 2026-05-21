@@ -22,7 +22,7 @@ const popularBusinessProducts = [
 
 <template>
   <div class="STYLE-web-mm flex flex-col h-full">
-    <main class="flex-1 w-full text-black bg-web-mm-bg">
+    <main class="flex-1 w-full text-black bg-web-mm-bg-base">
       <WebMmLayoutHeader />
       <WebMmLayoutNav />
       <div class="relative w-auto m-4 h-64 bg-web-mm-primary-800 rounded-2xl flex items-center justify-center overflow-hidden">
