@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <nav class="STYLE-web-mm bg-web-mm-bg-surface py-2 px-4">
+  <nav class="STYLE bg-web-mm-bg-surface py-2 px-4">
     <!-- Searchbar -->
     <div class="flex flex-1 gap-2">
       <input type="text" placeholder="Search products..." class="flex-1 px-3 py-2 bg-web-mm-bg-base text-web-mm-text text-sm" />

@@ -21,7 +21,7 @@ const popularBusinessProducts = [
 </script>
 
 <template>
-  <div class="STYLE-web-mm flex flex-col h-full">
+  <div class="STYLE flex flex-col h-full">
     <main class="flex-1 w-full text-black bg-web-mm-bg-base">
       <WebMmLayoutHeader />
       <WebMmLayoutNav />
@@ -32,8 +32,8 @@ const popularBusinessProducts = [
           <p class="text-2xl font-semibold mb-2">Where Users & Companies Trade Tech</p>
           <p class="text-lg mb-6">Buy, sell, and discover vintage electronics and technology from trusted sellers</p>
           <div class="flex gap-4">
-            <NuxtLink to="/web/mm/p" class="main-link-button web-mm-glossy-button-primary px-8 py-3 rounded-2xl">Browse Products</NuxtLink>
-            <NuxtLink to="/web/mm/p" class="main-link-button web-mm-glossy-button-primary px-8 py-3 rounded-2xl">Start Selling</NuxtLink>
+            <NuxtLink to="/web/mm/p" class="main-link-button glossy-button-primary px-8 py-3 rounded-2xl">Browse Products</NuxtLink>
+            <NuxtLink to="/web/mm/p" class="main-link-button glossy-button-primary px-8 py-3 rounded-2xl">Start Selling</NuxtLink>
           </div>
         </div>
       </div>
@@ -42,9 +42,9 @@ const popularBusinessProducts = [
         <div class="relative w-full h-full p-4 rounded-t-2xl inset-shadow-sm inset-shadow-white bg-linear-to-b from-green-500 to-green-300 overflow-hidden">
           <h2 class="relative z-10 text-2xl text-white font-bold mb-4">User Products</h2>
           <div class="relative z-10 flex flex-col w-fit h-full gap-2">
-            <NuxtLink to="/web/mm/p" class="main-link-button web-mm-glossy-button-green p-4 rounded-2xl"> All </NuxtLink>
-            <NuxtLink to="/web/mm/p" class="main-link-button web-mm-glossy-button-green p-4 rounded-2xl"> New </NuxtLink>
-            <NuxtLink to="/web/mm/p" class="main-link-button web-mm-glossy-button-green p-4 rounded-2xl"> Refurbished </NuxtLink>
+            <NuxtLink to="/web/mm/p" class="main-link-button glossy-button-green p-4 rounded-2xl"> All </NuxtLink>
+            <NuxtLink to="/web/mm/p" class="main-link-button glossy-button-green p-4 rounded-2xl"> New </NuxtLink>
+            <NuxtLink to="/web/mm/p" class="main-link-button glossy-button-green p-4 rounded-2xl"> Refurbished </NuxtLink>
           </div>
           <img src="/images/web/mm/showcase/users.png" class="absolute right-0 top-0 z-0 h-full w-auto object-contain" alt="Compter Parts" />
         </div>
@@ -52,9 +52,9 @@ const popularBusinessProducts = [
         <div class="relative w-full h-full p-4 rounded-t-2xl inset-shadow-sm inset-shadow-white bg-linear-to-b from-blue-500 to-blue-300 overflow-hidden">
           <h2 class="relative z-10 text-2xl text-white font-bold mb-4">Company Products</h2>
           <div class="relative z-10 flex flex-col w-fit h-full gap-2">
-            <NuxtLink to="/web/mm/p" class="main-link-button web-mm-glossy-button-blue p-4 rounded-2xl"> All </NuxtLink>
-            <NuxtLink to="/web/mm/p" class="main-link-button web-mm-glossy-button-blue p-4 rounded-2xl"> New </NuxtLink>
-            <NuxtLink to="/web/mm/p" class="main-link-button web-mm-glossy-button-blue p-4 rounded-2xl"> Refurbished </NuxtLink>
+            <NuxtLink to="/web/mm/p" class="main-link-button glossy-button-blue p-4 rounded-2xl"> All </NuxtLink>
+            <NuxtLink to="/web/mm/p" class="main-link-button glossy-button-blue p-4 rounded-2xl"> New </NuxtLink>
+            <NuxtLink to="/web/mm/p" class="main-link-button glossy-button-blue p-4 rounded-2xl"> Refurbished </NuxtLink>
           </div>
           <img src="/images/web/mm/showcase/businesses.png" class="absolute right-0 top-0 z-0 h-full w-auto object-contain" alt="Apple computer" />
         </div>

@@ -5,92 +5,126 @@
     font-family: "general-sans";
     src: url("../../fonts/swansea.ttf") format("truetype");
 }
-/* Suffix = mm- 'memory mall' styling */
+
+
+/* Suffix = web-mm- 'web browser, memory mall' styling */
 /* Apply this class to your root page/comp containers */
-.STYLE-web-mm {
+.STYLE {
     font-family: "swansea", sans-serif;
     -webkit-font-smoothing: none;
     -moz-osx-font-smoothing: auto;
 }
 
-/* Color Pallet */
+
 @theme static {
-    /* Dynamic declarations (Light/Dark Modes) */
-    --color-web-mm-bg-base: none;
-    --color-web-mm-bg-surface: none;
-    --color-web-mm-bg-raised: none;
+    /* Static semantics */
+    --color-primary: var(--color-primary-50);
+    --color-primary-dimmed: var(--color-primary-20);
 
-    --color-web-mm-border: none;
+    --color-secondary: var(--color-secondary-50);
+    --color-secondary-dimmed: var(--color-secondary-20);
 
-    --color-web-mm-text: none;
-    --color-web-mm-text-dimmed: none;
+    /* Dynamic semantics (Placeholders for Light/Dark Themes) */
+    --color-base: none;
+    --color-surface: none;
+    --color-raised: none;
 
-    /* Static declarations */
-    --color-web-mm-primary: var(--color-web-mm-primary-50);
-    --color-web-mm-primary-dimmed: var(--color-web-mm-primary-50);
+    --color-stroke: none;
 
-    --color-web-mm-secondary: var(--color-web-mm-secondary-50);
-    --color-web-mm-secondary-dimmed: var(--color-web-mm-secondary-50);
+    --color-fg-dimmed: none;
+    --color-fg: none;
 
-    --color-web-mm-primary-50: #fff0f2;
-    --color-web-mm-primary-100: #ffdde2;
-    --color-web-mm-primary-200: #ffc1cb;
-    --color-web-mm-primary-300: #ff96a6;
-    --color-web-mm-primary-400: #ff5a74;
-    --color-web-mm-primary-500: #ff2749;
-    --color-web-mm-primary-600: #fb072d;
-    --color-web-mm-primary-700: #d30223;
-    --color-web-mm-primary-800: #b30621; /* BASE */
-    --color-web-mm-primary-900: #8f0d21;
-    --color-web-mm-primary-950: #8f0d21;
+    /* Color Definitions */
+    --_tone-example: hsl(0, 0%, 50%);
+    --_tone-hue: 0;
+    --_tone-sat: 0%;
 
-    --color-web-mm-secondary-50: #fff0f2;
-    --color-web-mm-secondary-100: #ffdde2;
-    --color-web-mm-secondary-200: #ffc1cb;
-    --color-web-mm-secondary-300: #ff96a6;
-    --color-web-mm-secondary-400: #ff5a74;
-    --color-web-mm-secondary-500: #ff2749;
-    --color-web-mm-secondary-600: #fb072d;
-    --color-web-mm-secondary-700: #d30223;
-    --color-web-mm-secondary-800: #b30621; /* BASE */
-    --color-web-mm-secondary-900: #8f0d21;
-    --color-web-mm-secondary-950: #8f0d21;
+    --_primary-example: hsl(350.64, 93.51%, 50%);
+    --_primary-hue: 350.64;
+    --_primary-sat: 93.51%;
+
+    --_secondary-example: hsl(144.9, 100%, 50%);
+    --_secondary-hue: 144.9;
+    --_secondary-sat: 100%;
+
+    /* Color Variants */
+    --color-tone-0: hsl(var(--_tone-hue), var(--_tone-sat), 0%);
+    --color-tone-5: hsl(var(--_tone-hue), var(--_tone-sat), 5%);
+    --color-tone-10: hsl(var(--_tone-hue), var(--_tone-sat), 10%);
+    --color-tone-20: hsl(var(--_tone-hue), var(--_tone-sat), 20%);
+    --color-tone-30: hsl(var(--_tone-hue), var(--_tone-sat), 30%);
+    --color-tone-40: hsl(var(--_tone-hue), var(--_tone-sat), 40%);
+    --color-tone-50: hsl(var(--_tone-hue), var(--_tone-sat), 50%);
+    --color-tone-60: hsl(var(--_tone-hue), var(--_tone-sat), 60%);
+    --color-tone-70: hsl(var(--_tone-hue), var(--_tone-sat), 70%);
+    --color-tone-80: hsl(var(--_tone-hue), var(--_tone-sat), 80%);
+    --color-tone-90: hsl(var(--_tone-hue), var(--_tone-sat), 90%);
+    --color-tone-95: hsl(var(--_tone-hue), var(--_tone-sat), 95%);
+    --color-tone-100: hsl(var(--_tone-hue), var(--_tone-sat), 100%);
+
+    --color-primary-0: hsl(var(--_primary-hue), var(--_primary-sat), 0%);
+    --color-primary-5: hsl(var(--_primary-hue), var(--_primary-sat), 5%);
+    --color-primary-10: hsl(var(--_primary-hue), var(--_primary-sat), 10%);
+    --color-primary-20: hsl(var(--_primary-hue), var(--_primary-sat), 20%);
+    --color-primary-30: hsl(var(--_primary-hue), var(--_primary-sat), 30%);
+    --color-primary-40: hsl(var(--_primary-hue), var(--_primary-sat), 40%);
+    --color-primary-50: hsl(var(--_primary-hue), var(--_primary-sat), 50%);
+    --color-primary-60: hsl(var(--_primary-hue), var(--_primary-sat), 60%);
+    --color-primary-70: hsl(var(--_primary-hue), var(--_primary-sat), 70%);
+    --color-primary-80: hsl(var(--_primary-hue), var(--_primary-sat), 80%);
+    --color-primary-90: hsl(var(--_primary-hue), var(--_primary-sat), 90%);
+    --color-primary-95: hsl(var(--_primary-hue), var(--_primary-sat), 95%);
+    --color-primary-100: hsl(var(--_primary-hue), var(--_primary-sat), 100%);
+
+    --color-secondary-0: hsl(var(--_secondary-hue), var(--_secondary-sat), 0%);
+    --color-secondary-5: hsl(var(--_secondary-hue), var(--_secondary-sat), 5%);
+    --color-secondary-10: hsl(var(--_secondary-hue), var(--_secondary-sat), 10%);
+    --color-secondary-20: hsl(var(--_secondary-hue), var(--_secondary-sat), 20%);
+    --color-secondary-30: hsl(var(--_secondary-hue), var(--_secondary-sat), 30%);
+    --color-secondary-40: hsl(var(--_secondary-hue), var(--_secondary-sat), 40%);
+    --color-secondary-50: hsl(var(--_secondary-hue), var(--_secondary-sat), 50%);
+    --color-secondary-60: hsl(var(--_secondary-hue), var(--_secondary-sat), 60%);
+    --color-secondary-70: hsl(var(--_secondary-hue), var(--_secondary-sat), 70%);
+    --color-secondary-80: hsl(var(--_secondary-hue), var(--_secondary-sat), 80%);
+    --color-secondary-90: hsl(var(--_secondary-hue), var(--_secondary-sat), 90%);
+    --color-secondary-95: hsl(var(--_secondary-hue), var(--_secondary-sat), 95%);
+    --color-secondary-100: hsl(var(--_secondary-hue), var(--_secondary-sat), 100%);
 }
 
 
-/* Color Modes */
+/* Light/Dark Themes */
 :is(.light, .os-blue, .os-olive-green, .os-silver) {
-    --color-web-mm-bg-base: #f0f8ff;
-    --color-web-mm-bg-surface: #d0d8f0;
-    --color-web-mm-bg-raised: none;
+    --color-base: var(--color-tone-100);
+    --color-surface: var(--color-tone-95);
+    --color-raised: var(--color-tone-90);
 
-    --color-web-mm-text: #000000;
-    --color-web-mm-text-dimmed: none;
+    --color-stroke: var(--color-tone-60);
 
-    --color-web-mm-border: none;
+    --color-fg-dimmed: var(--color-tone-30);
+    --color-fg: var(--color-tone-5);
 }
 
 :is(.dark, .os-royale-noir, .os-zune, .os-embedded) {
-    --color-web-mm-bg-base: #384048;
-    --color-web-mm-bg-surface: #485058;
-    --color-web-mm-bg-raised: none;
+    --color-base: var(--color-tone-0);
+    --color-surface: var(--color-tone-5);
+    --color-raised: var(--color-tone-10);
 
-    --color-web-mm-text: #ffffff;
-    --color-web-mm-text-dimmed: none;
+    --color-stroke: var(--color-tone-40);
 
-    --color-web-mm-border: none;
+    --color-fg-dimmed: var(--color-tone-70);
+    --color-fg: var(--color-tone-95);
 }
 
 
 /* Prefabs */
-.web-mm-glossy-button-primary {
-    @apply bg-[linear-gradient(to_bottom,var(--color-web-mm-primary-500)_0%,var(--color-web-mm-primary-500)_35%,var(--color-web-mm-primary-600)_65%)]
+.glossy-button-primary {
+    @apply bg-[linear-gradient(to_bottom,var(--color-primary-50)_0%,var(--color-primary-50)_35%,var(--color-primary-60)_65%)]
 }
 
-.web-mm-glossy-button-green {
+.glossy-button-green {
     @apply bg-[linear-gradient(to_bottom,var(--color-green-500)_0%,var(--color-green-500)_35%,var(--color-green-600)_65%)]
 }
 
-.web-mm-glossy-button-blue {
+.glossy-button-blue {
     @apply bg-[linear-gradient(to_bottom,var(--color-blue-500)_0%,var(--color-blue-500)_35%,var(--color-blue-600)_65%)]
 }
