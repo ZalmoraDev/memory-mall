@@ -14,6 +14,7 @@
 * Start Menu
 * Apply this class to the root page/comp container */
 .os-STYLE {
+    z-index: 980; /* 980-999 */
     font-family: "tahoma", sans-serif;
     -webkit-font-smoothing: none;
     -moz-osx-font-smoothing: auto;

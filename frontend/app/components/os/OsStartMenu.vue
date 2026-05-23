@@ -1,7 +1,4 @@
 <script setup lang="ts">
-async function onClick() {
-  window.close();
-}
 </script>
 
 <template>
@@ -34,7 +31,7 @@ async function onClick() {
       </div>
       <div class="flex gap-1 items-center p-1">
         <UButton
-          @click="onClick"
+          href="https://blackscreen.app/"
           icon="material-symbols:power-settings-new-outline"
           size="md"
           :ui="{ leadingIcon: 'text-white' }"

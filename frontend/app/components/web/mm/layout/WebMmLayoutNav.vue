@@ -1,10 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+</script>
 
 <template>
-  <nav class="web-mm-STYLE bg-surface py-2 px-4">
+  <nav class="web-mm-STYLE bg-web-mm-surface py-2 px-4">
     <!-- Searchbar -->
     <div class="flex flex-1 gap-2">
-      <input type="text" placeholder="Search products..." class="flex-1 px-3 py-2 bg-base text-sm" />
+      <input type="text" placeholder="Search products..." class="flex-1 px-3 py-2 bg-web-mm-base text-sm" />
       <button class="shrink-0 text-sm px-4 py-2 font-bold text-black border-2 border-amber-700 bg-amber-600 hover:bg-amber-700">SEARCH</button>
     </div>
   </nav>

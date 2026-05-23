@@ -22,18 +22,18 @@ const popularBusinessProducts = [
 
 <template>
   <div class="web-mm-STYLE flex flex-col h-full">
-    <main class="flex-1 w-full bg-base">
+    <main class="flex-1 w-full bg-web-mm-base">
       <WebMmLayoutHeader />
       <WebMmLayoutNav />
-      <div class="relative w-auto m-4 h-64 bg-primary-80 rounded-2xl flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 bg-primary-80 opacity-50"></div>
+      <div class="relative w-auto m-4 h-64 bg-web-mm-pri-80 rounded-2xl flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-web-mm-pri-80 opacity-50"></div>
         <div class="relative flex flex-col items-center justify-center text-center px-8 z-10">
           <h1 class="text-5xl font-bold mb-4">Memory Mall</h1>
           <p class="text-2xl font-semibold mb-2">Where Users & Companies Trade Tech</p>
           <p class="text-lg mb-6">Buy, sell, and discover vintage electronics and technology from trusted sellers</p>
           <div class="flex gap-4">
-            <NuxtLink to="/web/mm/p" class="main-link-button web-mm-gradient-primary px-8 py-3 rounded-2xl">Browse Products</NuxtLink>
-            <NuxtLink to="/web/mm/p" class="main-link-button web-mm-gradient-primary px-8 py-3 rounded-2xl">Start Selling</NuxtLink>
+            <NuxtLink to="/web/mm/p" class="main-link-button web-mm-gradient-pri px-8 py-3 rounded-2xl">Browse Products</NuxtLink>
+            <NuxtLink to="/web/mm/p" class="main-link-button web-mm-gradient-pri px-8 py-3 rounded-2xl">Start Selling</NuxtLink>
           </div>
         </div>
       </div>
