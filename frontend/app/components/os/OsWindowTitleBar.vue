@@ -10,7 +10,7 @@ const pageTitle = computed(() => {
 </script>
 
 <template>
-  <header class="STYLE-os flex items-center justify-between rounded-t-md text-os-fg-md border-b-2 border-os-primary os-inline-highlight os-window-titlebar-colors">
+  <header class="os-STYLE flex items-center justify-between rounded-t-md text-os-fg-md border-b-2 border-os-pri os-inline-highlight os-window-titlebar-colors">
     <div class="p-1 flex items-center gap-2">
       <img src="/icons/web/MyIE2.png" alt="MyIE2 Logo" class="w-6 h-6 items-center rounded-full" />
       <div class="font-bold text-os-fg-on-pri">{{ pageTitle }} - Michaelsoft MyIE2</div>
@@ -20,19 +20,19 @@ const pageTitle = computed(() => {
         size="md"
         icon="material-symbols:minimize-rounded"
         :ui="{ leadingIcon: 'text-white' }"
-        class="os-button-general-colors os-inline-highlight w-7 h-7 border border-os-primary"
+        class="os-button-general-colors os-inline-highlight w-7 h-7 border border-os-pri"
       />
       <UButton
         size="md"
         icon="mdi:window-maximize"
         :ui="{ leadingIcon: 'text-white' }"
-        class="os-button-general-colors os-inline-highlight w-7 h-7 border border-os-primary"
+        class="os-button-general-colors os-inline-highlight w-7 h-7 border border-os-pri"
       />
       <UButton
         size="md"
         icon="material-symbols:close-rounded"
         :ui="{ leadingIcon: 'text-white' }"
-        class="os-button-close-colors os-inline-highlight w-7 h-7 border border-os-primary"
+        class="os-button-close-colors os-inline-highlight w-7 h-7 border border-os-pri"
       />
     </div>
   </header>

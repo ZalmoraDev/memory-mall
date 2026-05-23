@@ -6,10 +6,9 @@
     src: url("../../fonts/swansea.ttf") format("truetype");
 }
 
-
 /* Suffix = web-mm- 'web browser, memory mall' styling */
-/* Apply this class to your root page/comp containers */
-.STYLE {
+/* Apply this class to the root page/comp container */
+.web-mm-STYLE {
     font-family: "swansea", sans-serif;
     -webkit-font-smoothing: none;
     -moz-osx-font-smoothing: auto;
@@ -18,115 +17,107 @@
 }
 
 
+/* Prefabs */
+.web-mm-gradient-primary {
+    @apply bg-[linear-gradient(to_bottom,var(--color-primary-50)_0%,var(--color-primary-50)_35%,var(--color-primary-60)_65%)]
+}
+
+
 @theme static {
     /* Dynamic semantics (Placeholders for Light/Dark Themes) */
-    --color-base: none;
-    --color-surface: none;
-    --color-raised: none;
+    --color-web-mm-base: none;
+    --color-web-mm-surface: none;
+    --color-web-mm-raised: none;
 
-    --color-stroke: none;
+    --color-web-mm-stroke: none;
 
-    --color-fg-dimmed: none;
-    --color-fg: none;
+    --color-web-mm-fg-dim: none;
+    --color-web-mm-fg: none;
 
     /* Static semantics */
-    --color-primary: var(--color-primary-50);
-    --color-primary-dimmed: var(--color-primary-20);
+    --color-web-mm-pri: var(--color-web-mm-pri-50);
+    --color-web-mm-pri-dim: var(--color-web-mm-pri-20);
 
-    --color-secondary: var(--color-secondary-50);
-    --color-secondary-dimmed: var(--color-secondary-20);
+    --color-web-mm-sec: var(--color-web-mm-sec-50);
+    --color-web-mm-sec-dim: var(--color-web-mm-sec-20);
 
     /* Color Definitions */
-    --_tone-example: hsl(355, 50%, 50%);
-    --_tone-hue: 355;
-    --_tone-sat: 50%;
+    --_web-mm-tone-example: hsl(355, 50%, 50%);
+    --_web-mm-tone-h: 355;
+    --_web-mm-tone-s: 50%;
 
-    --_primary-example: hsl(350.64, 93.51%, 50%);
-    --_primary-hue: 350.64;
-    --_primary-sat: 93.51%;
+    --_web-mm-pri-example: hsl(350.64, 93.51%, 50%);
+    --_web-mm-pri-h: 350.64;
+    --_web-mm-pri-s: 93.51%;
 
-    --_secondary-example: hsl(144.9, 100%, 50%);
-    --_secondary-hue: 144.9;
-    --_secondary-sat: 100%;
+    --_web-mm-sec-example: hsl(144.9, 100%, 50%);
+    --_web-mm-sec-h: 144.9;
+    --_web-mm-sec-s: 100%;
 
     /* Color Variants */
-    --color-tone-0: hsl(var(--_tone-hue), var(--_tone-sat), 0%);
-    --color-tone-5: hsl(var(--_tone-hue), var(--_tone-sat), 5%);
-    --color-tone-10: hsl(var(--_tone-hue), var(--_tone-sat), 10%);
-    --color-tone-20: hsl(var(--_tone-hue), var(--_tone-sat), 20%);
-    --color-tone-30: hsl(var(--_tone-hue), var(--_tone-sat), 30%);
-    --color-tone-40: hsl(var(--_tone-hue), var(--_tone-sat), 40%);
-    --color-tone-50: hsl(var(--_tone-hue), var(--_tone-sat), 50%);
-    --color-tone-60: hsl(var(--_tone-hue), var(--_tone-sat), 60%);
-    --color-tone-70: hsl(var(--_tone-hue), var(--_tone-sat), 70%);
-    --color-tone-80: hsl(var(--_tone-hue), var(--_tone-sat), 80%);
-    --color-tone-90: hsl(var(--_tone-hue), var(--_tone-sat), 90%);
-    --color-tone-95: hsl(var(--_tone-hue), var(--_tone-sat), 95%);
-    --color-tone-100: hsl(var(--_tone-hue), var(--_tone-sat), 100%);
+    --color-web-mm-tone-0: hsl(var(--_web-mm-tone-h), var(--_web-mm-tone-s), 0%);
+    --color-web-mm-tone-5: hsl(var(--_web-mm-tone-h), var(--_web-mm-tone-s), 5%);
+    --color-web-mm-tone-10: hsl(var(--_web-mm-tone-h), var(--_web-mm-tone-s), 10%);
+    --color-web-mm-tone-20: hsl(var(--_web-mm-tone-h), var(--_web-mm-tone-s), 20%);
+    --color-web-mm-tone-30: hsl(var(--_web-mm-tone-h), var(--_web-mm-tone-s), 30%);
+    --color-web-mm-tone-40: hsl(var(--_web-mm-tone-h), var(--_web-mm-tone-s), 40%);
+    --color-web-mm-tone-50: hsl(var(--_web-mm-tone-h), var(--_web-mm-tone-s), 50%);
+    --color-web-mm-tone-60: hsl(var(--_web-mm-tone-h), var(--_web-mm-tone-s), 60%);
+    --color-web-mm-tone-70: hsl(var(--_web-mm-tone-h), var(--_web-mm-tone-s), 70%);
+    --color-web-mm-tone-80: hsl(var(--_web-mm-tone-h), var(--_web-mm-tone-s), 80%);
+    --color-web-mm-tone-90: hsl(var(--_web-mm-tone-h), var(--_web-mm-tone-s), 90%);
+    --color-web-mm-tone-95: hsl(var(--_web-mm-tone-h), var(--_web-mm-tone-s), 95%);
+    --color-web-mm-tone-100: hsl(var(--_web-mm-tone-h), var(--_web-mm-tone-s), 100%);
 
-    --color-primary-0: hsl(var(--_primary-hue), var(--_primary-sat), 0%);
-    --color-primary-5: hsl(var(--_primary-hue), var(--_primary-sat), 5%);
-    --color-primary-10: hsl(var(--_primary-hue), var(--_primary-sat), 10%);
-    --color-primary-20: hsl(var(--_primary-hue), var(--_primary-sat), 20%);
-    --color-primary-30: hsl(var(--_primary-hue), var(--_primary-sat), 30%);
-    --color-primary-40: hsl(var(--_primary-hue), var(--_primary-sat), 40%);
-    --color-primary-50: hsl(var(--_primary-hue), var(--_primary-sat), 50%);
-    --color-primary-60: hsl(var(--_primary-hue), var(--_primary-sat), 60%);
-    --color-primary-70: hsl(var(--_primary-hue), var(--_primary-sat), 70%);
-    --color-primary-80: hsl(var(--_primary-hue), var(--_primary-sat), 80%);
-    --color-primary-90: hsl(var(--_primary-hue), var(--_primary-sat), 90%);
-    --color-primary-95: hsl(var(--_primary-hue), var(--_primary-sat), 95%);
-    --color-primary-100: hsl(var(--_primary-hue), var(--_primary-sat), 100%);
+    --color-web-mm-pri-0: hsl(var(--_web-mm-pri-h), var(--_web-mm-pri-s), 0%);
+    --color-web-mm-pri-5: hsl(var(--_web-mm-pri-h), var(--_web-mm-pri-s), 5%);
+    --color-web-mm-pri-10: hsl(var(--_web-mm-pri-h), var(--_web-mm-pri-s), 10%);
+    --color-web-mm-pri-20: hsl(var(--_web-mm-pri-h), var(--_web-mm-pri-s), 20%);
+    --color-web-mm-pri-30: hsl(var(--_web-mm-pri-h), var(--_web-mm-pri-s), 30%);
+    --color-web-mm-pri-40: hsl(var(--_web-mm-pri-h), var(--_web-mm-pri-s), 40%);
+    --color-web-mm-pri-50: hsl(var(--_web-mm-pri-h), var(--_web-mm-pri-s), 50%);
+    --color-web-mm-pri-60: hsl(var(--_web-mm-pri-h), var(--_web-mm-pri-s), 60%);
+    --color-web-mm-pri-70: hsl(var(--_web-mm-pri-h), var(--_web-mm-pri-s), 70%);
+    --color-web-mm-pri-80: hsl(var(--_web-mm-pri-h), var(--_web-mm-pri-s), 80%);
+    --color-web-mm-pri-90: hsl(var(--_web-mm-pri-h), var(--_web-mm-pri-s), 90%);
+    --color-web-mm-pri-95: hsl(var(--_web-mm-pri-h), var(--_web-mm-pri-s), 95%);
+    --color-web-mm-pri-100: hsl(var(--_web-mm-pri-h), var(--_web-mm-pri-s), 100%);
 
-    --color-secondary-0: hsl(var(--_secondary-hue), var(--_secondary-sat), 0%);
-    --color-secondary-5: hsl(var(--_secondary-hue), var(--_secondary-sat), 5%);
-    --color-secondary-10: hsl(var(--_secondary-hue), var(--_secondary-sat), 10%);
-    --color-secondary-20: hsl(var(--_secondary-hue), var(--_secondary-sat), 20%);
-    --color-secondary-30: hsl(var(--_secondary-hue), var(--_secondary-sat), 30%);
-    --color-secondary-40: hsl(var(--_secondary-hue), var(--_secondary-sat), 40%);
-    --color-secondary-50: hsl(var(--_secondary-hue), var(--_secondary-sat), 50%);
-    --color-secondary-60: hsl(var(--_secondary-hue), var(--_secondary-sat), 60%);
-    --color-secondary-70: hsl(var(--_secondary-hue), var(--_secondary-sat), 70%);
-    --color-secondary-80: hsl(var(--_secondary-hue), var(--_secondary-sat), 80%);
-    --color-secondary-90: hsl(var(--_secondary-hue), var(--_secondary-sat), 90%);
-    --color-secondary-95: hsl(var(--_secondary-hue), var(--_secondary-sat), 95%);
-    --color-secondary-100: hsl(var(--_secondary-hue), var(--_secondary-sat), 100%);
+    --color-web-mm-sec-0: hsl(var(--_web-mm-sec-h), var(--_web-mm-sec-s), 0%);
+    --color-web-mm-sec-5: hsl(var(--_web-mm-sec-h), var(--_web-mm-sec-s), 5%);
+    --color-web-mm-sec-10: hsl(var(--_web-mm-sec-h), var(--_web-mm-sec-s), 10%);
+    --color-web-mm-sec-20: hsl(var(--_web-mm-sec-h), var(--_web-mm-sec-s), 20%);
+    --color-web-mm-sec-30: hsl(var(--_web-mm-sec-h), var(--_web-mm-sec-s), 30%);
+    --color-web-mm-sec-40: hsl(var(--_web-mm-sec-h), var(--_web-mm-sec-s), 40%);
+    --color-web-mm-sec-50: hsl(var(--_web-mm-sec-h), var(--_web-mm-sec-s), 50%);
+    --color-web-mm-sec-60: hsl(var(--_web-mm-sec-h), var(--_web-mm-sec-s), 60%);
+    --color-web-mm-sec-70: hsl(var(--_web-mm-sec-h), var(--_web-mm-sec-s), 70%);
+    --color-web-mm-sec-80: hsl(var(--_web-mm-sec-h), var(--_web-mm-sec-s), 80%);
+    --color-web-mm-sec-90: hsl(var(--_web-mm-sec-h), var(--_web-mm-sec-s), 90%);
+    --color-web-mm-sec-95: hsl(var(--_web-mm-sec-h), var(--_web-mm-sec-s), 95%);
+    --color-web-mm-sec-100: hsl(var(--_web-mm-sec-h), var(--_web-mm-sec-s), 100%);
 }
 
 
 /* Light/Dark Themes */
 :is(.light, .os-blue, .os-olive-green, .os-silver) {
-    --color-base: var(--color-tone-100);
-    --color-surface: var(--color-tone-95);
-    --color-raised: var(--color-tone-90);
+    --color-web-mm-base: var(--color-web-mm-tone-100);
+    --color-web-mm-surface: var(--color-web-mm-tone-95);
+    --color-web-mm-raised: var(--color-web-mm-tone-90);
 
-    --color-stroke: var(--color-tone-60);
+    --color-web-mm-stroke: var(--color-web-mm-tone-60);
 
-    --color-fg-dimmed: var(--color-tone-30);
-    --color-fg: var(--color-tone-5);
+    --color-web-mm-fg-dim: var(--color-web-mm-tone-30);
+    --color-web-mm-fg: var(--color-web-mm-tone-5);
 }
 
 :is(.dark, .os-royale-noir, .os-zune, .os-embedded) {
-    --color-base: var(--color-tone-5);
-    --color-surface: var(--color-tone-10);
-    --color-raised: var(--color-tone-20);
+    --color-web-mm-base: var(--color-web-mm-tone-5);
+    --color-web-mm-surface: var(--color-web-mm-tone-10);
+    --color-web-mm-raised: var(--color-web-mm-tone-20);
 
-    --color-stroke: var(--color-tone-40);
+    --color-web-mm-stroke: var(--color-web-mm-tone-40);
 
-    --color-fg-dimmed: var(--color-tone-70);
-    --color-fg: var(--color-tone-95);
-}
-
-
-/* Prefabs */
-.glossy-button-primary {
-    @apply bg-[linear-gradient(to_bottom,var(--color-primary-50)_0%,var(--color-primary-50)_35%,var(--color-primary-60)_65%)]
-}
-
-.glossy-button-green {
-    @apply bg-[linear-gradient(to_bottom,var(--color-green-500)_0%,var(--color-green-500)_35%,var(--color-green-600)_65%)]
-}
-
-.glossy-button-blue {
-    @apply bg-[linear-gradient(to_bottom,var(--color-blue-500)_0%,var(--color-blue-500)_35%,var(--color-blue-600)_65%)]
+    --color-web-mm-fg-dim: var(--color-web-mm-tone-70);
+    --color-web-mm-fg: var(--color-web-mm-tone-95);
 }

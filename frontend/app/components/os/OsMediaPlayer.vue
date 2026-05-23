@@ -1,5 +1,5 @@
 <template>
-  <div class="STYLE-os">
+  <div class="os-STYLE">
     <ul class="flex flex-col gap-2">
       <li v-for="track in tracks" :key="track.id">
         <UButton
@@ -7,7 +7,7 @@
           type="button"
           @click="onPlayAsPlaylist(tracks, track)"
           :ui="{ leadingIcon: 'text-white' }"
-          class="main-glossy-button bg-web-mm-primary-500!"
+          class="main-glossy-button bg-web-mm-pri-500!"
         />
         {{ track.title }}
       </li>

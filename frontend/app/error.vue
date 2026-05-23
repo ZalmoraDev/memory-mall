@@ -28,7 +28,7 @@ defineProps<{
 <template>
   <UApp class="flex-1 flex flex-col">
     <main
-        class="flex-1 flex flex-col mx-auto sm:my-4 h-full container rounded-t-lg border-2 border-os-primary overflow-hidden">
+        class="flex-1 flex flex-col mx-auto sm:my-4 h-full container rounded-t-lg border-2 border-os-pri overflow-hidden">
       <OsWindowTitleBar/>
       <UError :error="error" class="bg-os-bg p-12"/>
     </main>

@@ -1,38 +1,37 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
-/* Suffix = wb- 'web browser' styling:
-* Address Bar
-* Bookmarks Bar
-* Navigation Bar
-*/
-
 @font-face {
     font-family: "tahoma";
     src: url("../fonts/tahoma-regular.ttf") format("truetype");
 }
 
-@theme static {
-    --color-web-primary: #4686f6;
-
-    /* Placeholder mode declarations */
-    --color-web-bg: none;
-    --color-web-fg: none;
-}
-
-.STYLE-web {
+/* Suffix = web- 'web browser' styling:
+* Address Bar
+* Bookmarks Bar
+* Navigation Bar
+* Apply this class to the root page/comp container */
+.web-STYLE {
     font-family: "tahoma", sans-serif;
     -webkit-font-smoothing: none;
     -moz-osx-font-smoothing: auto;
 }
 
 
+@theme static {
+    /* Dynamic semantics (Placeholders for Light/Dark Themes) */
+    --color-web-bg: none;
+    --color-web-fg: none;
 
+    /* Static semantics */
+    --color-web-pri: #4686f6;
+}
+
+/* Light/Dark Themes */
 :is(.light, .os-blue, .os-olive-green, .os-silver) {
     --color-web-bg: #ffffff;
     --color-web-fg: #000000;
 }
-
 
 :is(.dark, .os-royale-noir, .os-zune, .os-embedded) {
     --color-web-bg: #242424;

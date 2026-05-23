@@ -15,15 +15,15 @@ a {
     @apply underline font-bold
 }
 
-/* NuxtButton is rendered as a button when it DOES NOT have a ':to' prop, */
-button {
-    @apply p-2 rounded-sm font-bold justify-center hover:brightness-115
-    inset-shadow-sm inset-shadow-white/50 active:inset-shadow-black/75!
-}
-
 /* NuxtButton is rendered as an anchor (a) when it has a ':to' prop, apply this class for those NuxtButtons */
 .main-link-button {
     @apply p-2 no-underline! rounded-sm justify-center hover:brightness-115
+    inset-shadow-sm inset-shadow-white/50 active:inset-shadow-black/75!
+}
+
+/* NuxtButton is rendered as a button when it DOES NOT have a ':to' prop */
+button {
+    @apply p-2 rounded-sm font-bold justify-center hover:brightness-115
     inset-shadow-sm inset-shadow-white/50 active:inset-shadow-black/75!
 }
 
@@ -36,12 +36,12 @@ button {
     @apply outline outline-white;
 }
 
+
 :is(.light, .os-blue, .os-olive-green, .os-silver) {
     input[type="datetime-local"] {
         color-scheme: light;
     }
 }
-
 
 :is(.dark, .os-royale-noir, .os-zune, .os-embedded) {
     scrollbar-color: #404040 #0a0a0a;
