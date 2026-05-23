@@ -22,12 +22,12 @@ const popularBusinessProducts = [
 
 <template>
   <div class="STYLE flex flex-col h-full">
-    <main class="flex-1 w-full text-black bg-web-mm-bg-base">
+    <main class="flex-1 w-full bg-base">
       <WebMmLayoutHeader />
       <WebMmLayoutNav />
-      <div class="relative w-auto m-4 h-64 bg-web-mm-primary-800 rounded-2xl flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 bg-web-mm-primary-800 opacity-50"></div>
-        <div class="relative flex flex-col items-center justify-center text-white text-center px-8 z-10">
+      <div class="relative w-auto m-4 h-64 bg-primary-80 rounded-2xl flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-primary-80 opacity-50"></div>
+        <div class="relative flex flex-col items-center justify-center text-center px-8 z-10">
           <h1 class="text-5xl font-bold mb-4">Memory Mall</h1>
           <p class="text-2xl font-semibold mb-2">Where Users & Companies Trade Tech</p>
           <p class="text-lg mb-6">Buy, sell, and discover vintage electronics and technology from trusted sellers</p>
@@ -40,7 +40,7 @@ const popularBusinessProducts = [
 
       <div class="flex m-4 gap-4">
         <div class="relative w-full h-full p-4 rounded-t-2xl inset-shadow-sm inset-shadow-white bg-linear-to-b from-green-500 to-green-300 overflow-hidden">
-          <h2 class="relative z-10 text-2xl text-white font-bold mb-4">User Products</h2>
+          <h2 class="relative z-10 text-2xl font-bold mb-4">User Products</h2>
           <div class="relative z-10 flex flex-col w-fit h-full gap-2">
             <NuxtLink to="/web/mm/p" class="main-link-button glossy-button-green p-4 rounded-2xl"> All </NuxtLink>
             <NuxtLink to="/web/mm/p" class="main-link-button glossy-button-green p-4 rounded-2xl"> New </NuxtLink>
@@ -50,7 +50,7 @@ const popularBusinessProducts = [
         </div>
 
         <div class="relative w-full h-full p-4 rounded-t-2xl inset-shadow-sm inset-shadow-white bg-linear-to-b from-blue-500 to-blue-300 overflow-hidden">
-          <h2 class="relative z-10 text-2xl text-white font-bold mb-4">Company Products</h2>
+          <h2 class="relative z-10 text-2xl font-bold mb-4">Company Products</h2>
           <div class="relative z-10 flex flex-col w-fit h-full gap-2">
             <NuxtLink to="/web/mm/p" class="main-link-button glossy-button-blue p-4 rounded-2xl"> All </NuxtLink>
             <NuxtLink to="/web/mm/p" class="main-link-button glossy-button-blue p-4 rounded-2xl"> New </NuxtLink>

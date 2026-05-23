@@ -10,7 +10,7 @@ useSeoMeta({
 
 <template>
   <div class="STYLE flex flex-col h-full">
-    <main class="flex-1 w-full text-black bg-web-mm-bg-surface">
+    <main class="flex-1 w-full bg-base">
       <WebMmLayoutHeader />
       <WebMmLayoutNav />
     </main>
