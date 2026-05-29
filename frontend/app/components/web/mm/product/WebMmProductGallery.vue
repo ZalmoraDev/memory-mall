@@ -30,9 +30,9 @@ const getBgColorClass = () => {
 </script>
 
 <template>
-  <NuxtLink class="web-mm-STYLE m-1 rounded-md cursor-pointer hover:shadow-2xl bg-web-mm-bg">
+  <NuxtLink class="web-mm-STYLE m-1 rounded-md cursor-pointer hover:shadow-2xl bg-web-mm-bg-middle">
     <!-- TOP: Product Image -->
-    <div class="flex items-center justify-center overflow-hidden mb-2 h-40 border-b-2 border-dashed border-web-mm-border bg-web-mm-bg">
+    <div class="flex items-center justify-center overflow-hidden mb-2 h-40 border-b-2 border-dashed border-web-mm-border bg-web-mm-bg-middle">
       <img v-if="image" :src="image" :alt="title" class="w-full h-full object-cover" />
       <div v-else class="text-web-mm-fg text-center text-sm">[Product Image]</div>
     </div>

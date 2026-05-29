@@ -22,7 +22,7 @@ const popularBusinessProducts = [
 
 <template>
   <div class="web-mm-STYLE flex flex-col h-full">
-    <main class="flex-1 w-full bg-web-mm-bg-dark">
+    <main class="flex-1 w-full bg-web-mm-bg-bottom">
       <WebMmLayoutHeader />
       <WebMmLayoutNav />
       <div class="relative w-auto m-4 h-64 bg-web-mm-pri-200 rounded-2xl flex items-center justify-center overflow-hidden">
@@ -38,7 +38,7 @@ const popularBusinessProducts = [
         </div>
       </div>
 
-      <div class="bg-web-mm-bg mx-4 p-4 rounded-xl">
+      <div class="bg-web-mm-bg-middle mx-4 p-4 rounded-xl">
         <h1>Title</h1>
         <p class="text-web-mm-fg-dim">Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum </p>
         <UInput
