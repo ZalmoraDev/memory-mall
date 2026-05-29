@@ -16,14 +16,10 @@ definePageMeta({
   <div class="web-STYLE p-4 flex-1 flex flex-col items-center bg-web-bg justify-center">
     <img src="/images/web/schmoogle.png" alt="Google Logo" class="max-w-xl w-full"/>
     <div class="grid grid-cols-3 sm:grid-cols-4 p-2 rounded-xl gap-2 mt-4">
-      <UButton
-        as="NuxtLink"
-        to="/web/mm"
-        class="flex flex-col items-center gap-2 text-white! no-underline!"
-        :avatar="{ src: '/icons/web/mm/logo-FFF.svg', class: 'w-10 h-10 bg-transparent rounded-none' }"
-      >
+      <NuxtLink to="/web/mm" class="flex flex-col items-center gap-2 text-white! no-underline!">
+        <img src="/icons/web/mm/logo-FFF.svg" alt="Memory Mall Logo" class="w-16 h-16 p-2 rounded-xl bg-web-mm-pri-500" />
         Memory Mall
-      </UButton>
+      </NuxtLink>
     </div>
   </div>
 </template>

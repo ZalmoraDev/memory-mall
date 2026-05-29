@@ -21,22 +21,22 @@
 
     <div class="os-startmenu-bottom-colors flex justify-end gap-2 p-1 w-full border-t-2 border-os-pri">
       <div class="flex gap-1 items-center">
-        <UButton
-          icon="material-symbols:key-outline"
-          size="md"
-          :ui="{ leadingIcon: 'text-white' }"
-          class="w-8 h-8 bg-amber-500 hover:bg-amber-600 active:bg-amber-700 border border-os-ter inset-shadow-sm inset-shadow-white/75! justify-center"
-        />
+        <!--  TODO: THIS WAS A UI COMP-->
+        <a
+          class="w-8 h-8 bg-amber-500 hover:bg-amber-600 active:bg-amber-700 border border-os-ter inset-shadow-sm inset-shadow-white/75! flex items-center justify-center cursor-pointer"
+        >
+          <Icon name="material-symbols:key-outline" class="text-white text-lg" />
+        </a>
         <span class="text-sm text-os-fg-on-pri">Log Off</span>
       </div>
       <div class="flex gap-1 items-center p-1">
-        <UButton
+        <!--  TODO: THIS WAS A UI COMP-->
+        <a
           href="https://blackscreen.app/"
-          icon="material-symbols:power-settings-new-outline"
-          size="md"
-          :ui="{ leadingIcon: 'text-white' }"
-          class="w-8 h-8 bg-red-500 hover:bg-red-600 active:bg-red-700 border border-os-ter inset-shadow-sm inset-shadow-white/75! justify-center"
-        />
+          class="w-8 h-8 bg-red-500 hover:bg-red-600 active:bg-red-700 border border-os-ter inset-shadow-sm inset-shadow-white/75! flex items-center justify-center"
+        >
+          <Icon name="material-symbols:power-settings-new-outline" class="text-white text-lg" />
+        </a>
         <span class="text-sm text-os-fg-on-pri">Turn Off Computer</span>
       </div>
     </div>

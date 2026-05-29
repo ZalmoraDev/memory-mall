@@ -2,13 +2,14 @@
   <div class="os-STYLE">
     <ul class="flex flex-col gap-2">
       <li v-for="track in tracks" :key="track.id">
-        <UButton
-          :icon="isTrackPlaying(track.id) ? 'material-symbols:pause-rounded' : 'material-symbols:play-arrow'"
+        <!--  TODO: THIS WAS A UI COMP-->
+        <button
           type="button"
           @click="onPlayAsPlaylist(tracks, track)"
-          :ui="{ leadingIcon: 'text-white' }"
-          class="main-glossy-button bg-green-500!"
-        />
+          class="main-glossy-button bg-green-500! flex items-center justify-center inline-flex w-8 h-8 align-middle mr-2"
+        >
+          <Icon :name="isTrackPlaying(track.id) ? 'material-symbols:pause-rounded' : 'material-symbols:play-arrow'" class="text-white text-lg" />
+        </button>
         {{ track.title }}
       </li>
     </ul>

@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "@nuxt/ui";
 
 /*overwrite the nuxt body wrapper,
 in order to scale page to vertical full*/

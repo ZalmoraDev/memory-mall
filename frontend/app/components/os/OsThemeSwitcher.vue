@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <!-- Uses NuxtColorMode, which is a dependency of Nuxt-ui -->
+  <!-- Uses NuxtColorMode -->
   <select class="os-STYLE bg-os-ter text-os-fg-lg w-full" v-model="$colorMode.preference">
     <option value="system">Default ({{ $colorMode.value === "light" ? "blue" : "royale noir" }})</option>
     <option value="os-blue">Light: blue</option>

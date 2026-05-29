@@ -14,13 +14,14 @@ useSeoMeta({
 </script>
 
 <template>
-  <UApp class="flex flex-col h-screen w-full">
+<!--  TODO: THIS WAS A UI COMP-->
+  <div class="flex flex-col h-screen w-full">
     <div class="flex flex-col flex-1 container mx-auto sm:my-4 rounded-t-lg border-2 border-os-pri overflow-hidden">
       <OsWindowTitleBar />
       <NuxtPage class="flex-1 overflow-y-auto" />
     </div>
     <OsTaskBar />
-  </UApp>
+  </div>
 </template>
 
 <style>

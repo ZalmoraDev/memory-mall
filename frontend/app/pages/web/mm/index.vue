@@ -39,14 +39,18 @@ const popularBusinessProducts = [
       </div>
 
       <div class="bg-web-mm-bg-middle mx-4 p-4 rounded-xl">
-        <h1>Title</h1>
-        <p class="text-web-mm-fg-dim">Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum </p>
-        <UInput
-          icon="material-symbols:search"
-          placeholder="Search products..."
-          size="md"
-          class="w-full"
-        />
+        <h2 class="text-2xl font-bold mb-2">Search Products</h2>
+        <p class="text-web-mm-fg-dim mb-4">Find the best tech deals or retro computers by searching catalog items below.</p>
+        <div class="relative w-full">
+          <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+            <Icon name="material-symbols:search" class="text-web-mm-fg-dim text-xl" />
+          </span>
+          <input
+            type="text"
+            placeholder="Search products..."
+            class="w-full pl-10 pr-4 py-2 border border-web-mm-border rounded-lg focus:outline-none focus:ring-2 focus:ring-web-mm-pri-300"
+          />
+        </div>
       </div>
     </main>
     <WebMmLayoutFooter />

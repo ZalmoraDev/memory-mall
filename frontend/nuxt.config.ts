@@ -1,3 +1,4 @@
+import tailwindcss from "@tailwindcss/vite";
 declare const process: { env: Record<any, any> };
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
@@ -10,7 +11,7 @@ export default defineNuxtConfig({
       viewport: "width=device-width, initial-scale=1, maximum-scale=1",
     },
   },
-  modules: ["@nuxt/ui", "@nuxtjs/color-mode", "nuxt-music-flow"],
+  modules: ["@nuxtjs/color-mode", "nuxt-music-flow", "@nuxt/icon"],
 
   imports: {
     dirs: ["types"],
@@ -23,15 +24,9 @@ export default defineNuxtConfig({
     fallback: "light", // fallback
     classSuffix: "", // removes default '-mode' suffix of color themes (.light instead of .light-mode etc.)
   },
-  ui: {
-    colorMode: false,
-    theme: {
-      transitions: false
-    }
-  },
-
 
   vite: {
+    plugins: [tailwindcss()],
     server: {
       allowedHosts: ["localhost", "127.0.0.1:3000"],
     },
