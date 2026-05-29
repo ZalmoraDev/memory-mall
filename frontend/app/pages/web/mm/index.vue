@@ -22,11 +22,11 @@ const popularBusinessProducts = [
 
 <template>
   <div class="web-mm-STYLE flex flex-col h-full">
-    <main class="flex-1 w-full bg-web-mm-base">
+    <main class="flex-1 w-full bg-web-mm-bg-dark">
       <WebMmLayoutHeader />
       <WebMmLayoutNav />
-      <div class="relative w-auto m-4 h-64 bg-web-mm-pri-80 rounded-2xl flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 bg-web-mm-pri-80 opacity-50"></div>
+      <div class="relative w-auto m-4 h-64 bg-web-mm-pri-200 rounded-2xl flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-web-mm-pri-200 opacity-50"></div>
         <div class="relative flex flex-col items-center justify-center text-center px-8 z-10">
           <h1 class="text-5xl font-bold mb-4">Memory Mall</h1>
           <p class="text-2xl font-semibold mb-2">Where Users & Companies Trade Tech</p>
@@ -38,26 +38,15 @@ const popularBusinessProducts = [
         </div>
       </div>
 
-      <div class="flex m-4 gap-4">
-        <div class="relative w-full h-full p-4 rounded-t-2xl inset-shadow-sm inset-shadow-white bg-linear-to-b from-green-500 to-green-300 overflow-hidden">
-          <h2 class="relative z-10 text-2xl font-bold mb-4">User Products</h2>
-          <div class="relative z-10 flex flex-col w-fit h-full gap-2">
-            <NuxtLink to="/web/mm/p" class="main-link-button web-mm-gradient-button-green p-4 rounded-2xl"> All </NuxtLink>
-            <NuxtLink to="/web/mm/p" class="main-link-button web-mm-gradient-button-green p-4 rounded-2xl"> New </NuxtLink>
-            <NuxtLink to="/web/mm/p" class="main-link-button web-mm-gradient-button-green p-4 rounded-2xl"> Refurbished </NuxtLink>
-          </div>
-          <img src="/images/web/mm/showcase/users.png" class="absolute right-0 top-0 z-0 h-full w-auto object-contain" alt="Compter Parts" />
-        </div>
-
-        <div class="relative w-full h-full p-4 rounded-t-2xl inset-shadow-sm inset-shadow-white bg-linear-to-b from-blue-500 to-blue-300 overflow-hidden">
-          <h2 class="relative z-10 text-2xl font-bold mb-4">Company Products</h2>
-          <div class="relative z-10 flex flex-col w-fit h-full gap-2">
-            <NuxtLink to="/web/mm/p" class="main-link-button glossy-button-blue p-4 rounded-2xl"> All </NuxtLink>
-            <NuxtLink to="/web/mm/p" class="main-link-button glossy-button-blue p-4 rounded-2xl"> New </NuxtLink>
-            <NuxtLink to="/web/mm/p" class="main-link-button glossy-button-blue p-4 rounded-2xl"> Refurbished </NuxtLink>
-          </div>
-          <img src="/images/web/mm/showcase/businesses.png" class="absolute right-0 top-0 z-0 h-full w-auto object-contain" alt="Apple computer" />
-        </div>
+      <div class="bg-web-mm-bg mx-4 p-4 rounded-xl">
+        <h1>Title</h1>
+        <p class="text-web-mm-fg-dim">Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum </p>
+        <UInput
+          icon="material-symbols:search"
+          placeholder="Search products..."
+          size="md"
+          class="w-full"
+        />
       </div>
     </main>
     <WebMmLayoutFooter />

@@ -24,7 +24,10 @@ export default defineNuxtConfig({
     classSuffix: "", // removes default '-mode' suffix of color themes (.light instead of .light-mode etc.)
   },
   ui: {
-    colorMode: false
+    colorMode: false,
+    theme: {
+      transitions: false
+    }
   },
 
 

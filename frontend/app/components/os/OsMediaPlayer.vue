@@ -7,7 +7,7 @@
           type="button"
           @click="onPlayAsPlaylist(tracks, track)"
           :ui="{ leadingIcon: 'text-white' }"
-          class="main-glossy-button bg-web-mm-pri-500!"
+          class="main-glossy-button bg-green-500!"
         />
         {{ track.title }}
       </li>

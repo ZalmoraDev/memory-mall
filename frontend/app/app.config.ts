@@ -1,15 +1,21 @@
 export default defineAppConfig({
-    ui: {
-      colorMode: false,
-        button: {
-            slots: {
-                base: 'cursor-pointer',
-            }
-        },
-        dropdownMenu: {
-            slots: {
-                item: 'cursor-pointer',
-            }
-        }
-    }
+  ui: {
+    button: {
+      compoundVariants: [],
+      slots: { base: "" },
+    },
+    dropdownMenu: {
+      compoundVariants: [],
+      slots: { item: "" },
+    },
+    input: {
+      compoundVariants: [],
+      slots: {
+        base: "",
+        leading: "",
+        trailing: "",
+        root: "",
+      },
+    },
+  },
 });

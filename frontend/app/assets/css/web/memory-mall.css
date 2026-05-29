@@ -13,113 +13,121 @@
     -webkit-font-smoothing: none;
     -moz-osx-font-smoothing: auto;
 
-    @apply text-web-mm-fg border-web-mm-stroke
+    @apply text-web-mm-fg border-web-mm-border
 }
 
-/* z-layers */
-
-
-/* Prefabs */
-.web-mm-gradient-pri {
-    @apply bg-[linear-gradient(to_bottom,var(--color-web-mm-pri-50)_0%,var(--color-web-mm-pri-50)_35%,var(--color-web-mm-pri-60)_65%)]
+/* Global overwrites */
+input {
+    @apply bg-web-mm-bg-light text-web-mm-fg! placeholder:text-web-mm-fg-dim
 }
 
 
 @theme static {
     /* Dynamic semantics (Placeholders for Light/Dark Themes) */
-    --color-web-mm-base: none;
-    --color-web-mm-surface: none;
-    --color-web-mm-raised: none;
+    --color-web-mm-bg-dark: none;
+    --color-web-mm-bg: none;
+    --color-web-mm-bg-light: none;
 
-    --color-web-mm-stroke: none;
+    --color-web-mm-border: none;
 
     --color-web-mm-fg-dim: none;
     --color-web-mm-fg: none;
 
     /* Static semantics */
-    --color-web-mm-pri: var(--color-web-mm-pri-50);
-    --color-web-mm-pri-dim: var(--color-web-mm-pri-20);
+    --color-web-mm-pri: var(--color-web-mm-pri-500);
+    --color-web-mm-pri-dim: var(--color-web-mm-pri-800);
 
-    --color-web-mm-sec: var(--color-web-mm-sec-50);
-    --color-web-mm-sec-dim: var(--color-web-mm-sec-20);
+    --color-web-mm-sec: var(--color-web-mm-sec-500);
+    --color-web-mm-sec-dim: var(--color-web-mm-sec-800);
 
     /* Color Definitions */
-    --_web-mm-tone-example: hsl(355, 50%, 50%);
-    --_web-mm-tone-h: 355;
-    --_web-mm-tone-s: 50%;
+    --_web-mm-bg-example: oklch(50% 3% 19.5);
+    --_web-mm-bg-c: 3%;
+    --_web-mm-bg-h: 0;
 
-    --_web-mm-pri-example: hsl(350.64, 93.51%, 50%);
-    --_web-mm-pri-h: 350.64;
-    --_web-mm-pri-s: 93.51%;
+    --_web-mm-pri-example: oklch(50% 50% 19.5);
+    --_web-mm-pri-c: 50%;
+    --_web-mm-pri-h: 19.5;
 
-    --_web-mm-sec-example: hsl(144.9, 100%, 50%);
-    --_web-mm-sec-h: 144.9;
-    --_web-mm-sec-s: 100%;
+    --_web-mm-sec-example: oklch(50% 50% 200);
+    --_web-mm-sec-c: 50%;
+    --_web-mm-sec-h: 200;
+
 
     /* Color Variants */
-    --color-web-mm-tone-0: hsl(var(--_web-mm-tone-h), var(--_web-mm-tone-s), 0%);
-    --color-web-mm-tone-5: hsl(var(--_web-mm-tone-h), var(--_web-mm-tone-s), 5%);
-    --color-web-mm-tone-10: hsl(var(--_web-mm-tone-h), var(--_web-mm-tone-s), 10%);
-    --color-web-mm-tone-20: hsl(var(--_web-mm-tone-h), var(--_web-mm-tone-s), 20%);
-    --color-web-mm-tone-30: hsl(var(--_web-mm-tone-h), var(--_web-mm-tone-s), 30%);
-    --color-web-mm-tone-40: hsl(var(--_web-mm-tone-h), var(--_web-mm-tone-s), 40%);
-    --color-web-mm-tone-50: hsl(var(--_web-mm-tone-h), var(--_web-mm-tone-s), 50%);
-    --color-web-mm-tone-60: hsl(var(--_web-mm-tone-h), var(--_web-mm-tone-s), 60%);
-    --color-web-mm-tone-70: hsl(var(--_web-mm-tone-h), var(--_web-mm-tone-s), 70%);
-    --color-web-mm-tone-80: hsl(var(--_web-mm-tone-h), var(--_web-mm-tone-s), 80%);
-    --color-web-mm-tone-90: hsl(var(--_web-mm-tone-h), var(--_web-mm-tone-s), 90%);
-    --color-web-mm-tone-95: hsl(var(--_web-mm-tone-h), var(--_web-mm-tone-s), 95%);
-    --color-web-mm-tone-100: hsl(var(--_web-mm-tone-h), var(--_web-mm-tone-s), 100%);
+    --color-web-mm-bg-50: oklch(95% var(--_web-mm-bg-c) var(--_web-mm-bg-h));
+    --color-web-mm-bg-100: oklch(90% var(--_web-mm-bg-c) var(--_web-mm-bg-h));
+    --color-web-mm-bg-200: oklch(80% var(--_web-mm-bg-c) var(--_web-mm-bg-h));
+    --color-web-mm-bg-300: oklch(70% var(--_web-mm-bg-c) var(--_web-mm-bg-h));
+    --color-web-mm-bg-400: oklch(60% var(--_web-mm-bg-c) var(--_web-mm-bg-h));
+    --color-web-mm-bg-500: oklch(50% var(--_web-mm-bg-c) var(--_web-mm-bg-h));
+    --color-web-mm-bg-600: oklch(40% var(--_web-mm-bg-c) var(--_web-mm-bg-h));
+    --color-web-mm-bg-700: oklch(30% var(--_web-mm-bg-c) var(--_web-mm-bg-h));
+    --color-web-mm-bg-800: oklch(20% var(--_web-mm-bg-c) var(--_web-mm-bg-h));
+    --color-web-mm-bg-900: oklch(10% var(--_web-mm-bg-c) var(--_web-mm-bg-h));
+    --color-web-mm-bg-950: oklch(5% var(--_web-mm-bg-c) var(--_web-mm-bg-h));
 
-    --color-web-mm-pri-0: hsl(var(--_web-mm-pri-h), var(--_web-mm-pri-s), 0%);
-    --color-web-mm-pri-5: hsl(var(--_web-mm-pri-h), var(--_web-mm-pri-s), 5%);
-    --color-web-mm-pri-10: hsl(var(--_web-mm-pri-h), var(--_web-mm-pri-s), 10%);
-    --color-web-mm-pri-20: hsl(var(--_web-mm-pri-h), var(--_web-mm-pri-s), 20%);
-    --color-web-mm-pri-30: hsl(var(--_web-mm-pri-h), var(--_web-mm-pri-s), 30%);
-    --color-web-mm-pri-40: hsl(var(--_web-mm-pri-h), var(--_web-mm-pri-s), 40%);
-    --color-web-mm-pri-50: hsl(var(--_web-mm-pri-h), var(--_web-mm-pri-s), 50%);
-    --color-web-mm-pri-60: hsl(var(--_web-mm-pri-h), var(--_web-mm-pri-s), 60%);
-    --color-web-mm-pri-70: hsl(var(--_web-mm-pri-h), var(--_web-mm-pri-s), 70%);
-    --color-web-mm-pri-80: hsl(var(--_web-mm-pri-h), var(--_web-mm-pri-s), 80%);
-    --color-web-mm-pri-90: hsl(var(--_web-mm-pri-h), var(--_web-mm-pri-s), 90%);
-    --color-web-mm-pri-95: hsl(var(--_web-mm-pri-h), var(--_web-mm-pri-s), 95%);
-    --color-web-mm-pri-100: hsl(var(--_web-mm-pri-h), var(--_web-mm-pri-s), 100%);
+    --color-web-mm-pri-50: oklch(95% var(--_web-mm-pri-c) var(--_web-mm-pri-h));
+    --color-web-mm-pri-100: oklch(90% var(--_web-mm-pri-c) var(--_web-mm-pri-h));
+    --color-web-mm-pri-200: oklch(80% var(--_web-mm-pri-c) var(--_web-mm-pri-h));
+    --color-web-mm-pri-300: oklch(70% var(--_web-mm-pri-c) var(--_web-mm-pri-h));
+    --color-web-mm-pri-400: oklch(60% var(--_web-mm-pri-c) var(--_web-mm-pri-h));
+    --color-web-mm-pri-500: oklch(50% var(--_web-mm-pri-c) var(--_web-mm-pri-h));
+    --color-web-mm-pri-600: oklch(40% var(--_web-mm-pri-c) var(--_web-mm-pri-h));
+    --color-web-mm-pri-700: oklch(30% var(--_web-mm-pri-c) var(--_web-mm-pri-h));
+    --color-web-mm-pri-800: oklch(20% var(--_web-mm-pri-c) var(--_web-mm-pri-h));
+    --color-web-mm-pri-900: oklch(10% var(--_web-mm-pri-c) var(--_web-mm-pri-h));
+    --color-web-mm-pri-950: oklch(5% var(--_web-mm-pri-c) var(--_web-mm-pri-h));
 
-    --color-web-mm-sec-0: hsl(var(--_web-mm-sec-h), var(--_web-mm-sec-s), 0%);
-    --color-web-mm-sec-5: hsl(var(--_web-mm-sec-h), var(--_web-mm-sec-s), 5%);
-    --color-web-mm-sec-10: hsl(var(--_web-mm-sec-h), var(--_web-mm-sec-s), 10%);
-    --color-web-mm-sec-20: hsl(var(--_web-mm-sec-h), var(--_web-mm-sec-s), 20%);
-    --color-web-mm-sec-30: hsl(var(--_web-mm-sec-h), var(--_web-mm-sec-s), 30%);
-    --color-web-mm-sec-40: hsl(var(--_web-mm-sec-h), var(--_web-mm-sec-s), 40%);
-    --color-web-mm-sec-50: hsl(var(--_web-mm-sec-h), var(--_web-mm-sec-s), 50%);
-    --color-web-mm-sec-60: hsl(var(--_web-mm-sec-h), var(--_web-mm-sec-s), 60%);
-    --color-web-mm-sec-70: hsl(var(--_web-mm-sec-h), var(--_web-mm-sec-s), 70%);
-    --color-web-mm-sec-80: hsl(var(--_web-mm-sec-h), var(--_web-mm-sec-s), 80%);
-    --color-web-mm-sec-90: hsl(var(--_web-mm-sec-h), var(--_web-mm-sec-s), 90%);
-    --color-web-mm-sec-95: hsl(var(--_web-mm-sec-h), var(--_web-mm-sec-s), 95%);
-    --color-web-mm-sec-100: hsl(var(--_web-mm-sec-h), var(--_web-mm-sec-s), 100%);
+    --color-web-mm-sec-50: oklch(95% var(--_web-mm-sec-c) var(--_web-mm-sec-h));
+    --color-web-mm-sec-100: oklch(90% var(--_web-mm-sec-c) var(--_web-mm-sec-h));
+    --color-web-mm-sec-200: oklch(80% var(--_web-mm-sec-c) var(--_web-mm-sec-h));
+    --color-web-mm-sec-300: oklch(70% var(--_web-mm-sec-c) var(--_web-mm-sec-h));
+    --color-web-mm-sec-400: oklch(60% var(--_web-mm-sec-c) var(--_web-mm-sec-h));
+    --color-web-mm-sec-500: oklch(50% var(--_web-mm-sec-c) var(--_web-mm-sec-h));
+    --color-web-mm-sec-600: oklch(40% var(--_web-mm-sec-c) var(--_web-mm-sec-h));
+    --color-web-mm-sec-700: oklch(30% var(--_web-mm-sec-c) var(--_web-mm-sec-h));
+    --color-web-mm-sec-800: oklch(20% var(--_web-mm-sec-c) var(--_web-mm-sec-h));
+    --color-web-mm-sec-900: oklch(10% var(--_web-mm-sec-c) var(--_web-mm-sec-h));
+    --color-web-mm-sec-950: oklch(5% var(--_web-mm-sec-c) var(--_web-mm-sec-h));
 }
 
 
 /* Light/Dark Themes */
 :is(.light, .os-blue, .os-olive-green, .os-silver) {
-    --color-web-mm-base: var(--color-web-mm-tone-100);
-    --color-web-mm-surface: var(--color-web-mm-tone-95);
-    --color-web-mm-raised: var(--color-web-mm-tone-90);
+    --color-web-mm-bg-dark: var(--color-web-mm-bg-100);
+    --color-web-mm-bg: var(--color-web-mm-bg-200);
+    --color-web-mm-bg-light: var(--color-web-mm-bg-300);
 
-    --color-web-mm-stroke: var(--color-web-mm-tone-60);
+    --color-web-mm-border: var(--color-web-mm-bg-400);
 
-    --color-web-mm-fg-dim: var(--color-web-mm-tone-30);
-    --color-web-mm-fg: var(--color-web-mm-tone-5);
+    --color-web-mm-fg-dim: var(--color-web-mm-bg-700);
+    --color-web-mm-fg: var(--color-web-mm-bg-950);
+
+    /* Light theme overwrites */
+
 }
 
 :is(.dark, .os-royale-noir, .os-zune, .os-embedded) {
-    --color-web-mm-base: var(--color-web-mm-tone-5);
-    --color-web-mm-surface: var(--color-web-mm-tone-10);
-    --color-web-mm-raised: var(--color-web-mm-tone-20);
+    --color-web-mm-bg-dark: var(--color-web-mm-bg-900);
+    --color-web-mm-bg: var(--color-web-mm-bg-800);
+    --color-web-mm-bg-light: var(--color-web-mm-bg-700);
 
-    --color-web-mm-stroke: var(--color-web-mm-tone-40);
+    --color-web-mm-border: var(--color-web-mm-bg-600);
 
-    --color-web-mm-fg-dim: var(--color-web-mm-tone-70);
-    --color-web-mm-fg: var(--color-web-mm-tone-95);
+    --color-web-mm-fg-dim: var(--color-web-mm-bg-300);
+    --color-web-mm-fg: var(--color-web-mm-bg-50);
+
+    /* Dark theme overwrites */
+
+}
+
+
+/* Prefabs */
+.web-mm-gradient-pri {
+    background-image: linear-gradient(to bottom, var(--color-web-mm-pri-500) 0%, var(--color-web-mm-pri-500) 35%, var(--color-web-mm-pri-400) 65%);
+}
+
+.web-mm-gradient-sec {
+    background-image: linear-gradient(to bottom, var(--color-web-mm-sec-500) 0%, var(--color-web-mm-sec-500) 35%, var(--color-web-mm-sec-400) 65%);
 }

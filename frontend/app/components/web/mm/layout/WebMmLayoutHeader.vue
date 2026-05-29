@@ -5,7 +5,7 @@
 
 <template>
   <header
-    class="web-mm-STYLE sticky top-0 z-50 flex justify-between items-center w-full p-1.5 gap-2 shadow-lg bg-linear-to-r from-web-mm-pri-20 to-web-mm-pri-30"
+    class="web-mm-STYLE sticky top-0 z-50 flex justify-between items-center w-full p-1.5 gap-2 shadow-lg bg-linear-to-r from-web-mm-pri-800 to-web-mm-pri-700"
   >
     <!-- Logo + Title (Left) -->
     <a class="flex shrink-0 items-center gap-3 no-underline! hover:bg-black/20" href="/web/mm">

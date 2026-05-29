@@ -1,4 +1,9 @@
 ########################
+# DOCS
+/docs/design.pur
+/docs/.$.drawio.*
+
+########################
 # BACKEND
 
 # Express dev/build outputs
@@ -34,9 +39,6 @@
 .env.test.local
 
 !.env.example
-
-# Docs dir
-/docs/.$.drawio.*
 
 # Logs
 logs/
