@@ -21,10 +21,10 @@ const popularBusinessProducts = [
 </script>
 
 <template>
-  <div class="web-mm-STYLE flex flex-col h-full">
+  <div class="web-mm-STYLE flex flex-col h-full relative pl-16">
+    <WebMmLayoutNav />
     <main class="flex-1 w-full bg-web-mm-bg-bottom">
       <WebMmLayoutHeader />
-      <WebMmLayoutNav />
       <div class="relative w-auto m-4 h-64 bg-web-mm-pri-200 rounded-2xl flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 bg-web-mm-pri-200 opacity-50"></div>
         <div class="relative flex flex-col items-center justify-center text-center px-8 z-10">
@@ -48,7 +48,7 @@ const popularBusinessProducts = [
           <input
             type="text"
             placeholder="Search products..."
-            class="w-full pl-10 pr-4 py-2 border border-web-mm-border rounded-lg focus:outline-none focus:ring-2 focus:ring-web-mm-pri-300"
+            class="w-full px-10 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-web-mm-pri-300"
           />
         </div>
       </div>
