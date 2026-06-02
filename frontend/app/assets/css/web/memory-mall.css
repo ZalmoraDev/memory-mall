@@ -131,20 +131,12 @@ input {
     background-image: linear-gradient(to bottom, var(--color-web-mm-sec-500) 0%, var(--color-web-mm-sec-500) 35%, var(--color-web-mm-sec-400) 65%);
 }
 
-.fest-nav-item {
-    @apply flex items-center gap-3 px-3 py-2 rounded-md hover:bg-gray-100 transition-colors mb-0;
-}
-
-.fest-nav-item-icon {
-    @apply w-6 h-6 shrink-0;
-}
-
 .fest-nav-item-text {
-    @apply whitespace-nowrap opacity-0 group-hover:opacity-100 peer-checked:opacity-100 transition-opacity duration-300;
+    @apply whitespace-nowrap opacity-0 group-data-[expanded]:opacity-100 peer-checked:opacity-100 transition-opacity duration-300;
 }
 
 .fest-nav-sidebar-text {
-    @apply whitespace-nowrap opacity-0 group-hover:opacity-100 peer-checked:opacity-100 transition-opacity duration-300;
+    @apply whitespace-nowrap opacity-0 group-data-[expanded]:opacity-100 peer-checked:opacity-100 transition-opacity duration-300;
 }
 
 .fest-nav-category {
@@ -152,9 +144,9 @@ input {
 }
 
 .fest-nav-category-full {
-    @apply opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute left-3 top-3 whitespace-nowrap;
+    @apply opacity-0 group-data-[expanded]:opacity-100 transition-opacity duration-300 absolute left-3 top-3 whitespace-nowrap;
 }
 
 .fest-nav-category-short {
-    @apply group-hover:opacity-0 transition-opacity duration-300 w-6 text-center shrink-0;
+    @apply group-data-[expanded]:opacity-0 transition-opacity duration-300 w-6 text-center shrink-0;
 }

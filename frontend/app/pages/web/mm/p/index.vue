@@ -27,40 +27,42 @@ const popularBusinessProducts = [
 </script>
 
 <template>
-  <div class="web-mm-STYLE flex flex-col h-full relative pl-16">
+  <div class="web-mm-STYLE flex flex-row h-full">
     <WebMmLayoutNav />
-    <main class="flex-1 w-full bg-web-mm-bg-bottom">
-      <WebMmLayoutHeader />
+    <div class="flex-1 flex flex-col min-w-0 overflow-y-auto">
+      <main class="flex-1 w-full bg-web-mm-bg-bottom">
+        <WebMmLayoutHeader />
 
-      <!-- Featured Products Section -->
-      <div class="px-4">
-        <WebMmSectionHeader title="Trending" subtitle="Business last 7 days" color="blue" />
-        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 mb-8">
-          <WebMmProductGallery
-            v-for="product in popularBusinessProducts"
-            :uuid="product.uuid"
-            :title="product.title"
-            :price="product.price"
-            :condition="product.condition as WebMmProductCondition"
-          />
+        <!-- Featured Products Section -->
+        <div class="px-4">
+          <WebMmSectionHeader title="Trending" subtitle="Business last 7 days" color="blue" />
+          <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 mb-8">
+            <WebMmProductGallery
+              v-for="product in popularBusinessProducts"
+              :uuid="product.uuid"
+              :title="product.title"
+              :price="product.price"
+              :condition="product.condition as WebMmProductCondition"
+            />
+          </div>
         </div>
-      </div>
 
-      <!-- Featured User Products Section -->
-      <div class="px-4">
-        <WebMmSectionHeader title="Trending" subtitle="Customer last 7 days" color="green" />
-        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 mb-8">
-          <WebMmProductGallery
-            v-for="product in popularBusinessProducts"
-            :uuid="product.uuid"
-            :title="product.title"
-            :price="product.price"
-            :condition="product.condition as WebMmProductCondition"
-          />
+        <!-- Featured User Products Section -->
+        <div class="px-4">
+          <WebMmSectionHeader title="Trending" subtitle="Customer last 7 days" color="green" />
+          <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 mb-8">
+            <WebMmProductGallery
+              v-for="product in popularBusinessProducts"
+              :uuid="product.uuid"
+              :title="product.title"
+              :price="product.price"
+              :condition="product.condition as WebMmProductCondition"
+            />
+          </div>
         </div>
-      </div>
-    </main>
-    <WebMmLayoutFooter />
+      </main>
+      <WebMmLayoutFooter />
+    </div>
   </div>
 </template>
 

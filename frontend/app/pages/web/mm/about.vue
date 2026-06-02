@@ -9,12 +9,14 @@ useSeoMeta({
 </script>
 
 <template>
-  <div class="web-mm-STYLE flex flex-col h-full relative pl-16">
+  <div class="web-mm-STYLE flex flex-row h-full">
     <WebMmLayoutNav />
-    <main class="flex-1 w-full bg-web-mm-bg-bottom">
-      <WebMmLayoutHeader />
-    </main>
-    <WebMmLayoutFooter />
+    <div class="flex-1 flex flex-col min-w-0 overflow-y-auto">
+      <main class="flex-1 w-full bg-web-mm-bg-bottom">
+        <WebMmLayoutHeader />
+      </main>
+      <WebMmLayoutFooter />
+    </div>
   </div>
 </template>
 
