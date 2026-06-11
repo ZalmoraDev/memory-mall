@@ -6,7 +6,7 @@
         <button
           type="button"
           @click="onPlayAsPlaylist(tracks, track)"
-          class="main-glossy-button bg-green-500! flex items-center justify-center inline-flex w-8 h-8 align-middle mr-2"
+          class="os-button bg-green-500! flex items-center justify-center w-8 h-8 align-middle mr-2"
         >
           <Icon :name="isTrackPlaying(track.id) ? 'material-symbols:pause-rounded' : 'material-symbols:play-arrow'" class="text-white text-lg" />
         </button>

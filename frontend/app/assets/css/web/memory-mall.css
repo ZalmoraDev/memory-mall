@@ -16,6 +16,7 @@
 }
 
 /* Global overwrites */
+/* TODO: make prefab, not global overwrite */
 input {
     @apply bg-web-mm-bg-top text-web-mm-fg! placeholder:text-web-mm-fg-dim
 }
@@ -122,7 +123,9 @@ input {
 }
 
 
-/* Prefabs */
+/* region Prefabs */
+
+/* general prefabs */
 .web-mm-gradient-pri {
     background-image: linear-gradient(to bottom, var(--color-web-mm-pri-500) 0%, var(--color-web-mm-pri-500) 35%, var(--color-web-mm-pri-400) 65%);
 }
@@ -131,22 +134,4 @@ input {
     background-image: linear-gradient(to bottom, var(--color-web-mm-sec-500) 0%, var(--color-web-mm-sec-500) 35%, var(--color-web-mm-sec-400) 65%);
 }
 
-.fest-nav-item-text {
-    @apply whitespace-nowrap opacity-0 group-data-[expanded]:opacity-100 peer-checked:opacity-100 transition-opacity duration-300;
-}
-
-.fest-nav-sidebar-text {
-    @apply whitespace-nowrap opacity-0 group-data-[expanded]:opacity-100 peer-checked:opacity-100 transition-opacity duration-300;
-}
-
-.fest-nav-category {
-    @apply flex items-center p-3 pt-3 rounded-md font-semibold text-sm text-neutral-400 relative mb-0;
-}
-
-.fest-nav-category-full {
-    @apply opacity-0 group-data-[expanded]:opacity-100 transition-opacity duration-300 absolute left-3 top-3 whitespace-nowrap;
-}
-
-.fest-nav-category-short {
-    @apply group-data-[expanded]:opacity-0 transition-opacity duration-300 w-6 text-center shrink-0;
-}
+/* endregion Prefabs */

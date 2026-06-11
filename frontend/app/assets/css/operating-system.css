@@ -24,6 +24,34 @@ body {
     @apply bg-(image:--color-os-wp);
 }
 
+.os-button {
+    @apply rounded-sm font-bold justify-center hover:brightness-115
+    inset-shadow-sm inset-shadow-white/50 active:inset-shadow-black/75!
+}
+.os-button-general-colors {
+}
+.os-button-close-colors {
+}
+
+
+.os-inline-highlight {
+}
+
+.os-window-titlebar-colors {
+}
+
+.os-taskbar-colors {
+}
+
+.os-taskbar-startbutton-colors {
+}
+
+.os-startmenu-top-colors {
+}
+
+.os-startmenu-bottom-colors {
+}
+
 
 @theme static {
     /* Dynamic semantics (Placeholders for Light/Dark Themes) */

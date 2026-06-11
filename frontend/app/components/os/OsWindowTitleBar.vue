@@ -16,16 +16,13 @@ const pageTitle = computed(() => {
       <div class="font-bold text-os-fg-on-pri">{{ pageTitle }} - Michaelsoft MyIE2</div>
     </div>
     <div class="p-0.75 flex items-center gap-0.5">
-      <!--  TODO: THIS WAS A UI COMP-->
-      <button class="os-button-general-colors os-inline-highlight w-7 h-7 border border-os-pri flex items-center justify-center">
+      <button class="os-button os-button-general-colors os-inline-highlight w-7 h-7 border border-os-pri flex items-center justify-center">
         <Icon name="material-symbols:minimize-rounded" class="text-white text-base" />
       </button>
-      <!--  TODO: THIS WAS A UI COMP-->
-      <button class="os-button-general-colors os-inline-highlight w-7 h-7 border border-os-pri flex items-center justify-center">
+      <button class="os-button os-button-general-colors os-inline-highlight w-7 h-7 border border-os-pri flex items-center justify-center">
         <Icon name="mdi:window-maximize" class="text-white text-sm" />
       </button>
-      <!--  TODO: THIS WAS A UI COMP-->
-      <button class="os-button-close-colors os-inline-highlight w-7 h-7 border border-os-pri flex items-center justify-center">
+      <button class="os-button os-button-close-colors os-inline-highlight w-7 h-7 border border-os-pri flex items-center justify-center">
         <Icon name="material-symbols:close-rounded" class="text-white text-base" />
       </button>
     </div>
