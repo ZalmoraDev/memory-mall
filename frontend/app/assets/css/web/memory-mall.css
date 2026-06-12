@@ -94,7 +94,7 @@ input {
 
 
 /* Light/Dark Themes */
-:is(.light, .os-blue, .os-olive-green, .os-silver) {
+[class^="light"] {
     --color-web-mm-bg-bottom: var(--color-web-mm-bg-middle-100);
     --color-web-mm-bg-middle: var(--color-web-mm-bg-middle-200);
     --color-web-mm-bg-top: var(--color-web-mm-bg-middle-300);
@@ -108,7 +108,7 @@ input {
 
 }
 
-:is(.dark, .os-royale-noir, .os-zune, .os-embedded) {
+[class^="dark"] {
     --color-web-mm-bg-bottom: var(--color-web-mm-bg-middle-900);
     --color-web-mm-bg-middle: var(--color-web-mm-bg-middle-800);
     --color-web-mm-bg-top: var(--color-web-mm-bg-middle-700);

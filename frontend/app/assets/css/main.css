@@ -55,13 +55,13 @@ input {
 
 
 /* Light/Dark Themes */
-:is(.light, .os-blue, .os-olive-green, .os-silver) {
+[class^="light"] {
     input[type="datetime-local"] {
         color-scheme: light;
     }
 }
 
-:is(.dark, .os-royale-noir, .os-zune, .os-embedded) {
+[class^="dark"] {
     scrollbar-color: #404040 #0a0a0a;
 
     input[type="datetime-local"] {

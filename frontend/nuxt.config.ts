@@ -21,8 +21,8 @@ export default defineNuxtConfig({
   ],
   colorMode: {
     preference: "system", // default
-    fallback: "light", // fallback
-    classSuffix: "", // removes default '-mode' suffix of color themes (.light instead of .light-mode etc.)
+    fallback: "dark", // fallback
+    classSuffix: "", // removes default '-mode' suffix
   },
 
   vite: {

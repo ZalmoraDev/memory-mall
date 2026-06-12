@@ -28,8 +28,10 @@ body {
     @apply rounded-sm font-bold justify-center hover:brightness-115
     inset-shadow-sm inset-shadow-white/50 active:inset-shadow-black/75!
 }
+
 .os-button-general-colors {
 }
+
 .os-button-close-colors {
 }
 
@@ -70,7 +72,7 @@ body {
 
 
 /*region Themes Light*/
-:is(.os-blue, .light) {
+:is(.light-blue, .light) {
     --color-os-pri: #1767ce;
     --color-os-sec: #4691eb;
     --color-os-ter: #d3e5fa;
@@ -116,7 +118,7 @@ body {
     }
 }
 
-.os-olive-green {
+.light-olive-green {
     --color-os-pri: #b6c694;
     --color-os-sec: #dcecbf;
     --color-os-ter: #f1f2e4;
@@ -163,7 +165,7 @@ body {
 }
 
 
-.os-silver {
+.light-silver {
     --color-os-pri: #b0b2c7;
     --color-os-sec: #ffffff;
     --color-os-ter: #e7e6ed;
@@ -213,7 +215,7 @@ body {
 
 
 /*region Themes Dark*/
-:is(.os-royale-noir, .dark) {
+:is(.dark-royale-noir, .dark) {
     --color-os-pri: #162132;
     --color-os-sec: #5a6576;
     --color-os-ter: #5a606f;
@@ -259,7 +261,7 @@ body {
 }
 
 
-.os-zune {
+.dark-zune {
     --color-os-pri: #000000;
     --color-os-sec: #575757;
     --color-os-ter: #666666;
@@ -306,7 +308,7 @@ body {
 }
 
 
-.os-embedded {
+.dark-embedded {
     --color-os-pri: #01325a;
     --color-os-sec: #256ca4;
     --color-os-ter: #2e75ad;

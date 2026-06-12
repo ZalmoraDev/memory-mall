@@ -28,12 +28,12 @@
 }
 
 /* Light/Dark Themes */
-:is(.light, .os-blue, .os-olive-green, .os-silver) {
+[class^="light"] {
     --color-web-bg: #ffffff;
     --color-web-fg: #000000;
 }
 
-:is(.dark, .os-royale-noir, .os-zune, .os-embedded) {
+[class^="dark"] {
     --color-web-bg: #242424;
     --color-web-fg: #ffffff;
 }
