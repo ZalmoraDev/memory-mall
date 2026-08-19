@@ -6,7 +6,7 @@ interface Props {
 }
 
 const props = defineProps<Props>();
-const getColorClasses = () => {
+const getPropColors = () => {
   switch (props.color) {
     case "green":
       return "from-green-500 to-green-700";
@@ -18,7 +18,7 @@ const getColorClasses = () => {
 </script>
 
 <template>
-  <div :class="`web-mm-STYLE mt-4 p-3 rounded-t-xl text-white shadow-md bg-linear-to-r ${getColorClasses()}`">
+  <div :class="`web-mm-STYLE mt-4 p-3 rounded-t-xl text-white shadow-md bg-linear-to-r ${getPropColors()}`">
     <h2 class="uppercase tracking-wider text-2xl font-black">{{ title }}</h2>
     <p v-if="subtitle" class="text-sm font-semibold mt-1">{{ subtitle }}</p>
   </div>

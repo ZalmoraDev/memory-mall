@@ -30,7 +30,7 @@ const popularBusinessProducts = [
   <div class="web-mm-STYLE flex flex-row h-full">
     <WebMmLayoutNav />
     <div class="flex-1 flex flex-col min-w-0 overflow-y-auto">
-      <main class="flex-1 w-full bg-web-mm-bg-bottom">
+      <main class="flex-1 w-full bg-web-mm-bottom">
         <WebMmLayoutHeader />
 
         <!-- Featured Products Section -->

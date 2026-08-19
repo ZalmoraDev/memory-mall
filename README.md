@@ -59,7 +59,7 @@
 
 - Website: http://localhost:3001
 - pgAdmin: http://localhost:8080, use credentials found in `compose.yml -> pgadmin`:
-    - Site login:
+    - Site result:
         - **Email Address:** admin@local.dev
         - **Password:** admin123
     - Server connection (Project->MemoryMallDB:

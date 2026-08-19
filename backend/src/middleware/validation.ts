@@ -1,5 +1,5 @@
 import type {Request, Response, NextFunction, RequestHandler} from 'express';
-import {ZodError} from 'zod';
+import {ZodEmail, ZodError, ZodObject, ZodString} from 'zod';
 
 // TODO: Refactor to by DRY, implement when I learned more about TS
 
@@ -8,7 +8,7 @@ import {ZodError} from 'zod';
  * @returns Inner middleware function that validates req.params and either:
  * - void, calling next()
  * - Response (400), validation failed */
-export const validateParams = (zodSchema): RequestHandler => {
+export const validateParams = (zodSchema: ZodObject<any>): RequestHandler => {
     return (req, res, next) => {
         try {
             zodSchema.parse(req.params);
@@ -33,7 +33,7 @@ export const validateParams = (zodSchema): RequestHandler => {
  * @returns Inner middleware function that validates req.query and either:
  * - void, calling next()
  * - Response (400), validation failed */
-export const validateQuery = (zodSchema): RequestHandler => {
+export const validateQuery = (zodSchema: ZodObject<any>): RequestHandler => {
     return (req, res, next) => {
         try {
             zodSchema.parse(req.query);
@@ -58,7 +58,7 @@ export const validateQuery = (zodSchema): RequestHandler => {
  * @returns Inner middleware function that validates req.body and either:
  * - void, calling next()
  * - Response (400), validation failed */
-export const validateBody = (zodSchema): RequestHandler => {
+export const validateBody = (zodSchema: ZodObject<any>): RequestHandler => {
     return (req, res, next) => {
         try {
             const validatedData = zodSchema.parse(req.body);

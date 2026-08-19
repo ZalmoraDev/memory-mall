@@ -18,15 +18,15 @@
 /* Global overwrites */
 /* TODO: make prefab, not global overwrite */
 input {
-    @apply bg-web-mm-bg-top text-web-mm-fg! placeholder:text-web-mm-fg-dim
+    @apply bg-web-mm-top text-web-mm-fg! placeholder:text-web-mm-fg-dim
 }
 
 
 @theme static {
     /* Dynamic semantics (Placeholders for Light/Dark Themes) */
-    --color-web-mm-bg-bottom: none;
-    --color-web-mm-bg-middle: none;
-    --color-web-mm-bg-top: none;
+    --color-web-mm-bottom: none;
+    --color-web-mm-middle: none;
+    --color-web-mm-top: none;
 
     --color-web-mm-border: none;
 
@@ -41,9 +41,9 @@ input {
     --color-web-mm-sec-dim: var(--color-web-mm-sec-800);
 
     /* Color Definitions */
-    --_web-mm-bg-middle-example: oklch(50% 3% 19.5);
-    --_web-mm-bg-middle-c: 3%;
-    --_web-mm-bg-middle-h: 0;
+    --_web-mm-bg-base-example: oklch(50% 3% 19.5);
+    --_web-mm-bg-base-c: 3%;
+    --_web-mm-bg-base-h: 0;
 
     --_web-mm-pri-example: oklch(50% 50% 19.5);
     --_web-mm-pri-c: 50%;
@@ -55,17 +55,17 @@ input {
 
 
     /* Color Variants */
-    --color-web-mm-bg-middle-50: oklch(95% var(--_web-mm-bg-middle-c) var(--_web-mm-bg-middle-h));
-    --color-web-mm-bg-middle-100: oklch(90% var(--_web-mm-bg-middle-c) var(--_web-mm-bg-middle-h));
-    --color-web-mm-bg-middle-200: oklch(80% var(--_web-mm-bg-middle-c) var(--_web-mm-bg-middle-h));
-    --color-web-mm-bg-middle-300: oklch(70% var(--_web-mm-bg-middle-c) var(--_web-mm-bg-middle-h));
-    --color-web-mm-bg-middle-400: oklch(60% var(--_web-mm-bg-middle-c) var(--_web-mm-bg-middle-h));
-    --color-web-mm-bg-middle-500: oklch(50% var(--_web-mm-bg-middle-c) var(--_web-mm-bg-middle-h));
-    --color-web-mm-bg-middle-600: oklch(40% var(--_web-mm-bg-middle-c) var(--_web-mm-bg-middle-h));
-    --color-web-mm-bg-middle-700: oklch(30% var(--_web-mm-bg-middle-c) var(--_web-mm-bg-middle-h));
-    --color-web-mm-bg-middle-800: oklch(20% var(--_web-mm-bg-middle-c) var(--_web-mm-bg-middle-h));
-    --color-web-mm-bg-middle-900: oklch(10% var(--_web-mm-bg-middle-c) var(--_web-mm-bg-middle-h));
-    --color-web-mm-bg-middle-950: oklch(5% var(--_web-mm-bg-middle-c) var(--_web-mm-bg-middle-h));
+    --color-web-mm-bg-base-50: oklch(95% var(--_web-mm-bg-base-c) var(--_web-mm-bg-base-h));
+    --color-web-mm-bg-base-100: oklch(90% var(--_web-mm-bg-base-c) var(--_web-mm-bg-base-h));
+    --color-web-mm-bg-base-200: oklch(80% var(--_web-mm-bg-base-c) var(--_web-mm-bg-base-h));
+    --color-web-mm-bg-base-300: oklch(70% var(--_web-mm-bg-base-c) var(--_web-mm-bg-base-h));
+    --color-web-mm-bg-base-400: oklch(60% var(--_web-mm-bg-base-c) var(--_web-mm-bg-base-h));
+    --color-web-mm-bg-base-500: oklch(50% var(--_web-mm-bg-base-c) var(--_web-mm-bg-base-h));
+    --color-web-mm-bg-base-600: oklch(40% var(--_web-mm-bg-base-c) var(--_web-mm-bg-base-h));
+    --color-web-mm-bg-base-700: oklch(30% var(--_web-mm-bg-base-c) var(--_web-mm-bg-base-h));
+    --color-web-mm-bg-base-800: oklch(20% var(--_web-mm-bg-base-c) var(--_web-mm-bg-base-h));
+    --color-web-mm-bg-base-900: oklch(10% var(--_web-mm-bg-base-c) var(--_web-mm-bg-base-h));
+    --color-web-mm-bg-base-950: oklch(5% var(--_web-mm-bg-base-c) var(--_web-mm-bg-base-h));
 
     --color-web-mm-pri-50: oklch(95% var(--_web-mm-pri-c) var(--_web-mm-pri-h));
     --color-web-mm-pri-100: oklch(90% var(--_web-mm-pri-c) var(--_web-mm-pri-h));
@@ -95,28 +95,28 @@ input {
 
 /* Light/Dark Themes */
 [class^="light"] {
-    --color-web-mm-bg-bottom: var(--color-web-mm-bg-middle-100);
-    --color-web-mm-bg-middle: var(--color-web-mm-bg-middle-200);
-    --color-web-mm-bg-top: var(--color-web-mm-bg-middle-300);
+    --color-web-mm-bottom: var(--color-web-mm-bg-base-50);
+    --color-web-mm-middle: var(--color-web-mm-bg-base-100);
+    --color-web-mm-top: var(--color-web-mm-bg-base-200);
 
-    --color-web-mm-border: var(--color-web-mm-bg-middle-400);
+    --color-web-mm-border: var(--color-web-mm-bg-base-400);
 
-    --color-web-mm-fg-dim: var(--color-web-mm-bg-middle-700);
-    --color-web-mm-fg: var(--color-web-mm-bg-middle-950);
+    --color-web-mm-fg-dim: var(--color-web-mm-bg-base-700);
+    --color-web-mm-fg: var(--color-web-mm-bg-base-950);
 
     /* Light theme overwrites */
 
 }
 
 [class^="dark"] {
-    --color-web-mm-bg-bottom: var(--color-web-mm-bg-middle-900);
-    --color-web-mm-bg-middle: var(--color-web-mm-bg-middle-800);
-    --color-web-mm-bg-top: var(--color-web-mm-bg-middle-700);
+    --color-web-mm-bottom: var(--color-web-mm-bg-base-900);
+    --color-web-mm-middle: var(--color-web-mm-bg-base-800);
+    --color-web-mm-top: var(--color-web-mm-bg-base-700);
 
-    --color-web-mm-border: var(--color-web-mm-bg-middle-600);
+    --color-web-mm-border: var(--color-web-mm-bg-base-600);
 
-    --color-web-mm-fg-dim: var(--color-web-mm-bg-middle-300);
-    --color-web-mm-fg: var(--color-web-mm-bg-middle-50);
+    --color-web-mm-fg-dim: var(--color-web-mm-bg-base-300);
+    --color-web-mm-fg: var(--color-web-mm-bg-base-50);
 
     /* Dark theme overwrites */
 

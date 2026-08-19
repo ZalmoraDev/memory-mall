@@ -6,9 +6,9 @@ import env from '../../env.ts';
  * which requires the base payload type with an index signature for arbitrary JWT claims.
  * `name` is either a users username, or business name*/
 export interface JwtPayload extends JWTPayload {
-    id: number;
+    id: string;
     email: string;
-    name: string;
+    name: string; // user.username / business.name
 }
 
 /** Generates JWT token with given `JwtPayload`, signed using HS256 algorithm and secret key from `.env` */
@@ -29,7 +29,7 @@ export const verifyToken = async (token: string): Promise<JwtPayload> => {
     const {payload} = await jwtVerify(token, secretKey);
 
     return {
-        id: payload.id as number,
+        id: payload.id as string, // UUID's are used, thus string, NOT number
         email: payload.email as string,
         name: payload.username as string
     };

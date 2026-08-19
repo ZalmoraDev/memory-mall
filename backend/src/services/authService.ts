@@ -1,14 +1,19 @@
-import bcrypt from 'bcrypt';
 import {eq} from 'drizzle-orm';
 import {db} from '../db/connection.ts';
-import {users, businesses, accounts, type User} from '../db/schema.ts';
+import {users, businesses, accounts, type User, type Business, type Account} from '../db/schema.ts';
 import {generateToken} from '../utils/jwt.ts';
 import {hashPassword, comparePasswords} from '../utils/passwords.ts';
 
 //region PUBLIC
 
+export interface CreateUserResult {
+    user: User;
+    account: Account;
+    token: string;
+}
+
 /** Service handling user registration. Hashes password, creates user in DB, and returns account & JWT.*/
-export const createUser = async (body: any) => {
+export const createUser = async (body: any): Promise<CreateUserResult> => {
     // 1) Destructure controller req.body & hash the password
     const {
         username, firstName, lastName, email, phone, password,
@@ -17,7 +22,7 @@ export const createUser = async (body: any) => {
     const hashedPassword = await hashPassword(password);
 
     // 2) Create user & account
-    const result = await db.transaction(async (tx) => {
+    const { user, account } = await db.transaction(async (tx) => {
         const [user] = await tx.insert(users).values({
             username,
             firstName,
@@ -40,24 +45,31 @@ export const createUser = async (body: any) => {
             city,
             postalCode
         }).returning({
+            id: accounts.id,
             email: accounts.email
         });
 
-        return {...user, ...account};
+        return {user, account};
     });
 
     // 3) Generate JWT
     const token = await generateToken({
-        id: result.id,
-        email: result.email,
-        name: result.username
+        id: account.id,
+        email: account.email,
+        name: user.username
     });
 
-    return {account: result, token};
+    return {user, account, token};
 };
 
+export interface CreateBusinessResult {
+    business: Business;
+    account: Account;
+    token: string;
+}
+
 /** Service handling business registration. Hashes password, creates business & account in DB, and returns account & JWT.*/
-export const createBusiness = async (body: any) => {
+export const createBusiness = async (body: any): Promise<CreateBusinessResult> => {
     // 1) Destructure controller req.body & hash the password
     const {
         name, description, vatNumber, email, phone, password,
@@ -65,10 +77,8 @@ export const createBusiness = async (body: any) => {
     } = body;
     const hashedPassword = await hashPassword(password);
 
-
-
     // 2) Create business & account
-    const result = await db.transaction(async (tx) => {
+    const {business, account} = await db.transaction(async (tx) => {
         const [business] = await tx.insert(businesses).values({
             name,
             description,
@@ -90,24 +100,32 @@ export const createBusiness = async (body: any) => {
             city,
             postalCode
         }).returning({
+            id: accounts.id,
             email: accounts.email,
             createdAt: accounts.createdAt
         });
 
-        return {...business, ...account};
+        return {business, account};
     });
 
     // 3) Generate JWT
     const token = await generateToken({
-        id: result.id,
-        email: result.email,
-        name: result.name
+        id: account.id,
+        email: account.email,
+        name: business.name
     });
 
-    return {account: result, token};
+    return {business, account, token};
 };
 
-export const loginAccount = async (email: string, password: string) => {
+export interface LoginResult {
+    account: Account;
+    user?: User;
+    business?: Business;
+    token: string;
+}
+
+export const loginAccount = async (email: string, password: string): Promise<LoginResult> => {
     // 1) Find the account by email & load user / business through relations
     const account = await db.query.accounts.findFirst({
         where: eq(accounts.email, email),
@@ -124,28 +142,24 @@ export const loginAccount = async (email: string, password: string) => {
     if (!isValidPassword)
         throw new Error('Invalid credentials');
 
-    // 3) Extract user/business and name based on account type
-    const userOrBusiness = (account.user || account.business)!;
-    const name = account.user?.username || account.business?.name;
+    // 3) Determine name based on account type
+    const name = account.user?.username ?? account.business?.name;
 
-    // 4) Generate JWT
+    // 4) Generate JWT (user.username / business.name)
     const token = await generateToken({
-        id: userOrBusiness.id,
+        id: account.id,
         email: account.email,
         name: name as string
     });
 
     return {
-        account: {
-            ...userOrBusiness,
-            email: account.email
-        },
+        account,
+        user: account.user ?? undefined,
+        business: account.business ?? undefined,
         token
     };
 };
 //endregion PUBLIC
 
-
-//region PRIVATE
 
 //region PRIVATE

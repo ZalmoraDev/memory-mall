@@ -1,6 +1,6 @@
 <script setup lang="ts">
-const colorMode = useColorMode();
 const props = defineProps<Props>();
+const colorMode = useColorMode();
 
 interface Props {
   readonly mmIconLight: string; // memory mall path prefix
@@ -10,16 +10,16 @@ interface Props {
   readonly alt: string;
 }
 
-
-const mmIcon = computed(() => colorMode.value.startsWith("dark") ? props.mmIconDark : props.mmIconLight);
+const mmIcon = computed(() => colorMode.value.startsWith("light") ? props.mmIconLight : props.mmIconDark);
 </script>
 
 <template>
   <a
     :href="'mm' + mmLink"
-    class="flex items-center justify-center group-data-expanded:justify-start gap-3 w-full px-1.5 group-data-expanded:px-3 py-2 rounded-md hover:bg-gray-100 transition-colors mb-0 group/item"
+    class="flex items-center gap-3 px-2 py-1.5 rounded-md hover:bg-web-mm-top no-underline!"
   >
-    <img :src="'/icons/web/mm/' + mmIcon" class="w-6 h-6 shrink-0" :alt="alt" />
+    <img :src="'/icons/web/mm/' + mmIcon" class="h-6" :alt="alt" />
+    <!-- data-expanded TRUE=block, FALSE=hidden -->
     <span class="whitespace-nowrap hidden group-data-expanded:block">{{ text }}</span>
   </a>
 </template>

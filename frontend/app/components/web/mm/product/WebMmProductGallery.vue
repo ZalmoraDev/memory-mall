@@ -10,7 +10,7 @@ interface Props {
 }
 
 const props = defineProps<Props>();
-const getBgColorClass = () => {
+const getPropConditionColor = () => {
   switch (props.condition) {
     case "new":
     case "open-box":
@@ -30,9 +30,9 @@ const getBgColorClass = () => {
 </script>
 
 <template>
-  <NuxtLink class="web-mm-STYLE m-1 rounded-md cursor-pointer hover:shadow-2xl bg-web-mm-bg-middle">
+  <NuxtLink class="web-mm-STYLE m-1 rounded-md cursor-pointer hover:shadow-2xl bg-web-mm-middle">
     <!-- TOP: Product Image -->
-    <div class="flex items-center justify-center overflow-hidden mb-2 h-40 border-b-2 border-dashed border-web-mm-border bg-web-mm-bg-middle">
+    <div class="flex items-center justify-center overflow-hidden mb-2 h-40 border-b-2 border-dashed border-web-mm-border bg-web-mm-middle">
       <img v-if="image" :src="image" :alt="title" class="w-full h-full object-cover" />
       <div v-else class="text-web-mm-fg text-center text-sm">[Product Image]</div>
     </div>
@@ -42,7 +42,7 @@ const getBgColorClass = () => {
       <div class="px-1">
         <h3 class="overflow-hidden mb-1 font-bold text-sm text-web-mm-fg">{{ title }}</h3>
         <div class="mb-1">
-          <span :class="`inline-block px-2 py-1 text-white text-xs font-bold uppercase ${getBgColorClass()}`">
+          <span :class="`inline-block px-2 py-1 text-white text-xs font-bold uppercase ${getPropConditionColor()}`">
             {{ condition }}
           </span>
         </div>

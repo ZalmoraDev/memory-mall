@@ -3,11 +3,11 @@
 <!------------------------->
 <script setup lang="ts">
 useSeoMeta({
-  title: "Memory Mall - Tech Deals & Electronics"
+  title: "Memory Mall - Tech Deals & Electronics",
 });
 
 definePageMeta({
-  title: "Home"
+  title: "Home",
 });
 
 const popularBusinessProducts = [
@@ -16,7 +16,7 @@ const popularBusinessProducts = [
   { uuid: "3", title: "Canon PowerShot Digital Camera", price: 149.99, condition: "open-box", category: "Cameras" },
   { uuid: "4", title: "Creative Sound Blaster", price: 89.99, condition: "fair", category: "Speakers" },
   { uuid: "5", title: "Maxtor 250GB Hard Drive", price: 119.99, condition: "good", category: "Storage" },
-  { uuid: "6", title: "Samsung 512MB RAM", price: 49.99, condition: "refurbished", category: "Memory" }
+  { uuid: "6", title: "Samsung 512MB RAM", price: 49.99, condition: "refurbished", category: "Memory" },
 ];
 </script>
 
@@ -24,9 +24,8 @@ const popularBusinessProducts = [
   <div class="web-mm-STYLE flex flex-row h-full">
     <WebMmLayoutNav />
     <div class="flex-1 flex flex-col min-w-0 overflow-y-auto">
-      <main class="flex-1 w-full bg-web-mm-bg-middle">
-        <div class="relative w-auto m-4 h-64 bg-web-mm-pri-200 rounded-2xl flex items-center justify-center overflow-hidden">
-          <div class="absolute inset-0 bg-web-mm-pri-200 opacity-50"></div>
+      <main class="flex-1 w-full bg-web-mm-bottom">
+        <div class="relative w-auto m-4 h-64 bg-web-mm-middle rounded-2xl flex items-center justify-center overflow-hidden">
           <div class="relative flex flex-col items-center justify-center text-center px-8 z-10">
             <h1 class="text-5xl font-bold mb-4">Memory Mall</h1>
             <p class="text-2xl font-semibold mb-2">Where Users & Companies Trade Tech</p>
@@ -38,7 +37,7 @@ const popularBusinessProducts = [
           </div>
         </div>
 
-        <div class="bg-web-mm-bg-bottom mx-4 p-4 rounded-xl">
+        <div class="bg-web-mm-middle mx-4 p-4 rounded-xl">
           <h2 class="text-2xl font-bold mb-2">Search Products</h2>
           <p class="text-web-mm-fg-dim mb-4">Find the best tech deals or retro computers by searching catalog items below.</p>
           <div class="relative w-full">

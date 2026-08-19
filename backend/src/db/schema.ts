@@ -296,6 +296,7 @@ export const cartItemRelations = relations(cartItems, ({one}) => ({
 
 // region EXPORT TYPES
 // Export TS types derived from table schemas
+// These are re-exported in @shared/types/
 
 // 🟥ACCOUNTS
 export type Account = typeof accounts.$inferSelect;
