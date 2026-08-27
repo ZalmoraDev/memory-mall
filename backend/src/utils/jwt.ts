@@ -31,6 +31,6 @@ export const verifyToken = async (token: string): Promise<JwtPayload> => {
     return {
         id: payload.id as string, // UUID's are used, thus string, NOT number
         email: payload.email as string,
-        name: payload.username as string
+        name: payload.name as string
     };
 };

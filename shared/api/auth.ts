@@ -1,4 +1,4 @@
-import type { Account, User, Business } from '../types';
+import type {Account, User, Business} from '../types';
 
 export interface LoginResponse {
     account: Account;

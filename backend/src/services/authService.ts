@@ -1,6 +1,6 @@
 import {eq} from 'drizzle-orm';
 import {db} from '../db/connection.ts';
-import {users, businesses, accounts, type User, type Business, type Account} from '../db/schema.ts';
+import {users, businesses, accounts, type Account} from '../db/schema.ts';
 import {generateToken} from '../utils/jwt.ts';
 import {hashPassword, comparePasswords} from '../utils/passwords.ts';
 
@@ -22,7 +22,7 @@ export const createUser = async (body: any): Promise<CreateUserResult> => {
     const hashedPassword = await hashPassword(password);
 
     // 2) Create user & account
-    const { user, account } = await db.transaction(async (tx) => {
+    const {user, account} = await db.transaction(async (tx) => {
         const [user] = await tx.insert(users).values({
             username,
             firstName,
@@ -46,7 +46,16 @@ export const createUser = async (body: any): Promise<CreateUserResult> => {
             postalCode
         }).returning({
             id: accounts.id,
-            email: accounts.email
+            userId: accounts.userId,
+            businessId: accounts.businessId,
+            email: accounts.email,
+            phone: accounts.phone,
+            streetAddress: accounts.streetAddress,
+            streetNumber: accounts.streetNumber,
+            apartmentSuite: accounts.apartmentSuite,
+            city: accounts.city,
+            postalCode: accounts.postalCode,
+            createdAt: accounts.createdAt
         });
 
         return {user, account};
@@ -59,14 +68,12 @@ export const createUser = async (body: any): Promise<CreateUserResult> => {
         name: user.username
     });
 
-    return {user, account, token};
+    return {
+        account: toPublicAccount(account),
+        user,
+        token
+    };
 };
-
-export interface CreateBusinessResult {
-    business: Business;
-    account: Account;
-    token: string;
-}
 
 /** Service handling business registration. Hashes password, creates business & account in DB, and returns account & JWT.*/
 export const createBusiness = async (body: any): Promise<CreateBusinessResult> => {
@@ -101,7 +108,15 @@ export const createBusiness = async (body: any): Promise<CreateBusinessResult> =
             postalCode
         }).returning({
             id: accounts.id,
+            userId: accounts.userId,
+            businessId: accounts.businessId,
             email: accounts.email,
+            phone: accounts.phone,
+            streetAddress: accounts.streetAddress,
+            streetNumber: accounts.streetNumber,
+            apartmentSuite: accounts.apartmentSuite,
+            city: accounts.city,
+            postalCode: accounts.postalCode,
             createdAt: accounts.createdAt
         });
 
@@ -115,17 +130,14 @@ export const createBusiness = async (body: any): Promise<CreateBusinessResult> =
         name: business.name
     });
 
-    return {business, account, token};
+    return {
+        account: toPublicAccount(account),
+        business,
+        token
+    };
 };
 
-export interface LoginResult {
-    account: Account;
-    user?: User;
-    business?: Business;
-    token: string;
-}
-
-export const loginAccount = async (email: string, password: string): Promise<LoginResult> => {
+export const loginAccount = async (email: string, password: string): Promise<LoginResponse> => {
     // 1) Find the account by email & load user / business through relations
     const account = await db.query.accounts.findFirst({
         where: eq(accounts.email, email),
@@ -153,13 +165,10 @@ export const loginAccount = async (email: string, password: string): Promise<Log
     });
 
     return {
-        account,
+        account: toPublicAccount(account),
         user: account.user ?? undefined,
         business: account.business ?? undefined,
         token
     };
 };
-//endregion PUBLIC
-
-
-//region PRIVATE
+//#endregion PUBLIC
