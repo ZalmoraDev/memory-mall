@@ -3,17 +3,31 @@ import {db} from '../db/connection.ts';
 import {users, businesses, accounts, type Account} from '../db/schema.ts';
 import {generateToken} from '../utils/jwt.ts';
 import {hashPassword, comparePasswords} from '../utils/passwords.ts';
+import type {PublicAccount, RegisterBusinessRequest, RegisterUserRequest} from '@shared/api/auth.js';
 
-//region PUBLIC
+//#region PRIVATE
 
-export interface CreateUserResult {
-    user: User;
-    account: Account;
-    token: string;
-}
+/** Strips fields that must never leave the server (password hash, deletedAt).
+ *  Explicit field pick (not `...rest`) so the result is the precise `PublicAccount` */
+const toPublicAccount = (account: Account): PublicAccount => ({
+    id: account.id,
+    userId: account.userId,
+    businessId: account.businessId,
+    email: account.email,
+    phone: account.phone,
+    streetAddress: account.streetAddress,
+    streetNumber: account.streetNumber,
+    apartmentSuite: account.apartmentSuite,
+    city: account.city,
+    postalCode: account.postalCode,
+    createdAt: account.createdAt
+});
+//#endregion PRIVATE
 
-/** Service handling user registration. Hashes password, creates user in DB, and returns account & JWT.*/
-export const createUser = async (body: any): Promise<CreateUserResult> => {
+
+//#region PUBLIC
+/** Service handling user registration. Hashes password, creates user in DB, and returns account & JWT. */
+export const createUser = async (body: RegisterUserRequest): Promise<any> => {
     // 1) Destructure controller req.body & hash the password
     const {
         username, firstName, lastName, email, phone, password,
@@ -69,14 +83,14 @@ export const createUser = async (body: any): Promise<CreateUserResult> => {
     });
 
     return {
-        account: toPublicAccount(account),
         user,
+        account: toPublicAccount(account),
         token
     };
 };
 
-/** Service handling business registration. Hashes password, creates business & account in DB, and returns account & JWT.*/
-export const createBusiness = async (body: any): Promise<CreateBusinessResult> => {
+/** Service handling business registration. Hashes password, creates business & account in DB, and returns account & JWT. */
+export const createBusiness = async (body: RegisterBusinessRequest): Promise<any> => {
     // 1) Destructure controller req.body & hash the password
     const {
         name, description, vatNumber, email, phone, password,
@@ -131,13 +145,14 @@ export const createBusiness = async (body: any): Promise<CreateBusinessResult> =
     });
 
     return {
-        account: toPublicAccount(account),
         business,
+        account: toPublicAccount(account),
         token
     };
 };
 
-export const loginAccount = async (email: string, password: string): Promise<LoginResponse> => {
+/** Service handling account login. Handles both user & business login. */
+export const loginAccount = async (email: string, password: string): Promise<any> => {
     // 1) Find the account by email & load user / business through relations
     const account = await db.query.accounts.findFirst({
         where: eq(accounts.email, email),
