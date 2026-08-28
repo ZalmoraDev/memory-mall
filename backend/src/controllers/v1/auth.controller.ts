@@ -8,9 +8,9 @@ import type {
     LoginResponse
 } from '@shared/api/auth.js';
 
-import {createUser, createBusiness, loginAccount} from '../../services/authService.ts';
+import {createUser, createBusiness, loginAccount} from '../../services/auth.service.ts';
 
-//region POST
+//#region POST
 /** POST /api/v1/register/user - Controller for handling user registration. Hashes password, creates user in DB, and returns account & JWT. */
 export const registerUser = async (req: Request, res: Response): Promise<Response> => {
     try {
@@ -75,4 +75,4 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
         return res.status(500).json({error: 'Failed to log in'});
     }
 };
-//endregion POST
+//#endregion POST

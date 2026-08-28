@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import authRoutes from './authRoutes.ts';
+import authRoutes from './auth.routes.ts';
 import {authenticateToken} from '../../middleware/auth.ts';
 import type {Request, Response} from 'express';
 

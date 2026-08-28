@@ -1,25 +1,25 @@
 import {Router} from 'express';
-import {login, registerBusiness, registerUser} from '../../controllers/v1/authController.ts';
+import {login, registerBusiness, registerUser} from '../../controllers/v1/auth.controller.ts';
 import {validateBody} from '../../middleware/validation.ts';
 
 import {registerBusinessVal, loginVal, registerUserVal} from '../../validators/v1/accounts.ts';
 
 const router = Router();
 
-//region GET
-//endregion
+//#region GET
+//#endregion
 
 
-//region POST
+//#region POST
 router.post('/register/user', validateBody(registerUserVal), registerUser);
 router.post('/register/business', validateBody(registerBusinessVal), registerBusiness);
 
 router.post('/login', validateBody(loginVal), login);
-//endregion
+//#endregion
 
 
-//region PATCH/PUT/DELETE
-//endregion
+//#region PATCH/PUT/DELETE
+//#endregion
 
 export {router};
 export default router;

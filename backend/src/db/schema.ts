@@ -19,7 +19,7 @@ import {relations} from 'drizzle-orm';
 import {createInsertSchema, createSelectSchema} from 'drizzle-zod';
 import type {ZodObject} from 'zod';
 
-// region TABLES
+//#region TABLES
 // DB schema using Drizzle ORM's table definitions, see /docs/ERD.png
 // Before every table-entry is noted what ERD group they belong to, enums after
 // Groups: ACCOUNTS, ORDERS, LISTINGS & CATEGORIES
@@ -166,10 +166,10 @@ export const cartItems: PgTableWithColumns<any> = pgTable('cart_items', {
 }, (table) => [
     primaryKey({columns: [table.userId, table.listingId]})
 ]);
-// endregion TABLES
+//#endregion TABLES
 
 
-// region RELATIONS
+//#region RELATIONS
 // 🟥ACCOUNTS
 export const userRelations = relations(users, ({one, many}) => ({
     account: one(accounts, {
@@ -291,10 +291,10 @@ export const cartItemRelations = relations(cartItems, ({one}) => ({
         references: [listings.id]
     }),
 }));
-// endregion RELATIONS
+//#endregion RELATIONS
 
 
-// region EXPORT TYPES
+//#region EXPORT TYPES
 // Export TS types derived from table schemas
 // These are re-exported in @shared/types/
 
@@ -316,10 +316,10 @@ export type ListingImage = typeof listingImages.$inferSelect;
 export type Order = typeof orders.$inferSelect;
 export type OrderListing = typeof orderListings.$inferSelect;
 export type CartItem = typeof cartItems.$inferSelect;
-// endregion EXPORT TYPES
+//#endregion EXPORT TYPES
 
 
-// region VALIDATION SCHEMAS
+//#region VALIDATION SCHEMAS
 // Export Zod schemas for validating request.body data against the table structure
 // These schemas act as `models`, whereas the /src/validation dir acts as `dto's`
 
@@ -363,4 +363,4 @@ export const selectOrderListingSchema = createSelectSchema(orderListings);
 
 export const insertCartItemSchema = createInsertSchema(cartItems);
 export const selectCartItemSchema = createSelectSchema(cartItems);
-// endregion VALIDATION SCHEMAS
+//#endregion VALIDATION SCHEMAS

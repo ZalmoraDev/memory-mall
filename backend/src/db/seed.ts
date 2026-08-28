@@ -32,7 +32,7 @@ const seed = async () => {
         await db.delete(businesses);
         await db.delete(users);
 
-        // region ACCOUNTS
+        //#region ACCOUNTS
         console.log('🟥[ 1/11] Creating demo user...');
         const [demoUser] = await db.insert(users).values({
             username: 'samsepi0l',
@@ -68,10 +68,10 @@ const seed = async () => {
             city: 'New York',
             postalCode: '10580'
         }).returning();
-        // endregion ACCOUNTS
+        //#endregion ACCOUNTS
 
 
-        // region CATEGORIES
+        //#region CATEGORIES
         console.log('🟦[ 4/11] Creating categories...');
         const [computerHardwareCat] = await db.insert(categories).values({
             name: 'Computer Hardware',
@@ -127,10 +127,10 @@ const seed = async () => {
             isRequired: true,
             suffix: 'W'
         }).returning();
-        // endregion CATEGORIES
+        //#endregion CATEGORIES
 
 
-        // region LISTINGS
+        //#region LISTINGS
         console.log('🟩[ 6/11] Creating listings...');
         const [amdCpuListing] = await db.insert(listings).values({
             sellingAccountId: demoBusinessAccount.id,
@@ -222,10 +222,10 @@ const seed = async () => {
                 valueInt: 135
             }
         ]);
-        // endregion LISTINGS
+        //#endregion LISTINGS
 
 
-        // region ORDERS
+        //#region ORDERS
         console.log('🟪[ 9/11] Creating orders...');
         const [order1] = await db.insert(orders).values({
             userId: demoUser.id,
@@ -258,7 +258,7 @@ const seed = async () => {
             listingId: intelCpuListing.id,
             quantity: 5
         });
-        // endregion ORDERS
+        //#endregion ORDERS
 
         console.log('✅ DB seeded successfully');
         console.log('USER CREDENTIALS:');

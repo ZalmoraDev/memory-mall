@@ -1,7 +1,7 @@
 import {z} from 'zod';
 import {insertBusinessAccountSchema, insertUserAccountSchema} from '../../db/schema.ts';
 
-// region private
+//#region private
 const accountFields = {
     email: true,
     phone: true,
@@ -13,10 +13,10 @@ const accountFields = {
 } as const;
 
 const minPasswordLength = 8;
-// endregion private
+//#endregion private
 
 
-// region public
+//#region public
 // Whitelisting opposed to blacklisting, to negate accidental mass assigment / object injection
 export const registerUserVal = insertUserAccountSchema.pick({
     ...accountFields, username: true, firstName: true, lastName: true
@@ -36,4 +36,4 @@ export const loginVal = z.object({
     email: z.email('Invalid email'),
     password: z.string().min(8, 'Password is required').max(255, 'Password must be 8-255 characters')
 });
-// endregion public
+//#endregion public

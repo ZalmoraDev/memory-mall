@@ -1,6 +1,6 @@
 import type {Account, User, Business} from '../types';
 
-// region REQUESTS
+//#region REQUESTS
 
 export interface RegisterUserRequest {
     username: string;
@@ -34,10 +34,10 @@ export interface LoginRequest {
     email: string;
     password: string;
 }
-// endregion REQUESTS
+//#endregion REQUESTS
 
 
-// region RESPONSES
+//#region RESPONSES
 
 /** Account shape safe to expose over the wire: no password hash, no soft-delete marker. */
 export interface PublicAccount {
@@ -68,4 +68,4 @@ export interface LoginResponse {
     account: PublicAccount;
     token: string;
 }
-// endregion RESPONSES
+//#endregion RESPONSES
