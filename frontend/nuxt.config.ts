@@ -16,6 +16,11 @@ export default defineNuxtConfig({
   imports: {
     dirs: ["types"],
   },
+  alias: {
+    // Root-level shared wire contract (API request/response + wire-safe types).
+    // Safe for the frontend: shared/ contains no raw DB row types.
+    "@shared": "../shared",
+  },
   css: [
     "~/assets/css/main.css"
   ],

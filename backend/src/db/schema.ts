@@ -11,8 +11,7 @@ import {
     integer,
     smallint,
     real,
-    type PgTableWithColumns,
-    type PgEnum, decimal,
+    decimal,
     primaryKey
 } from 'drizzle-orm/pg-core';
 import {relations} from 'drizzle-orm';
@@ -25,12 +24,12 @@ import type {ZodObject} from 'zod';
 // Groups: ACCOUNTS, ORDERS, LISTINGS & CATEGORIES
 
 // Enums
-export const dataType: PgEnum<any> = pgEnum('data_type', ['string', 'int', 'float', 'decimal', 'bool']); // 🟦CATEGORIES
-export const listingCondition: PgEnum<any> = pgEnum('listing_condition', ['new', 'refurbished', 'used', 'modded_new', 'modded_used']); // 🟩LISTINGS
-export const orderStatus: PgEnum<any> = pgEnum('order_status', ['ordered', 'in_transit', 'delivered']); // 🟪ORDER
+export const dataType = pgEnum('data_type', ['string', 'int', 'float', 'decimal', 'bool']); // 🟦CATEGORIES
+export const listingCondition = pgEnum('listing_condition', ['new', 'refurbished', 'used', 'modded_new', 'modded_used']); // 🟩LISTINGS
+export const orderStatus = pgEnum('order_status', ['ordered', 'in_transit', 'delivered']); // 🟪ORDER
 
 // 🟥ACCOUNTS
-export const users: PgTableWithColumns<any> = pgTable('users', {
+export const users = pgTable('users', {
     id: uuid('id').primaryKey().defaultRandom(),
     username: varchar('username', {length: 32}).notNull().unique(),
     firstName: varchar('first_name', {length: 64}).notNull(),
@@ -38,7 +37,7 @@ export const users: PgTableWithColumns<any> = pgTable('users', {
 });
 
 // 🟥ACCOUNTS
-export const businesses: PgTableWithColumns<any> = pgTable('businesses', {
+export const businesses = pgTable('businesses', {
     id: uuid('id').primaryKey().defaultRandom(),
     name: varchar('name', {length: 128}).notNull().unique(),
     description: text('description'),
@@ -47,7 +46,7 @@ export const businesses: PgTableWithColumns<any> = pgTable('businesses', {
 
 // 🟥ACCOUNTS | C2 can only have 1 NOT NULL
 // @formatter:off
-export const accounts: PgTableWithColumns<any> = pgTable('accounts', {
+export const accounts = pgTable('accounts', {
     id: uuid('id').primaryKey().defaultRandom(),
     userId: uuid('user_id').references(() => users.id, {onDelete: 'cascade'}).unique(),
     businessId: uuid('business_id').references(() => businesses.id, {onDelete: 'cascade'}).unique(),
@@ -69,7 +68,7 @@ export const accounts: PgTableWithColumns<any> = pgTable('accounts', {
 // @formatter:on
 
 // 🟦CATEGORIES
-export const categories: PgTableWithColumns<any> = pgTable('categories', {
+export const categories = pgTable('categories', {
     id: uuid('id').primaryKey().defaultRandom(),
     name: varchar('name', {length: 128}).notNull(),
     isFeatured: boolean('is_featured').notNull().default(false),
@@ -77,7 +76,7 @@ export const categories: PgTableWithColumns<any> = pgTable('categories', {
 });
 
 // 🟦CATEGORIES
-export const attributes: PgTableWithColumns<any> = pgTable('attributes', {
+export const attributes = pgTable('attributes', {
     id: uuid('id').primaryKey().defaultRandom(),
     categoryId: uuid('category_id').references(() => categories.id, {onDelete: 'cascade'}).notNull(),
     name: varchar('name', {length: 128}).notNull(),
@@ -90,7 +89,7 @@ export const attributes: PgTableWithColumns<any> = pgTable('attributes', {
 });
 
 // 🟩LISTINGS
-export const listings: PgTableWithColumns<any> = pgTable('listings', {
+export const listings = pgTable('listings', {
     id: uuid('id').primaryKey().defaultRandom(),
     sellingAccountId: uuid('selling_account_id').notNull().references(() => accounts.id, {onDelete: 'cascade'}),
     title: varchar('title', {length: 128}).notNull(),
@@ -106,7 +105,7 @@ export const listings: PgTableWithColumns<any> = pgTable('listings', {
 });
 
 // 🟩LISTINGS
-export const listingImages: PgTableWithColumns<any> = pgTable('listing_images', {
+export const listingImages = pgTable('listing_images', {
     id: uuid('id').primaryKey().defaultRandom(),
     listingId: uuid('listing_id').notNull().references(() => listings.id, {onDelete: 'cascade'}),
     orderNr: smallint('order_nr').notNull(),
@@ -117,7 +116,7 @@ export const listingImages: PgTableWithColumns<any> = pgTable('listing_images', 
 // 🟦CATEGORIES, junction | C1 can only have 0 OR 1 be NOT NULL, 0 is when is_required is FALSE
 // @formatter:off
 // TODO: Maybe change valueFloat being stored as a "real" to decimal
-export const listingAttributeValues: PgTableWithColumns<any> = pgTable('listing_attribute_values', {
+export const listingAttributeValues = pgTable('listing_attribute_values', {
     listingId: uuid('listing_id').references(() => listings.id, {onDelete: 'cascade'}).notNull(),
     attributeId: uuid('attribute_id').references(() => attributes.id, {onDelete: 'cascade'}).notNull(),
     valueString: varchar('value_string', {length: 256}),
@@ -138,7 +137,7 @@ export const listingAttributeValues: PgTableWithColumns<any> = pgTable('listing_
 // @formatter:on
 
 // 🟪ORDERS
-export const orders: PgTableWithColumns<any> = pgTable('orders', {
+export const orders = pgTable('orders', {
     id: uuid('id').primaryKey().defaultRandom(),
     userId: uuid('user_id').notNull().references(() => users.id, {onDelete: 'cascade'}),
     totalPrice: decimal('total_price', {precision: 11, scale: 2}).notNull(),
@@ -149,7 +148,7 @@ export const orders: PgTableWithColumns<any> = pgTable('orders', {
 });
 
 // 🟪ORDERS, junction
-export const orderListings: PgTableWithColumns<any> = pgTable('order_listings', {
+export const orderListings = pgTable('order_listings', {
     orderId: uuid('order_id').references(() => orders.id, {onDelete: 'cascade'}).notNull(),
     listingId: uuid('listing_id').references(() => listings.id, {onDelete: 'cascade'}).notNull(),
     quantity: smallint('quantity').notNull(),
@@ -159,7 +158,7 @@ export const orderListings: PgTableWithColumns<any> = pgTable('order_listings', 
 ]);
 
 // 🟪ORDERS, junction
-export const cartItems: PgTableWithColumns<any> = pgTable('cart_items', {
+export const cartItems = pgTable('cart_items', {
     userId: uuid('user_id').references(() => users.id, {onDelete: 'cascade'}).notNull(),
     listingId: uuid('listing_id').references(() => listings.id, {onDelete: 'cascade'}).notNull(),
     quantity: smallint('quantity').notNull()
@@ -214,7 +213,7 @@ export const categoryRelations = relations(categories, ({one, many}) => ({
 
 // 🟦CATEGORIES
 export const attributeRelations = relations(attributes, ({one, many}) => ({
-    category: one(attributes, {
+    category: one(categories, {
         fields: [attributes.categoryId],
         references: [categories.id]
     }),
@@ -223,11 +222,11 @@ export const attributeRelations = relations(attributes, ({one, many}) => ({
 
 // 🟦CATEGORIES, junction
 export const listingAttributeValueRelations = relations(listingAttributeValues, ({one}) => ({
-    listing: one(listingAttributeValues, {
+    listing: one(listings, {
         fields: [listingAttributeValues.listingId],
         references: [listings.id]
     }),
-    attribute: one(listingAttributeValues, {
+    attribute: one(attributes, {
         fields: [listingAttributeValues.attributeId],
         references: [attributes.id]
     })
@@ -236,11 +235,11 @@ export const listingAttributeValueRelations = relations(listingAttributeValues, 
 
 // 🟩LISTINGS
 export const listingRelations = relations(listings, ({one, many}) => ({
-    sellingAccount: one(listings, {
+    sellingAccount: one(accounts, {
         fields: [listings.sellingAccountId],
         references: [accounts.id]
     }),
-    mainCategory: one(listings, {
+    mainCategory: one(categories, {
         fields: [listings.mainCategoryId],
         references: [categories.id]
     }),
@@ -252,7 +251,7 @@ export const listingRelations = relations(listings, ({one, many}) => ({
 
 // 🟩LISTINGS
 export const listingImageRelations = relations(listingImages, ({one}) => ({
-    listing: one(listingImages, {
+    listing: one(listings, {
         fields: [listingImages.listingId],
         references: [listings.id]
     })
@@ -261,7 +260,7 @@ export const listingImageRelations = relations(listingImages, ({one}) => ({
 
 // 🟪ORDERS
 export const orderRelations = relations(orders, ({one, many}) => ({
-    user: one(orders, {
+    user: one(users, {
         fields: [orders.userId],
         references: [users.id]
     }),
@@ -270,11 +269,11 @@ export const orderRelations = relations(orders, ({one, many}) => ({
 
 // 🟪ORDERS, junction
 export const orderListingRelations = relations(orderListings, ({one}) => ({
-    order: one(orderListings, {
+    order: one(orders, {
         fields: [orderListings.orderId],
         references: [orders.id]
     }),
-    listing: one(orderListings, {
+    listing: one(listings, {
         fields: [orderListings.listingId],
         references: [listings.id]
     }),
@@ -282,11 +281,11 @@ export const orderListingRelations = relations(orderListings, ({one}) => ({
 
 // 🟪ORDERS, junction
 export const cartItemRelations = relations(cartItems, ({one}) => ({
-    user: one(cartItems, {
+    user: one(users, {
         fields: [cartItems.userId],
         references: [users.id]
     }),
-    listing: one(cartItems, {
+    listing: one(listings, {
         fields: [cartItems.listingId],
         references: [listings.id]
     }),
@@ -295,10 +294,13 @@ export const cartItemRelations = relations(cartItems, ({one}) => ({
 
 
 //#region EXPORT TYPES
-// Export TS types derived from table schemas
-// These are re-exported in @shared/types/
+// Export TS types derived from table schemas.
+// The safe row types are re-exported to @shared/types for the frontend;
+// `Account` is backend-only (sensitive columns) - exposed as `AccountPublic`.
 
 // 🟥ACCOUNTS
+/** Do NOT use over wire! Sensitive fields: `password` & `deletedAt`.
+ * Use `@shared/types/AccountPublic` instead.*/
 export type Account = typeof accounts.$inferSelect;
 export type User = typeof users.$inferSelect;
 export type Business = typeof businesses.$inferSelect;

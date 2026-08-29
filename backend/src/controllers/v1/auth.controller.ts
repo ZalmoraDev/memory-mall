@@ -6,13 +6,13 @@ import type {
     RegisterBusinessResponse,
     LoginRequest,
     LoginResponse
-} from '@shared/api/auth.js';
+} from '@shared/contracts/auth.js';
 
 import {createUser, createBusiness, loginAccount} from '../../services/auth.service.ts';
 
 //#region POST
 /** POST /api/v1/register/user - Controller for handling user registration. Hashes password, creates user in DB, and returns account & JWT. */
-export const registerUser = async (req: Request, res: Response): Promise<Response> => {
+export const registerUser = async (req: Request, res: Response): Promise<Response<RegisterUserResponse>> => {
     try {
         const body = req.body as RegisterUserRequest;
         const result = await createUser(body);
@@ -33,7 +33,7 @@ export const registerUser = async (req: Request, res: Response): Promise<Respons
 };
 
 /** POST /api/v1/register/business - Controller for handling business registration. Hashes password, creates business & account in DB, and returns account & JWT. */
-export const registerBusiness = async (req: Request, res: Response): Promise<Response> => {
+export const registerBusiness = async (req: Request, res: Response): Promise<Response<RegisterBusinessResponse>> => {
     try {
         const body = req.body as RegisterBusinessRequest;
         const result = await createBusiness(body);
@@ -54,7 +54,7 @@ export const registerBusiness = async (req: Request, res: Response): Promise<Res
 };
 
 /** POST /api/v1/login - Controller for handling account login (users AND businesses). Validates credentials, generates JWT, and returns an account & token. */
-export const login = async (req: Request, res: Response): Promise<Response> => {
+export const login = async (req: Request, res: Response): Promise<Response<LoginResponse>> => {
     try {
         const {email, password} = req.body as LoginRequest;
         const result = await loginAccount(email, password);

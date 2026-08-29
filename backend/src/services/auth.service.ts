@@ -1,27 +1,16 @@
 import {eq} from 'drizzle-orm';
 import {db} from '../db/connection.ts';
-import {users, businesses, accounts, type Account} from '../db/schema.ts';
+import {users, businesses, accounts, type Account, type User, type Business} from '../db/schema.ts';
 import {generateToken} from '../utils/jwt.ts';
 import {hashPassword, comparePasswords} from '../utils/passwords.ts';
-import type {PublicAccount, RegisterBusinessRequest, RegisterUserRequest} from '@shared/api/auth.js';
+import type {RegisterBusinessRequest, RegisterUserRequest} from '@shared/contracts/auth.js';
 
 //#region PRIVATE
-
-/** Strips fields that must never leave the server (password hash, deletedAt).
- *  Explicit field pick (not `...rest`) so the result is the precise `PublicAccount` */
-const toPublicAccount = (account: Account): PublicAccount => ({
-    id: account.id,
-    userId: account.userId,
-    businessId: account.businessId,
-    email: account.email,
-    phone: account.phone,
-    streetAddress: account.streetAddress,
-    streetNumber: account.streetNumber,
-    apartmentSuite: account.apartmentSuite,
-    city: account.city,
-    postalCode: account.postalCode,
-    createdAt: account.createdAt
-});
+/** Account row with its `user`/`business` owner relation resolved. */
+type AccountWithOwner = Account & {
+    user: User | null;
+    business: Business | null;
+};
 //#endregion PRIVATE
 
 
@@ -58,7 +47,7 @@ export const createUser = async (body: RegisterUserRequest): Promise<any> => {
             apartmentSuite,
             city,
             postalCode
-        }).returning({
+        }).returning({ // Doesn't contain password
             id: accounts.id,
             userId: accounts.userId,
             businessId: accounts.businessId,
@@ -84,7 +73,7 @@ export const createUser = async (body: RegisterUserRequest): Promise<any> => {
 
     return {
         user,
-        account: toPublicAccount(account),
+        account,
         token
     };
 };
@@ -120,7 +109,7 @@ export const createBusiness = async (body: RegisterBusinessRequest): Promise<any
             apartmentSuite,
             city,
             postalCode
-        }).returning({
+        }).returning({ // Doesn't contain password
             id: accounts.id,
             userId: accounts.userId,
             businessId: accounts.businessId,
@@ -146,7 +135,7 @@ export const createBusiness = async (body: RegisterBusinessRequest): Promise<any
 
     return {
         business,
-        account: toPublicAccount(account),
+        account,
         token
     };
 };
@@ -160,7 +149,7 @@ export const loginAccount = async (email: string, password: string): Promise<any
             user: true,
             business: true
         }
-    });
+    }) as AccountWithOwner;
     if (!account)
         throw new Error('Invalid credentials');
 
@@ -179,8 +168,12 @@ export const loginAccount = async (email: string, password: string): Promise<any
         name: name as string
     });
 
+    // Strip sensitive columns before returning `account`
+    const {password: _password, deletedAt: _deletedAt, ...publicAccount} = account;
+
+    // TODO: Revisit the User vs. Business logic
     return {
-        account: toPublicAccount(account),
+        account: publicAccount,
         user: account.user ?? undefined,
         business: account.business ?? undefined,
         token

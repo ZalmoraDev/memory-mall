@@ -137,7 +137,7 @@ const seed = async () => {
             title: 'AMD Opteron 850',
             description: 'First generation x86-64 AMD CPU',
             mainCategoryId: cpuCat.id,
-            price: 200.00,
+            price: '200.00',
             stockQuantity: 50,
             condition: 'new',
             visitCount: 500,
@@ -148,7 +148,7 @@ const seed = async () => {
             title: 'Intel Xeon 2.8GHz (Nocona)',
             description: 'First generation x86-64 Intel CPU',
             mainCategoryId: cpuCat.id,
-            price: 200.00,
+            price: '200.00',
             stockQuantity: 5,
             condition: 'new',
             visitCount: 2500,
@@ -184,7 +184,7 @@ const seed = async () => {
             {
                 listingId: amdCpuListing.id,
                 attributeId: cpuFrequencyAttr.id,
-                valueDecimal: 2.4
+                valueDecimal: '2.4'
             },
             {
                 listingId: amdCpuListing.id,
@@ -209,7 +209,7 @@ const seed = async () => {
             {
                 listingId: intelCpuListing.id,
                 attributeId: cpuFrequencyAttr.id,
-                valueDecimal: 2.8
+                valueDecimal: '2.8'
             },
             {
                 listingId: intelCpuListing.id,
@@ -229,7 +229,7 @@ const seed = async () => {
         console.log('🟪[ 9/11] Creating orders...');
         const [order1] = await db.insert(orders).values({
             userId: demoUser.id,
-            totalPrice: 600.00,
+            totalPrice: '600.00',
             status: 'delivered',
             orderedAt: new Date('2023-01-1'),
             shippedAt: new Date('2023-01-2'),
@@ -242,13 +242,13 @@ const seed = async () => {
                 orderId: order1.id,
                 listingId: amdCpuListing.id,
                 quantity: 2,
-                priceSnapshot: 200.00
+                priceSnapshot: '200.00'
             },
             {
                 orderId: order1.id,
                 listingId: intelCpuListing.id,
                 quantity: 1,
-                priceSnapshot: 200.00
+                priceSnapshot: '200.00'
             }
         ]);
 
