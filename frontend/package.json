@@ -1,5 +1,5 @@
 {
-  "name": "memory-mall",
+  "name": "@memory-mall/frontend",
   "version": "0.1.0",
   "description": "FE Nuxt.js: 90's themed computer hardware e-commerce platform",
   "author": "ZalmoraDev",
@@ -14,14 +14,19 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@memory-mall/shared": "*",
+    "@nuxt/icon": "^1.10.3",
     "@nuxtjs/color-mode": "^4.0.0",
     "@tailwindcss/vite": "^4.2.2",
-    "@nuxt/icon": "^1.10.3",
     "nuxt": "^4.4.2",
     "nuxt-music-flow": "^1.1.8",
     "prettier": "^3.8.3",
     "tailwindcss": "^4.2.2",
     "vue": "^3.5.30",
     "vue-router": "^5.0.3"
+  },
+  "devDependencies": {
+    "@types/node": "^26.4.0",
+    "@iconify-json/material-symbols": "^1.2.90"
   }
 }

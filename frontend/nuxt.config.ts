@@ -1,8 +1,9 @@
 import tailwindcss from "@tailwindcss/vite";
 declare const process: { env: Record<any, any> };
+
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
-  devtools: { enabled: false },
+  devtools: { enabled: true },
   app: {
     head: {
       title: "Memory Mall",
@@ -12,18 +13,10 @@ export default defineNuxtConfig({
     },
   },
   modules: ["@nuxtjs/color-mode", "nuxt-music-flow", "@nuxt/icon"],
-
   imports: {
     dirs: ["types"],
   },
-  alias: {
-    // Root-level shared wire contract (API request/response + wire-safe types).
-    // Safe for the frontend: shared/ contains no raw DB row types.
-    "@shared": "../shared",
-  },
-  css: [
-    "~/assets/css/main.css"
-  ],
+  css: ["~/assets/css/main.css"],
   colorMode: {
     preference: "system", // default
     fallback: "dark", // fallback

@@ -21,7 +21,7 @@ import type {ZodObject} from 'zod';
 //#region TABLES
 // DB schema using Drizzle ORM's table definitions, see /docs/ERD.png
 // Before every table-entry is noted what ERD group they belong to, enums after
-// Groups: ACCOUNTS, ORDERS, LISTINGS & CATEGORIES
+// Groups: 🟥ACCOUNTS, 🟩LISTINGS, 🟦CATEGORIES & 🟪ORDERS
 
 // Enums
 export const dataType = pgEnum('data_type', ['string', 'int', 'float', 'decimal', 'bool']); // 🟦CATEGORIES

@@ -2,46 +2,53 @@ name: memory-mall
 
 volumes:
   postgres_vol: { }
+  express_node_modules: { }
+  express_root_node_modules: { }
+  nuxt_node_modules: { }
+  nuxt_root_node_modules: { }
 
 services:
-  # Use `docker compose exec mm-express npm run 'command'` to run the drizzle-orm CLI
-  # commands from /backend/package.json inside the postgres container
-  express:
-    container_name: mm-express
-    build:
-      context: .
-      dockerfile: express.dockerfile # image: node:24
-    ports:
-      - "3000:3000" # express server
-      - "4983:4983" # drizzle-orm
-      # TODO: Drizzle-studio is not reachable by the HOST, gives back 404.
-    command: npm run dev
-    volumes:
-      - ./backend:/app
-    env_file:
-      - ./.env
-    restart: no
-    depends_on:
-      - postgres
-
-  nuxt:
-    container_name: mm-nuxt
+  mm-nuxt:
     build:
       context: .
       dockerfile: nuxt.dockerfile # image: node:24
+    working_dir: /app/frontend
     ports:
       - "3001:3000"
     command: npm run dev
     volumes:
-      - ./frontend:/app
+      - .:/app
+      - nuxt_root_node_modules:/app/node_modules
+      - nuxt_node_modules:/app/frontend/node_modules
     env_file:
       - ./.env
     restart: no
     depends_on:
-      - express
+      - mm-express
 
-  postgres:
-    container_name: mm-postgres
+  # Use `docker compose exec mm-express npm run 'command'` to run the drizzle-orm CLI
+  # commands from /backend/package.json inside the postgres container
+  mm-express:
+    build:
+      context: .
+      dockerfile: express.dockerfile # image: node:24
+    working_dir: /app/backend
+    ports:
+      - "3000:3000" # express server TODO: should be 127.0.0.1:3000 for prod
+      - "4983:4983" # drizzle-orm
+      # TODO: Drizzle-studio is not reachable by the HOST, gives back 404.
+    command: npm run dev
+    volumes:
+      - .:/app
+      - express_root_node_modules:/app/node_modules
+      - express_node_modules:/app/backend/node_modules
+    env_file:
+      - ./.env
+    restart: no
+    depends_on:
+      - mm-postgres
+
+  mm-postgres:
     image: postgres:16
     ports:
       - "5432:5432"
@@ -54,8 +61,7 @@ services:
       - ./backend/migrations:/docker-entrypoint-initdb.d/ # Import all drizzle-orm migrations on first init
     restart: no
 
-  pg-admin:
-    container_name: mm-pgadmin
+  mm-pg-admin:
     image: dpage/pgadmin4:9
     ports:
       - "8080:80"
@@ -66,4 +72,4 @@ services:
       - ./backend/src/db/servers.json:/pgadmin4/servers.json
     restart: no
     depends_on:
-      - postgres
+      - mm-postgres

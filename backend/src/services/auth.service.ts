@@ -3,7 +3,7 @@ import {db} from '../db/connection.ts';
 import {users, businesses, accounts, type Account, type User, type Business} from '../db/schema.ts';
 import {generateToken} from '../utils/jwt.ts';
 import {hashPassword, comparePasswords} from '../utils/passwords.ts';
-import type {RegisterBusinessRequest, RegisterUserRequest} from '@shared/contracts/auth.js';
+import type {RegisterBusinessRequest, RegisterUserRequest} from '@shared/src/contracts/auth.contracts.ts';
 
 //#region PRIVATE
 /** Account row with its `user`/`business` owner relation resolved. */

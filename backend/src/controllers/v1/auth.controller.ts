@@ -6,7 +6,7 @@ import type {
     RegisterBusinessResponse,
     LoginRequest,
     LoginResponse
-} from '@shared/contracts/auth.js';
+} from '@shared/src/contracts/auth.contracts.ts';
 
 import {createUser, createBusiness, loginAccount} from '../../services/auth.service.ts';
 

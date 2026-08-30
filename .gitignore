@@ -3,33 +3,38 @@
 /docs/design.pur
 /docs/.$.drawio.*
 
+
 ########################
 # BACKEND
-
-# Express dev/build outputs
 /backend/node_modules
 
 
 ########################
 # FRONTEND
+/frontend/node_modules
 
-# Nuxt dev/build outputs
 /frontend/.output
 /frontend/.data
 /frontend/.nuxt
 /frontend/.nitro
 /frontend/.cache
 /frontend/dist
-/frontend/node_modules
 
 # Tailwind CSS
 /frontend/public/styles/output.css
 
 
 ########################
-# GENERAL
+# SHARED
+/shared/node_modules
+
+
+########################
+# ROOT
+node_modules/
 
 # Environment variables (dev, prod, test)
+!.env.example
 .env
 .env.production
 .env.test
@@ -38,7 +43,6 @@
 .env.production.local
 .env.test.local
 
-!.env.example
 
 # Logs
 logs/

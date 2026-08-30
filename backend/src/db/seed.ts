@@ -19,7 +19,7 @@ const seed = async () => {
     try {
         console.log('Clearing existing data...');
 
-        // Delete in reverse order (because of table dependencies)
+        // Deleted in reverse order (because of table dependencies)
         await db.delete(cartItems);
         await db.delete(orderListings);
         await db.delete(orders);

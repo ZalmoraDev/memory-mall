@@ -1,12 +1,12 @@
-FROM node:20
+FROM node:24
 
 WORKDIR /app
 
-# package.json & package-lock.json
-COPY /frontend/package*.json ./
+COPY package*.json ./
+COPY frontend ./frontend
+COPY shared ./shared
+
 RUN npm install
 
-# mount volume in compose for live reload
-COPY frontend ./
-
+WORKDIR /app/frontend
 CMD ["npm", "run", "dev"]
